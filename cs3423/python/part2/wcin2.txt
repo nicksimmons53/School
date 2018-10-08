@@ -1,4 +1,0 @@
-This program is being tested
-using the data in these files.
-There are multiple files for 
-use with this program.

@@ -1,5 +1,0 @@
-This is some test data where
-we will repeat a lot of test
-words. Data is important for 
-testing the input and output
-of this program.

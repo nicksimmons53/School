@@ -1,4 +1,0 @@
-My name is Nicholas Simmons
-I am running this script from /home/srz888/courses/cs3423/assignments
-My username is srz888
-I am logged in to fox01
