@@ -1,0 +1,24 @@
+# of people imported: 8
+
+Person Name                    Age  Emp. Type             Pay
+------------------------------ ---  ------------ ------------
+Sue Heisenberg                 29   Salary       $    72000.00
+Tom Jones                      75   Commission   $    37500.00
+Sue Jones                      22   Hourly       $       75.00
+Ragnar Jones                   64   Hourly       $       32.50
+Bob Jones                      31   Commission   $    16520.00
+Bob Roberts                    35   Salary       $   120000.00
+Bob Smith                      42   Hourly       $       12.75
+Wilma Williams                 38   Salary       $    50000.00
+
+Average age:                 42.0
+Average commission:  $    27010.00
+Average hourly wage: $       40.08
+Average salary:      $    80666.67
+
+First names with more than one person sharing it:
+Sue, # people with this name: 2
+Bob, # people with this name: 3
+
+Last names with more than one person sharing it:
+Jones, # people with this name: 4

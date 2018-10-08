@@ -1,0 +1,8 @@
+Bob,Smith,42,Hourly,12.75
+Wilma,Williams,xxx,Salary,50000
+Tom,Jones,75,Commission,37500
+Sue,Jones,22,Hourly,75
+Bob,Roberts,35,Salary,120000
+Ragnar,Jones,64,Hourly,32.50
+Sue,Heisenberg,29,Salary,72000
+Bob,Jones,31,Commission,16520
