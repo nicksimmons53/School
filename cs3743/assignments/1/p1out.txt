@@ -1,0 +1,154 @@
+* CS3743 p1Input.txt
+* Nuke the Hash file if it exists using driver function
+ >> NUKE MOVIE movie.dat
+* Opening of a non-existent file should cause an error
+ >> OPEN MOVIE movie.data
+    **** ERROR: header record not found
+*
+* 1. Create the hash file
+*
+ >> CREATE MOVIE movie.dat 19
+    Record size is 72
+ >> PRINTALL MOVIE movie.dat
+    Primary=19, HighOverflow=19, RecSize=72
+*
+* 2. Creating it again should cause an existence error
+*
+ >> CREATE MOVIE movie.dat 17
+    Record size is 72
+    **** ERROR: file already exists
+* Open it
+ >> OPEN MOVIE movie.dat
+*
+* 3. Insert some movies
+*
+ >> INSERT MOVIE TITANS001,Remember the Titans,DRAMA,PG,120
+            Hash RBN is 5
+ >> PRINTALL MOVIE movie.dat
+    Primary=19, HighOverflow=19, RecSize=72
+     5 Next=0       TITANS001 Remember the Titans             DRAMA       PG    120 
+ >> INSERT MOVIE TRADIN001,Trading Places,COMEDY,R,118
+            Hash RBN is 7
+ >> PRINTALL MOVIE movie.dat
+    Primary=19, HighOverflow=19, RecSize=72
+     5 Next=0       TITANS001 Remember the Titans             DRAMA       PG    120 
+     7 Next=0       TRADIN001 Trading Places                  COMEDY      R     118 
+*
+* 4. Read an existing movie
+*
+ >> READ MOVIE TITANS001
+            Hash RBN is 5
+    .. Next=0       TITANS001 Remember the Titans             DRAMA       PG    120 
+*
+* 5. Read should not find these two movies
+*
+ >> READ MOVIE ROBOTS001
+            Hash RBN is 11
+    **** ERROR: record not found
+ >> READ MOVIE SANDLOT01
+            Hash RBN is 4
+    **** ERROR: record not found
+*
+* 6. Insert two more movies
+*
+ >> INSERT MOVIE HARSAL001,When Harry Met Sally,ROMCOMEDY,R,96
+            Hash RBN is 19
+ >> INSERT MOVIE HUNGER001,Hunger Games,SCIFI,PG13,142
+            Hash RBN is 14
+ >> PRINTALL MOVIE movie.dat
+    Primary=19, HighOverflow=19, RecSize=72
+     5 Next=0       TITANS001 Remember the Titans             DRAMA       PG    120 
+     7 Next=0       TRADIN001 Trading Places                  COMEDY      R     118 
+    14 Next=0       HUNGER001 Hunger Games                    SCIFI       PG13  142 
+    19 Next=0       HARSAL001 When Harry Met Sally            ROMCOMEDY   R      96 
+*
+* 7. Insert an existing movie - should cause an error
+*
+ >> INSERT MOVIE HUNGER001,Hunger Games,SCIFIADV,XXX,333
+            Hash RBN is 14
+    **** ERROR: record already exists
+ >> READ MOVIE HUNGER001
+            Hash RBN is 14
+    .. Next=0       HUNGER001 Hunger Games                    SCIFI       PG13  142 
+*
+* 8. Insert more movies; however, some will have synonyms.
+*
+ >> INSERT MOVIE LASTSF001,Last Starfighter,SCIFI,PG,108
+            Hash RBN is 18
+ >> INSERT MOVIE SANDLOT01,The Sandlot,COMEDY,PG,101
+            Hash RBN is 4
+ >> INSERT MOVIE FRCUMP001,Forrest Gump,COMDEY,PG13,142
+            Hash RBN is 18
+    **** ERROR: Synonym exists at the specified location
+ >> INSERT MOVIE SWISFR001,Swiss Family Robinson,ADVENTURE,G,126
+            Hash RBN is 16
+ >> INSERT MOVIE KHEROE001,Kelly's Heroes,ACTION,PG,149
+            Hash RBN is 3
+ >> INSERT MOVIE ANIMAL001,Animal House,COMEDY,R,109
+            Hash RBN is 10
+ >> INSERT MOVIE EXTERR001,E.T. the Extra-Terrestrial,SCIFI,PG,121
+            Hash RBN is 12
+ >> INSERT MOVIE STWARS001,Star Wars: A new Hope,SCIFI,PG,125
+            Hash RBN is 3
+    **** ERROR: Synonym exists at the specified location
+ >> INSERT MOVIE ROCKYY001,Rocky,DRAMA,PG,122
+            Hash RBN is 19
+    **** ERROR: Synonym exists at the specified location
+ >> INSERT MOVIE HOMEAL001,Home Alone,COMEDY,PG,103
+            Hash RBN is 14
+    **** ERROR: Synonym exists at the specified location
+ >> INSERT MOVIE IAWLIF001,It's a Wonderful Life,DRAMA,PG,135
+            Hash RBN is 1
+ >> INSERT MOVIE VACAYY001,National Lampoon's Vacation,COMEDY,R,99
+            Hash RBN is 18
+    **** ERROR: Synonym exists at the specified location
+ >> INSERT MOVIE HALLOW001,Halloween,HORROR,R,101
+            Hash RBN is 12
+    **** ERROR: Synonym exists at the specified location
+ >> INSERT MOVIE VACAYC001,Christmas Vacation,COMEDY,PG13,97
+            Hash RBN is 15
+ >> INSERT MOVIE ANCHOR001,Anchorman: Ron Burgundy,COMEDY,PG13,104
+            Hash RBN is 19
+    **** ERROR: Synonym exists at the specified location
+ >> INSERT MOVIE SUPBAD001,Super Bad,COMEDY,R,119
+            Hash RBN is 4
+    **** ERROR: Synonym exists at the specified location
+ >> INSERT MOVIE GALAXY001,Galaxy Quest,COMEDY,PG,102
+            Hash RBN is 11
+ >> INSERT MOVIE BDOCKS001,The Boondock Saints,DRAMA,R,110
+            Hash RBN is 14
+    **** ERROR: Synonym exists at the specified location
+ >> INSERT MOVIE STTREK001,Star Trek,SCIFI,PG13,128
+            Hash RBN is 15
+    **** ERROR: Synonym exists at the specified location
+ >> INSERT MOVIE JURASP001,Jurassic Park,SCIFI,PG13,127
+            Hash RBN is 7
+    **** ERROR: Synonym exists at the specified location
+ >> INSERT MOVIE SHARKN001,Sharknado,DUMBCOMEDY,PG13,86
+            Hash RBN is 12
+    **** ERROR: Synonym exists at the specified location
+ >> INSERT MOVIE ROCKYY010,Rocky II,DRAMA,PG,110
+            Hash RBN is 19
+    **** ERROR: Synonym exists at the specified location
+ >> INSERT MOVIE ROCKYY100,Rocky III,DRAMA,PG,91
+            Hash RBN is 19
+    **** ERROR: Synonym exists at the specified location
+ >> INSERT MOVIE YVACAY001,European Vacation,COMEDY,R,91
+            Hash RBN is 18
+    **** ERROR: Synonym exists at the specified location
+ >> PRINTALL MOVIE movie.dat
+    Primary=19, HighOverflow=19, RecSize=72
+     1 Next=0       IAWLIF001 It's a Wonderful Life           DRAMA       PG    135 
+     3 Next=0       KHEROE001 Kelly's Heroes                  ACTION      PG    149 
+     4 Next=0       SANDLOT01 The Sandlot                     COMEDY      PG    101 
+     5 Next=0       TITANS001 Remember the Titans             DRAMA       PG    120 
+     7 Next=0       TRADIN001 Trading Places                  COMEDY      R     118 
+    10 Next=0       ANIMAL001 Animal House                    COMEDY      R     109 
+    11 Next=0       GALAXY001 Galaxy Quest                    COMEDY      PG    102 
+    12 Next=0       EXTERR001 E.T. the Extra-Terrestrial      SCIFI       PG    121 
+    14 Next=0       HUNGER001 Hunger Games                    SCIFI       PG13  142 
+    15 Next=0       VACAYC001 Christmas Vacation              COMEDY      PG13   97 
+    16 Next=0       SWISFR001 Swiss Family Robinson           ADVENTURE   G     126 
+    18 Next=0       LASTSF001 Last Starfighter                SCIFI       PG    108 
+    19 Next=0       HARSAL001 When Harry Met Sally            ROMCOMEDY   R      96 
+

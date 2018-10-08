@@ -1,0 +1,120 @@
+* CS3743 p1Input.txt
+* Nuke the Hash file if it exists using driver function
+NUKE MOVIE movie.dat
+* Opening of a non-existent file should cause an error
+OPEN MOVIE movie.data
+*
+* 1. Create the hash file
+*
+CREATE MOVIE movie.dat 19
+PRINTALL MOVIE movie.dat
+*
+* 2. Creating it again should cause an existence error
+*
+CREATE MOVIE movie.dat 17
+* Open it
+OPEN MOVIE movie.dat
+*
+* 3. Insert some movies
+*
+INSERT MOVIE TITANS001,Remember the Titans,DRAMA,PG,120
+PRINTALL MOVIE movie.dat
+INSERT MOVIE TRADIN001,Trading Places,COMEDY,R,118
+PRINTALL MOVIE movie.dat
+*
+* 4. Read an existing movie
+*
+READ MOVIE TITANS001
+*
+* 5. Read should not find these two movies
+*
+READ MOVIE ROBOTS001
+READ MOVIE SANDLOT01
+*
+* 6. Insert two more movies
+*
+INSERT MOVIE HARSAL001,When Harry Met Sally,ROMCOMEDY,R,96
+INSERT MOVIE HUNGER001,Hunger Games,SCIFI,PG13,142
+PRINTALL MOVIE movie.dat
+*
+* 7. Insert an existing movie - should cause an error
+* 
+INSERT MOVIE HUNGER001,Hunger Games,SCIFIADV,XXX,333
+READ MOVIE HUNGER001
+*
+* 8. Insert more movies
+*
+INSERT MOVIE LASTSF001,Last Starfighter,SCIFI,PG,108
+INSERT MOVIE SANDLOT01,The Sandlot,COMEDY,PG,101
+INSERT MOVIE SWISFR001,Swiss Family Robinson,ADVENTURE,G,126
+INSERT MOVIE KHEROE001,Kelly's Heroes,ACTION,PG,149
+INSERT MOVIE ANIMAL001,Animal House,COMEDY,R,109
+INSERT MOVIE EXTERR001,E.T. the Extra-Terrestrial,SCIFI,PG,121
+*
+* 9. Insert a movie that is a synonym, placing it in the overflow
+*
+INSERT MOVIE FRCUMP001,Forrest Gump,COMDEY,PG13,142
+READ MOVIE FRCUMP001
+READ MOVIE LASTSF001
+PRINTALL MOVIE movie.dat
+*
+* 10. Insert a movie that will be placed on the end of the synonym chain
+*
+INSERT MOVIE VACAYY001,National Lampoon's Vacation,COMEDY,R,99
+READ MOVIE VACAYY001
+READ MOVIE FRCUMP001
+PRINTALL MOVIE movie.dat
+* 
+* 11. Insert a movie that has a different synonym
+*
+INSERT MOVIE STWARS001,Star Wars: A new Hope,SCIFI,PG,125
+PRINTALL MOVIE movie.dat
+*
+* 12. Insert another synonym on the chain that already has three
+*     It should be placed at the end of the chain.
+*
+INSERT MOVIE YVACAY001,European Vacation,COMEDY,R,91
+READ MOVIE YVACAY001
+PRINTALL MOVIE movie.dat
+*
+* 13. Update a movie on the chain.  The chain should be preserved
+*
+UPDATE MOVIE FRCUMP001,Forrest Gump,COMEDY,PG13,222
+READ MOVIE FRCUMP001
+READ MOVIE LASTSF001
+PRINTALL MOVIE movie.dat
+*
+* 14. Update a movie in the primary area.  The chain should be preserved.
+*
+UPDATE MOVIE KHEROE001,Kelly's Heroes,ACTION,PG,149
+PRINTALL MOVIE movie.dat
+*
+* 15.  Create another synonym chain
+*
+INSERT MOVIE ROCKYY001,Rocky,DRAMA,PG,122
+INSERT MOVIE ANCHOR001,Anchorman: Ron Burgundy,COMEDY,PG13,104
+INSERT MOVIE ROCKYY010,Rocky II,DRAMA,PG,110
+PRINTALL MOVIE movie.dat
+READ MOVIE ROCKYY010
+*
+* 16. Attempt to update non-existent
+* 
+UPDATE MOVIE ROCKYY100,Rocky III,DRAMA,PG,91
+*
+* 17. Try to insert one that already exists
+*
+INSERT MOVIE ANCHOR001,Anchorman: Will Ferrell,COMEDY,PG13,333
+*
+* 18. more movies
+*
+INSERT MOVIE HOMEAL001,Home Alone,COMEDY,PG,103
+INSERT MOVIE IAWLIF001,It's a Wonderful Life,DRAMA,PG,135
+INSERT MOVIE HALLOW001,Halloween,HORROR,R,101
+INSERT MOVIE VACAYC001,Christmas Vacation,COMEDY,PG13,97
+INSERT MOVIE SUPBAD001,Super Bad,COMEDY,R,119
+INSERT MOVIE GALAXY001,Galaxy Quest,COMEDY,PG,102
+INSERT MOVIE BDOCKS001,The Boondock Saints,DRAMA,R,110
+INSERT MOVIE STTREK001,Star Trek,SCIFI,PG13,128
+INSERT MOVIE JURASP001,Jurassic Park,SCIFI,PG13,127
+INSERT MOVIE SHARKN001,Sharknado,DUMBCOMEDY,PG13,86
+PRINTALL MOVIE movie.dat
