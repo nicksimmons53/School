@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "Your current directory is '`pwd`', your home directory is '$HOME'"

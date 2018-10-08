@@ -1,0 +1,8 @@
+PPF001 100 10 9.95 Name: Popeil Pocket Fisherman
+SBB001 300 30 14.95 Name: Snuggie Brown
+SBG002 400 50 14.95 Name: Snuggie Green
+BOM001 20 5 29.95 Name: Bass-O-Matic
+MCW001 70 10 12.45 Name: Miracle Car Wax
+TTP001 75 10 9.95 Name: Topsy Turvy Planter
+NHC001 300 30 9.95 Name: Electric Nose Hair Clipper
+SSX001 150 15 29.95 Name: Secret Seal

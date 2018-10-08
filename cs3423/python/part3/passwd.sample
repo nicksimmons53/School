@@ -1,0 +1,4 @@
+rslavin:x:123:1000:Rocky Slavin:/home/rslavin:/bin/zsh
+maynard:x:124:1000:Hugh B. Maynard:/home/maynard:/bin/tcsh
+clark:x:125:1000:Larry Clark:/home/clark:/bin/bash
+abc123:x:5035:1001:Some Student:/home/abc123:/bin/tcsh
