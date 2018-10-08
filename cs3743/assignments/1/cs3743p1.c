@@ -38,30 +38,30 @@ Return Value:
     RC_OK               Executes successfully
 *************************************************************************/
 int hashCreate(char szFileNm[ ], HashHeader *pHashHeader) {
-    // Declare a new file
-    FILE *pFile;
+    // Declare a new hashfile
+    HashFile hashFile;
 
     // Check to see if the hash file already exists, exit if TRUE
-    pFile = fopen(szFileNm, "rb");
-    if (pFile != NULL)
+    hashFile.pFile = fopen(szFileNm, "rb");
+    if (hashFile.pFile != NULL)
         return RC_FILE_EXISTS;
 
     // Open and create the binary file, errExit if failed
-    pFile = fopen(szFileNm, "wb+");
-    if (pFile == NULL)
+    hashFile.pFile = fopen(szFileNm, "wb+");
+    if (hashFile.pFile == NULL)
         errExit("Could not open new hash file: '%s'\n", szFileNm);
 
     // Assign iHighOverflowRBN to iNumPrimary
     pHashHeader->iHighOverflowRBN = pHashHeader->iNumPrimary;
 
     // Search and set the beginning position in the hashFile
-    fseek(pFile, 0, SEEK_SET);
+    fseek(hashFile.pFile, 0, SEEK_SET);
 
     // Write the header record to the hashFile
-    fwrite(pHashHeader, pHashHeader->iRecSize, 1L, pFile);
+    fwrite(pHashHeader, pHashHeader->iRecSize, 1L, hashFile.pFile);
 
     // Close the file
-    fclose(pFile);
+    fclose(hashFile.pFile);
     return RC_OK;
 }
 

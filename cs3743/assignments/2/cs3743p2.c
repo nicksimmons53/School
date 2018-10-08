@@ -3,7 +3,7 @@ cs3743p1.c written by Nicholas Simmons (srz888)
 Purpose:
     This program will create and open a Hash File to read and write
     binary records to a location in the hash file according to a hash
-    function.
+    function, it will insert hash synonyms onto a chain.
 Command Parameters:
     make
     ./p1 < p1Input.txt
@@ -325,51 +325,71 @@ int movieRead(HashFile *pHashFile, Movie *pMovie, int *piRBN) {
     iRBN = hash(pMovie->szMovieId, pHashFile->hashHeader.iNumPrimary);
 
     // Read the record at that RBN
-    rcReadRec = readRec(pHashFile, iRBN, pMovie);
+    rcReadRec = readRec(pHashFile, iRBN, &prevMovie);
 
     // If the record is filled with 0 bytes, the record was not found
     if (pMovie->szMovieId[0] == '\0')
         return RC_REC_NOT_FOUND;
 
+    // If the movies are the same, set the structs
+    // Set the piRBN to the movie being read in RBN
     if (strcmp(pMovie->szMovieId, prevMovie.szMovieId) == 0) {
         *pMovie = prevMovie;
-		*piRBN = iRBN;
-		return RC_OK;
+	*piRBN = iRBN;
+	return RC_OK;
     } else {
-		while (prevMovie.iNextChain != 0){
-			iPrevMovie = prevMovie.iNextChain;
-        	readRec(pHashFile, prevMovie.iNextChain, &prevMovie);
-            if (strcmp(pMovie->szMovieId, prevMovie.szMovieId) == 0) {
-				*pMovie = prevMovie;
-		        *piRBN = iPrevMovie;
-				return RC_OK;
-    		}
-		}
+        // If the movie being read is in a chain, iterate to read
+    	while (prevMovie.iNextChain != 0) {
+            // Set the prev movie to the chain RBN
+    	    iPrevMovie = prevMovie.iNextChain;
+            readRec(pHashFile, prevMovie.iNextChain, &prevMovie);
 
-        // If no record was found, the record does not exist
-		return RC_REC_NOT_FOUND;
+            // If the movies match, set the structs and the piRBN to the RBN
+            if (strcmp(pMovie->szMovieId, prevMovie.szMovieId) == 0) {
+        		*pMovie = prevMovie;
+        	    *piRBN = iPrevMovie;
+        		return RC_OK;
+            }
+        }
+
+    // If no record was found, the record does not exist
+	return RC_REC_NOT_FOUND;
     }
 
     return RC_OK;
 }
 
 /*********************** movieUpdate *************************************
+int movieUpdate(HashFile *pHashFile, Movie *pMovie)
+Purpose:
+    Will search for a movie, if found it updates the record accordingly
+    and writes the new data to the record.
+Parameters:
+    HashFile        *pHashFile      pointer to the has file being read from
+    Movie           *pMovie         pointer to the movie being updated
+Notes:
+Returns:
+    RC_OK
+    RC_REC_NOT_FOUND
 *************************************************************************/
 int movieUpdate(HashFile *pHashFile, Movie *pMovie) {
-    Movie movie;
-    movie = *pMovie;
-    int *pirbn;
-    if(movieRead(pHashFile,&movie,pirbn) == RC_OK){
-        pMovie->iNextChain = movie.iNextChain;
-        int rc2 = writeRec(pHashFile,*pirbn,pMovie);
-               if(rc2 == RC_LOC_NOT_WRITTEN){
-                        errExit("ERROR WRITING TO FILE");
-                }
+    Movie pMovie2;
+    pMovie2 = *pMovie;
+    int *piRBN;
+    int rcRead;
 
-        return RC_OK;
-    }
-    else
+    // If the movie exists in the file, update, otherwise return not found
+    rcRead = movieRead(pHashFile, &pMovie2, piRBN);
+
+    if (rcRead == RC_OK){
+        // Set the movies next chain to keep the value
+        pMovie->iNextChain = pMovie2.iNextChain;
+
+        // Write the update record
+        writeRec(pHashFile, *piRBN, pMovie);
+    } else
         return RC_REC_NOT_FOUND;
+
     return RC_OK;
 }
 
