@@ -1,0 +1,14 @@
+UTSA01 8 0 150.00 80.00
+Armadillos,utsa@xyz.com,(210)555-1111,Jean E Us
+COM001 7 1 150.00 75.00
+Comm Eagles,maeking@xyz.com,(210)555-2222,Mae King
+SOUTH1 5 3 120.00 75.00
+Slam Dunk,slamdunk@gmail.com,(210)555-3333,Jerry Tall
+ALHGHT 4 4 175.00 100.00
+Cake Eaters,sliverspoon@xyz.com,(210)555-6666,E Z Street
+UNKN01 1 7 150.00 50.00 
+Org New Blk,bobwire@xyz.com,(210)555-1234,Bob Wire
+NEWB01 0 8 120.00 75.00
+River Rats,riverrat@xyz.com,(210)555-4444,Rock D Boat
+UNKN02 3 5 150.00 75.00
+Hackers,cyber@gmail.com,(210)555-5555,Tom E Gunn

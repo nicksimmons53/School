@@ -1,0 +1,17 @@
+ID      Team Name     Wins    Loss    Fee Amt Paid Amt 
+ Contact Name           Phone          Email                           
+UTSA01  Armadillos          8       0  150.00   80.00 
+Jean E Us             (210)555-1111  utsa@xyz.com                   
+COM001  Comm Eagles         7       1  150.00   75.00 
+Mae King              (210)555-2222  maeking@xyz.com                
+SOUTH1  Slam Dunk           5       3  120.00   75.00 
+Jerry Tall            (210)555-3333  slamdunk@gmail.com             
+ALHGHT  Cake Eaters         4       4  175.00  100.00 
+E Z Street            (210)555-6666  sliverspoon@xyz.com            
+UNKN01  Org New Blk         1       7  150.00   50.00 
+Bob Wire              (210)555-1234  bobwire@xyz.com                
+NEWB01  River Rats          0       8  120.00   75.00 
+Rock D Boat           (210)555-4444  riverrat@xyz.com               
+UNKN02  Hackers             3       5  150.00   75.00 
+Tom E Gunn             (210)555-5555  cyber@gmail.com                
+

@@ -1,0 +1,133 @@
+Initial Teams
+  Id     Team Name    Wins Loss  Fee Amt   Paid Amt
+		  Contact Name         Phone         Email
+  ALHGHT Cake Eaters     4    4    175.00    100.00
+		  E Z Street           (210)555-6666 sliverspoon@xyz.com
+  COM001 Comm Eagles     7    1    150.00     75.00
+		  Mae King             (210)555-2222 maeking@xyz.com
+  HACK02 Hackers         3    5    150.00     75.00
+		  Tom E Gunn           (210)555-5555 cyber@gmail.com
+  NEWB01 River Rats      0    8    120.00     75.00
+		  Rock D Boat          (210)555-4444 riverrat@xyz.com
+  SOUTH1 Slam Dunk       5    3    120.00     75.00
+		  Jerry Tall           (210)555-3333 slamdunk@gmail.com
+  UNKN01 Org New Blk     1    7    150.00     50.00
+		  Bob Wire             (210)555-1234 bobwire@xyz.com
+  UTSA01 Armadillos      8    0    150.00     80.00
+		  Jean E Us            (210)555-1111 utsa@xyz.com
+
+TEAM PPRINT
+      UTSA01
+   UNKN01
+      SOUTH1
+NEWB01
+      HACK02
+   COM001
+      ALHGHT
+GAME RESULT UTSA01 NEWB01 55 12
+GAME RESULT COMM01 SOUTH1 17 15
+ *** team(COMM01) not found
+GAME RESULT SOUTH1 ALHGHT 66 3
+GAME RESULT UTSA01 SOUTH1 44 45
+GAME RESULT UNKN01 HACK02 33 39
+GAME RESULT COM001 HACK02 43 37
+GAME RESULT ALHGHT HACK02 20 20
+ *** game was a tie 
+GAME RESULT NEWB01 NEWB01 30 20
+ *** same team 
+TEAM SHOW UTSA01
+  UTSA01 Armadillos      9    1    150.00     80.00
+		  Jean E Us            (210)555-1111 utsa@xyz.com
+TEAM PAID UTSA01 50.00
+TEAM SHOW UTSA01
+  UTSA01 Armadillos      9    1    150.00    130.00
+		  Jean E Us            (210)555-1111 utsa@xyz.com
+TEAM SHOW UNKN01
+  UNKN01 Org New Blk     1    8    150.00     50.00
+		  Bob Wire             (210)555-1234 bobwire@xyz.com
+TEAM PAID UNKN01 30.00
+TEAM PAID UNKN01 30.00
+TEAM SHOW UNKN01
+  UNKN01 Org New Blk     1    8    150.00    110.00
+		  Bob Wire             (210)555-1234 bobwire@xyz.com
+TEAM PAID YYYY01 50.00
+ *** team (YYYY01) not found
+TEAM SHOW YYYY01
+*** team (YYYY01) not found
+
+TEAM SHOW NEWB01
+  NEWB01 River Rats      0    9    120.00     75.00
+		  Rock D Boat          (210)555-4444 riverrat@xyz.com
+GAME FIX UTSA01 NEWB01 55 12 55 2
+TEAM SHOW UTSA01
+  UTSA01 Armadillos      9    1    150.00    130.00
+		  Jean E Us            (210)555-1111 utsa@xyz.com
+TEAM SHOW NEWB01
+  NEWB01 River Rats      0    9    120.00     75.00
+		  Rock D Boat          (210)555-4444 riverrat@xyz.com
+TEAM SHOW SOUTH1
+  SOUTH1 Slam Dunk       7    3    120.00     75.00
+		  Jerry Tall           (210)555-3333 slamdunk@gmail.com
+GAME FIX UTSA01 SOUTH1 44 45 45 44
+TEAM SHOW UTSA01
+  UTSA01 Armadillos     10    0    150.00    130.00
+		  Jean E Us            (210)555-1111 utsa@xyz.com
+TEAM SHOW SOUTH1
+  SOUTH1 Slam Dunk       6    4    120.00     75.00
+		  Jerry Tall           (210)555-3333 slamdunk@gmail.com
+TEAM NEW SSIDE1 1 0 120.00 70.00 
+TEAM CONTACT SSIDE1,SS 4 Ever,MannyFest@gmail.com,(210)555-8888,Manny Fest
+TEAM SHOW SSIDE1
+  SSIDE1 SS 4 Ever       1    0    120.00     70.00
+		  Manny Fest           (210)555-8888 MannyFest@gmail.com
+TEAM NEW SOUTH1 0 0 130.00 75.00
+ *** team (SOUTH1) already exists
+TEAM CONTACT SOUTHX,Slammers,slamdunk@gmail.com,(210)555-6666,Jerry Mander
+ *** team (SOUTHX) not found
+TEAM NEW RDRUN 0 1 120.00 50.00
+TEAM CONTACT RDRUN,Runners,rowdy@utsa.com,(210)555-9999,Tom E Gunn
+TEAM PPRINT
+      UTSA01
+   UNKN01
+         SSIDE1
+      SOUTH1
+          RDRUN
+NEWB01
+      HACK02
+   COM001
+      ALHGHT
+TEAM PAID RDRUN 20.00
+TEAM SHOW RDRUN
+  RDRUN  Runners         0    1    120.00     70.00
+		  Tom E Gunn           (210)555-9999 rowdy@utsa.com
+TEAM PAID RDRUN 40.00
+TEAM SHOW RDRUN
+  RDRUN  Runners         0    1    120.00    110.00
+		  Tom E Gunn           (210)555-9999 rowdy@utsa.com
+GAME FIX YYYY01 UTSA01 10 20 12 22
+ *** team (YYYY01) not found
+GAME FIX UTSA01 YYYY01 10 20 12 22
+ *** team (YYYY01) not found
+GAME FIX COM001 HACK02 43 37 43 43 *** game was a tie 
+Resulting Teams
+  Id     Team Name    Wins Loss  Fee Amt   Paid Amt
+		  Contact Name         Phone         Email
+  ALHGHT Cake Eaters     4    5    175.00    100.00
+		  E Z Street           (210)555-6666 sliverspoon@xyz.com
+  COM001 Comm Eagles     8    1    150.00     75.00
+		  Mae King             (210)555-2222 maeking@xyz.com
+  HACK02 Hackers         4    6    150.00     75.00
+		  Tom E Gunn           (210)555-5555 cyber@gmail.com
+  NEWB01 River Rats      0    9    120.00     75.00
+		  Rock D Boat          (210)555-4444 riverrat@xyz.com
+  RDRUN  Runners         0    1    120.00    110.00
+		  Tom E Gunn           (210)555-9999 rowdy@utsa.com
+  SOUTH1 Slam Dunk       6    4    120.00     75.00
+		  Jerry Tall           (210)555-3333 slamdunk@gmail.com
+  SSIDE1 SS 4 Ever       1    0    120.00     70.00
+		  Manny Fest           (210)555-8888 MannyFest@gmail.com
+  UNKN01 Org New Blk     1    8    150.00    110.00
+		  Bob Wire             (210)555-1234 bobwire@xyz.com
+  UTSA01 Armadillos     10    0    150.00    130.00
+		  Jean E Us            (210)555-1111 utsa@xyz.com
+

@@ -1,0 +1,4 @@
+ID         Name                     Exam 1     Exam 2      Final    Average
+11111      Jean E Uss               100.00     110.00     100.00     103.33
+22222      Marcus Absent             50.00       0.00      40.00      30.00
+33333      Perry Scope               90.00      70.00      85.00      81.67

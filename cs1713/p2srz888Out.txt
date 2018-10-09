@@ -1,0 +1,24 @@
+Original Team Info
+  Id     Team Name    Wins Loss  Fee Amt   Paid Amt
+		  Contact Name         Phone         Email
+  UTSA01 Armadillos      8    0    150.00     80.00
+		  Jean E Us            (210)555-1111 utsa@xyz.com
+
+Processing Games
+ UTSA01  NEWB01 55 12
+ COMM01  SOUTH1 17 15
+ SOUTH1  ALHGHT 66 3
+ UTSA01  SOUTH1 44 45
+ UNKN01  UNKN02 33 39
+ COM001  UNKN02 43 37
+ ALHGHT  UNKN02 20 20
+ NEWB01  NEWB01 30 20
+
+Resulting Team Info
+  Id     Team Name    Wins Loss  Fee Amt   Paid Amt
+		  Contact Name         Phone         Email
+  UTSA01 Armadillos      9    1    150.00     80.00
+		  Jean E Us            (210)555-1111 utsa@xyz.com
+  xøá-                33261    0      0.00      0.00
+		                                    
+
