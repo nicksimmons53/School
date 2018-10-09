@@ -1,0 +1,35 @@
+	.file	"testcalc.c"
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.LC0:
+	.string	"x=%d, y=%d, z=%d, result=%d\n"
+	.text
+.globl main
+	.type	main, @function
+main:
+	leal	4(%esp), %ecx
+	andl	$-16, %esp
+	pushl	-4(%ecx)
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%ecx
+	subl	$36, %esp       // allocate 
+	movl	$11, 8(%esp)    // push 11 on stack (param)
+	movl	$6, 4(%esp)     // push 6 on stack (param)
+	movl	$2, (%esp)      // push 2 on stack (param)
+	call	calc            // call the calc function
+	movl	%eax, 20(%esp)  // return value from calc
+	movl	$11, 16(%esp)   // assign 11 to z
+	movl	$6, 12(%esp)    // assign 6 to y
+	movl	$2, 8(%esp)     // assign 2 to x
+	movl	$.LC0, 4(%esp)  
+	movl	$1, (%esp)      // printf param
+	call	__printf_chk
+	movl	$0, %eax        // 0 from main func
+	addl	$36, %esp       // clear stack
+	popl	%ecx
+	popl	%ebp
+	leal	-4(%ecx), %esp
+	ret
+	.size	main, .-main
+	.ident	"GCC: (Ubuntu 4.3.3-5ubuntu4) 4.3.3"
+	.section	.note.GNU-stack,"",@progbits
