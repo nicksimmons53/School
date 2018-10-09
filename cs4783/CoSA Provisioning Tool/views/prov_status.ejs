@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <div class="lighten" style="text-align: center;padding-bottom:20px;">
+            <img src="./images/banner.png" />
+        </div>
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon" >
+        <title>Check Status - Provisions Ordering Tool</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="style_forms.css">
+        <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+        
+    </head>
+    
+    
+    <body>
+        <div class="form" style="width: 880px;border-radius: 20px;">
+        <div class="category_center">
+            <label id="label_show_1">Check Status - Provisions Ordering Tool</label>
+        </div>
+        <div class="form" style="padding: 10px 20px 10px 20px;text-align: center;height: 500px;overflow: scroll;"id="EMpP">
+                <table id="customers">
+                        <tr>
+                                <th>Name</th>
+                                <th>SAP</th>
+                                <th>Form Type</th>
+                                <th>Date</th>
+                                <th>Button?</th>
+                              </tr>
+                <% if (typeof formObjects !== 'undefined') { %>
+
+            <% formObjects.forEach(function(formObject) { %>
+            
+            <form  method="post" action="/submit_prov_status" style="text-align: center" >
+            
+                
+                <!--example if statement to only show if there exists a first name-->
+                <!-- Backlog: change to check for SAP ID -->
+                <%if (formObject.EMP_FIRST) {%>
+                    <!-- Hidden variables -->
+                    <input type="hidden" id="<%=formObject.EMP_FIRST%>" name="EMP_FIRST" value="<%=formObject.EMP_FIRST%>">
+                    <input type="hidden" id="<%=formObject.EMP_LAST%>" name="EMP_LAST" value="<%=formObject.EMP_LAST%>">
+                    <input type="hidden" id="<%= formObject.EMP_SAP %>" name="EMP_SAP" value="<%= formObject.EMP_SAP %>">
+                    
+                    <input type="hidden" id="<%=formObject.REQUESTOR%>" name="REQUESTOR" value="<%= formObject.REQUESTOR %>">
+                    <input type="hidden" id="<%=formObject.FISC_ADMIN_BES%>" name="FISC_ADMIN_BES" value="<%= formObject.FISC_ADMIN_BES %>">
+                    <input type="hidden" id="<%=formObject.FISC_ADMIN_FIN%>" name="FISC_ADMIN_FIN" value="<%= formObject.FISC_ADMIN_FIN %>">
+                    <input type="hidden" id="<%=formObject.FISC_ADMIN_ITSD%>" name="FISC_ADMIN_ITSD" value="<%= formObject.FISC_ADMIN_ITSD %>">
+                    <input type="hidden" id="<%=formObject.FISC_ADMIN_SEC%>" name="FISC_ADMIN_SEC" value="<%= formObject.FISC_ADMIN_SEC %>">
+                    <input type="hidden" id="<%=formObject.FISC_ADMIN_TIME_BES%>" name="FISC_ADMIN_TIME_BES" value="<%= formObject.FISC_ADMIN_TIME_BES %>">
+                    <input type="hidden" id="<%=formObject.FISC_ADMIN_TIME_FIN%>" name="FISC_ADMIN_TIME_FIN" value="<%= formObject.FISC_ADMIN_TIME_FIN %>">
+                    <input type="hidden" id="<%=formObject.FISC_ADMIN_TIME_ITSD%>" name="FISC_ADMIN_TIME_ITSD" value="<%= formObject.FISC_ADMIN_TIME_ITSD %>">
+                    <input type="hidden" id="<%=formObject.FISC_ADMIN_TIME_SEC%>" name="FISC_ADMIN_TIME_SEC" value="<%= formObject.FISC_ADMIN_TIME_SEC %>">
+                    
+                    <input type="hidden" id="<%=formObject.DEPT_HEAD_BES%>" name="DEPT_HEAD_BES" value="<%= formObject.DEPT_HEAD_BES %>">
+                    <input type="hidden" id="<%=formObject.DEPT_HEAD_FIN%>" name="DEPT_HEAD_FIN" value="<%= formObject.DEPT_HEAD_FIN %>">
+                    <input type="hidden" id="<%=formObject.DEPT_HEAD_ITSD%>" name="DEPT_HEAD_ITSD" value="<%= formObject.DEPT_HEAD_ITSD %>">
+                    <input type="hidden" id="<%=formObject.DEPT_HEAD_SEC%>" name="DEPT_HEAD_SEC" value="<%= formObject.DEPT_HEAD_SEC %>">
+                    <input type="hidden" id="<%=formObject.DEPT_HEAD_TIME_BES%>" name="DEPT_HEAD_TIME_BES" value="<%= formObject.DEPT_HEAD_TIME_BES %>">
+                    <input type="hidden" id="<%=formObject.DEPT_HEAD_TIME_FIN%>" name="DEPT_HEAD_TIME_FIN" value="<%= formObject.DEPT_HEAD_TIME_FIN %>">
+                    <input type="hidden" id="<%=formObject.DEPT_HEAD_TIME_ITSD%>" name="DEPT_HEAD_TIME_ITSD" value="<%= formObject.DEPT_HEAD_TIME_ITSD %>">
+                    <input type="hidden" id="<%=formObject.DEPT_HEAD_TIME_SEC%>" name="DEPT_HEAD_TIME_SEC" value="<%= formObject.DEPT_HEAD_TIME_SEC %>">
+                    
+                    <input type="hidden" id="<%=formObject.FORM_FUEL %>" name="FORM_FUEL" value="<%= formObject.FORM_FUEL %>">
+                    <input type="hidden" id="<%=formObject.FORM_PCARD %>" name="FORM_PCARD" value="<%= formObject.FORM_PCARD %>">
+                    <input type="hidden" id="<%=formObject.FORM_IDCARD %>" name="FORM_IDCARD" value="<%= formObject.FORM_IDCARD %>">
+                    <input type="hidden" id="<%=formObject.FORM_HW_SW %>" name="FORM_HW_SW" value="<%= formObject.FORM_HW_SW %>">
+                    <input type="hidden" id="<%=formObject.FORM_USER_PROV %>" name="FORM_USER_PROV" value="<%= formObject.FORM_USER_PROV %>">
+                    <input type="hidden" id="<%=formObject.FORM_SAP_ACCESS %>" name="FORM_SAP_ACCESS" value="<%= formObject.FORM_SAP_ACCESS %>">
+                    
+                    <!-- Display: Last, First (SAP) -->
+                    <label>
+                        <tr>
+                       <td><button class="like-anchor" value="View" type="submit" name="submit"><%= formObject.EMP_LAST %>, <%= formObject.EMP_FIRST %>    </button></td>
+                        <td>(SAP <%= formObject.EMP_SAP %>)</td>
+                    
+                        
+                    
+                    
+                   
+                        <% var formList = "Form(s):";%>
+                        <% var formArr = []; %>
+                        <% if (formObject.FORM_FUEL == "on") { %>
+                            <% formArr.push(" Fuel"); %>
+                        <%} %>
+                        <% if (formObject.FORM_PCARD == "on") {%>
+                            <%  formArr.push(" PCard");%>
+                        <% } %>
+                        <% if (formObject.FORM_IDCARD == "on") {%>
+                            <%  formArr.push(" IDCard");%>
+                        <% } %>
+                        <% if (formObject.FORM_HW_SW == "on") {%>
+                            <%  formArr.push(" HW/SW");%>
+                        <% } %>
+                        <% if (formObject.FORM_USER_PROV == "on") {%>
+                            <%  formArr.push(" UserProv");%>
+                        <% } %>
+                        <% if (formObject.FORM_SAP_ACCESS == "on") {%>
+                            <%  formArr.push(" Access");%>
+                        <% } %>
+                        <% var formArrToString = formArr.toString();%>
+                        <% formList = formList.concat(formArrToString); %>
+                        <td><%=formList;%></td>
+                    
+                       <td> <input type="submit" name="submit" class="submit" value="Submit"></td>
+                       <td> <input type="submit" name="submit" class="submit" value="View"> </td>
+                    </tr>
+                    </label>
+                    
+                    
+                    <!-- Temp labels for debugging -->
+                    <!-- <label> -->
+                    <%formObject.REQUESTOR_TIME%>
+                    <%formObject.FISC_ADMIN_TIME_FIN%>
+                    <%formObject.FISC_ADMIN_TIME_ITSD%>
+                    <%formObject.DEPT_HEAD_ITSD%>
+                    <!-- </label> -->
+                    
+                    
+                    
+                <%}%>
+                
+             
+
+
+
+            </form>
+
+
+
+
+            <% }); %>   
+            <%}%>
+
+                  </table>        
+        </div>
+        </div>
+    </body>
+    
+    <footer>
+    <!-- Navigation Buttons -->
+    <div class="button_box">
+        <!-- "Cancel" links back to prov_main -->
+        <input class="button_red" id="" value="Back">
+    </div>
+    </footer>
+
+
+
+</html>

@@ -1,0 +1,980 @@
+<head>
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+        <title>Order Form - Provisions Ordering Tool</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="confirm_popups.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="style_forms.css">
+        <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+    </head>
+    
+    
+    
+    <!--FORM 1-->
+    <% formObjects.forEach(function(formObject) { %>
+        <%if (formObject.FORM_FUEL == "on") { %>
+            <form class="form" id="EMP" method="post" action="/submit_edit" >
+                <label class="category_select_title" >Fueling Authorization Request</label>
+                <input type="hidden" id="<%=formObject.PRIMARY_ID %>" name="PRIMARY_ID" value="<%= formObject.PRIMARY_ID %>">
+                <div class="category_center">
+                    <label id="label_show_1">Personnel Information</label>
+                </div>
+                <div class="not_hidden" id="groupA1">
+                    <input id="EMP_SUFFIX" name="EMP_SUFFIX" type="text" placeholder="Suffix (Optional)" value="<%= formObject.EMP_SUFFIX %>"/>
+                    <input id="EMP_FIRST" name="EMP_FIRST" type="text" placeholder="First Name" value="<%= formObject.EMP_FIRST %>" />
+                    <input id="EMP_MI" name="EMP_MI" type="text" placeholder="MI (optional)" value="<%= formObject.EMP_MI %>" />
+                    <input id="EMP_LAST" name="EMP_LAST" type="text" placeholder="Last Name" value="<%= formObject.EMP_LAST %>" />
+        
+                </div>
+                <div class="not_hidden" id="groupA2">
+                    <input class="visable" id="EMP_PHONE" name="EMP_PHONE" type="text" placeholder="Phone No. 1234567"
+                        value="<%= formObject.EMP_PHONE %>" />
+                </div>
+                <div class="not_hidden" id="groupA3">
+                    <input id="EMP_SAP" name="EMP_SAP" type="text" placeholder="SAP ID" value="<%= formObject.EMP_SAP %>" />
+                </div>
+                <div class="category_center">
+                    <label id="label_show_2">Department Information</label>
+                </div>
+                <div class="not_hidden" id="groupB1">
+                    <input id="EMP_DEPT" name="EMP_DEPT" type="text" placeholder="Department" value="<%= formObject.EMP_DEPT%>" />
+                    <input class="visable" id="DEPT_PHONE_EXT" name="DEPT_PHONE_EXT" type="text" placeholder="Department Phone Ext." value="<%= formObject.DEPT_PHONE_EXT %>"
+                    />
+                    <input class="visable" id="EMP_DIVISION" name="EMP_DIVISION" type="text" placeholder="Division" value="<%= formObject.EMP_DIVISION %>"
+                    />
+                </div>
+                <div class="not_hidden" id="groupB3">
+                    <input class="visable" id="DEPT_COST_CENTER" name="DEPT_COST_CENTER" type="text" placeholder="Department Cost Center" value="<%= formObject.DEPT_COST_CENTER %>"
+                    />
+                </div>
+        
+                <div class="category_center">
+                    <label class="visable" id="label_1">Fueling Authorization</label>
+                </div>
+                <div class="not_hidden" id="groupC1">
+                    <input class="textfont1" id="BESD_AD_VEHI_USE_BOOL" name="BESD_AD_VEHI_USE_BOOL" type="checkbox" checked/>
+                    <label class="textfont1" name="BESD_AD_VEHI_USE_BOOL2" id="BESD_AD_VEHI_USE_BOOL2">
+                        I acknowledge that I have reviewed
+                        <u>
+                            <em>AD 1.8 Vehicle Use</em>
+                        </u> with this employee.
+                    </label>
+        
+                </div>
+                <div class="not_hidden" id="groupC2">
+                    <input class="textfont1" id="BESD_SAFETY_BOOL" name="BESD_SAFETY_BOOL" type="checkbox" checked/>
+                    <label class="textfont1" name="BESD_SAFETY_BOOL2" id="BESD_SAFETY_BOOL2">
+                        I will ensure this employee attend the City driving safety training course in accordance with
+                        <u>
+                            <em>AD 4.8 Driver Safety Program</em>
+                        </u>.
+                    </label>
+                </div>
+        
+                <% }%>
+                    <% }); %>
+        
+        <!--FORM 2-->
+        <% formObjects.forEach(function(formObject) { %>
+        <%if (formObject.FORM_PCARD == "on") { %>
+            <form class="form" id="EMP" method="post" action="/submit_edit" >
+                <input type="hidden" id="<%=formObject.PRIMARY_ID %>" name="PRIMARY_ID" value="<%= formObject.PRIMARY_ID %>">
+                <label class="category_select_title" >P-Card Setup/Maintenance Request</label>
+        <div class="category_center">
+            <label id="label_show_1">Personnel Information</label>
+        </div>
+        
+        <div class="not_hidden" id="groupA1">
+            <input id="EMP_SUFFIX" name="EMP_SUFFIX" type="text" placeholder="Suffix" value="<%= formObject.EMP_SUFFIX %>" />
+            <input id="EMP_FIRST" name="EMP_FIRST" type="text" placeholder="First Name" value="<%= formObject.EMP_FIRST %>" />
+            <input id="EMP_MI" name="EMP_MI" type="text" placeholder="MI" value="<%= formObject.EMP_MI %>" />
+            <input id="EMP_LAST" name="EMP_LAST" type="text" placeholder="Last Name" value="<%= formObject.EMP_LAST %>" />
+        </div>
+    
+        <div class="not_hidden" id="groupA2">
+                <input class="hidden" id="EMP_EMAIL" name="EMP_EMAIL" type="text" placeholder="Email Address"  value="<%= formObject.EMP_EMAIL %>"  />
+            </div>
+        
+        <div class="not_hidden" id="groupA3">
+            <input id="EMP_SAP" name="EMP_SAP" type="text" placeholder="SAP ID" value="<%= formObject.EMP_SAP %>" />
+            <input class="visable" id="EMP_USERNAME" name="EMP_USERNAME" type="text" placeholder="Username" value="<%= formObject.EMP_USERNAME %>"
+            />
+        </div>
+        
+        <div class="category_center">
+            <label id="label_show_2">Department Information</label>
+        </div>
+        <div class="not_hidden" id="groupB1">
+            <input id="EMP_DEPT" name="EMP_DEPT" type="text" placeholder="Department" value="<%= formObject.EMP_DEPT %>" />
+        </div>
+        
+        <div class="category_center">
+            <label class="visable" id="label_2">P-Card</label>
+        </div>
+        <div class="not_hidden" id="groupD1">
+                
+        <% if (formObject.PCARD_SELECT_TYPE == "CEO Website Access Only") {%>
+            <input id="PCARD_SELECT_TYPE" name="PCARD_SELECT_TYPE" type="text" placeholder="Department" value="<%= formObject.PCARD_SELECT_TYPE%>" />
+            <div class="not_hidden" id="groupD4">
+                    <input id="PCARD_ROLE" name="PCARD_ROLE" type="text" placeholder="Department" value="<%= formObject.PCARD_ROLE%>" />
+            <% if (formObject.PCARD_ROLE == "Viewer Only") {%>
+            <input class="textbox4" id="PCARD_COMMENTS" name="PCARD_COMMENTS" type="text" placeholder="Comments" value="<%= formObject.PCARD_COMMENTS %>"/>
+            <%}%>
+            <% if (formObject.PCARD_ROLE == "Approver" || formObject.PCARD_ROLE == "Reconciler") {%>
+                <input class="textbox4" id="PCARD_COMMENTS" name="PCARD_COMMENTS" type="text" placeholder="Comments" value="<%= formObject.PCARD_COMMENTS %>"/>
+                <div class="not_hidden" id="groupD1b">
+                        <input class="textbox4" type="text" id="PCARD_ROLE_DETAILS" name="PCARD_ROLE_DETAILS" 
+                        placeholder="Enter details of those accounts which are being Approved/Reconciled by this Approver/Reconciler" value="<%= formObject.PCARD_ROLE_DETAILS %>"/>
+                    </div>
+                    <%}%>
+            </div>
+            <% }%>
+    
+    
+            <%if (formObject.PCARD_SELECT_TYPE == "New Credit Card Request") {%>
+                <label><%= formObject.PCARD_SELECT_TYPE %></label>
+                <input class="description" id="PCARD_CH_LEGAL_NAME" name="PCARD_CH_LEGAL_NAME" type="text" placeholder="Name to be shown on Card" value="<%= formObject.PCARD_CH_LEGAL_NAME %>"/>
+               <% if (formObject.PCARD_RECONC == "on") { %>
+                <div class="not_hidden" id="groupD2">
+                        <div class="textfont1" id="label_2b" name="label_2b">
+                            <input id="PCARD_RECONC" name="PCARD_RECONC" type="checkbox" checked/>
+                            <label>
+                                Cardholder requires Reconciler
+                            </label>
+                            <input class="not_hidden" style="margin-left:150px;" id="PCARD_RECONCILER_NAME" name="PCARD_RECONCILER_NAME" type="text" placeholder="Reconciler's Name" value="<%= formObject.PCARD_RECONCILER_NAME %>"/>
+                        <input class="not_hidden" id="PCARD_RECONCILER_SAP" name="PCARD_RECONCILER_SAP" type="text" placeholder="Reconciler's SAP" value="<%= formObject.PCARD_RECONCILER_SAP %>"/>
+                        </div>
+                    </div>
+                    <% } else { %>
+                        <input id="PCARD_RECONC" name="PCARD_RECONC" type="checkbox"/>
+                        <label>
+                            Cardholder requires Reconciler
+                        </label>
+                        <%}%>
+                    <div class="not_hidden" id="groupD3">
+                            <label><%= formObject.PCARD_ACCT_COST_TYPE %></label>
+                            <input class="not_hidden" id="PCARD_ACCT_DEFAULT_CODE" name="PCARD_ACCT_DEFAULT_CODE" type="text" placeholder="Default Code" value="<%= formObject.PCARD_ACCT_DEFAULT_CODE %>"/>
+                            <input class="description" id="PCARD_ACCT_DESC" name="PCARD_ACCT_DESC" type="text" placeholder="Description" value="<%= formObject.PCARD_ACCT_DESC %>"/>
+                            
+                        </div>
+                        <div class="not_hidden" id="groupD4">  
+                                <% if (formObject.PCARD_LIMITS_REQUESTED == "OTHER") { %>
+                                    <input id="PCARD_LIMITS_REQUESTED" name="PCARD_LIMITS_REQUESTED" type="text" value="<%= formObject.PCARD_LIMITS_REQUESTED%>" />
+                                    <input class="comments" id="PCARD_LIMITS_EXPLANATION" name="PCARD_LIMITS_EXPLANATION" type="text" placeholder="Explanation" value="<%= formObject.PCARD_LIMITS_REQUESTED %>"/>
+                                    <input class="textbox4" id="PCARD_COMMENTS" name="PCARD_COMMENTS" type="text" placeholder="Comments" value="<%= formObject.PCARD_COMMENTS %>"/>
+    
+                                 <%} else {%>
+                                    <input id="PCARD_LIMITS_REQUESTED" name="PCARD_LIMITS_REQUESTED" type="text" value="<%= formObject.PCARD_LIMITS_REQUESTED%>" />
+                                    <input class="textbox4" id="PCARD_COMMENTS" name="PCARD_COMMENTS" type="text" placeholder="Comments" value="<%= formObject.PCARD_COMMENTS %>"/>
+                                  <%}%>
+                <%}%>
+    
+    
+    
+                
+                <%if (formObject.PCARD_SELECT_TYPE == "Cardholder Maintenance") {%>
+                    <label><%= formObject.PCARD_SELECT_TYPE %></label>
+                    <input class="textbox1" id="PCARD_MAINT_LAST_FOUR" name="PCARD_MAINT_LAST_FOUR" type="PCARD_MAINT_LAST_FOUR" placeholder="Last 4 Digits of Card" />
+                        </div>
+                    <%if (formObject.PCARD_MAINT_CHANGE_IS == "TEMP") {%>
+                        <label><%=formObject.PCARD_MAINT_CHANGE_IS%></label>
+                        <div class="not_hidden" id="PCARD_MAINT_1">
+    
+                            <label style="font-size:12px;margin-left:130px;" for="PCARD_MAINT_TEMP_DATE" id="PCARD_MAINT_TEMP_DATE_LABEL"
+                             name="PCARD_MAINT_TEMP_DATE_LABEL" >Return Date: <%=formObject.PCARD_MAINT_TEMP_DATE %></label>
+           
+                        </div>
+                        <% }else {%>
+                            <label><%=formObject.PCARD_MAINT_CHANGE_IS%></label>
+                        <%}%>
+    
+                        <!--needs to be fixed PCARD_MAINT_LIMITS not being sent to database-->
+                        <% if (formObject.PCARD_MAINT_LIMITS == "on") {%>
+                        <div class="not_hidden" id="PCARD_MAINT_2">
+    
+                                    <input class="" id="PCARD_MAINT_LIMITS" name="PCARD_MAINT_LIMITS" type="checkbox" checked/>
+                                    <label for="PCARD_MAINT_LIMITS" >Change Profile Transaction Limits</label>
+                                </div>
+                                    <div class="not_hidden" id="groupD4">  
+                                            <% if (formObject.PCARD_LIMITS_REQUESTED == "OTHER") { %>
+                                                <label><%= formObject.PCARD_LIMITS_REQUESTED %></label>
+                                                <input class="comments" id="PCARD_LIMITS_EXPLANATION" name="PCARD_LIMITS_EXPLANATION" type="text" placeholder="Explanation" value="<%= formObject.PCARD_LIMITS_REQUESTED %>"/>
+                                             <%} else {%>
+                                                <label><%= formObject.PCARD_LIMITS_REQUESTED %></label>
+                                              <%}%>
+                            </div>
+                            <%} else {%>
+                                <div class="not_hidden" id="PCARD_MAINT_2">
+                                <input class="" id="PCARD_MAINT_LIMITS" name="PCARD_MAINT_LIMITS" type="checkbox"/>
+                                <label for="PCARD_MAINT_LIMITS" >Change Profile Transaction Limits</label>
+                            </div>
+                                <%}%>
+    
+    
+                              <%  if (formObject.PCARD_MAINT_NAME_CHANGE == "on") { %>
+                                    <div class="not_hidden" id="PCARD_MAINT_3">
+                                                <input class="" id="PCARD_MAINT_NAME_CHANGE" name="PCARD_MAINT_NAME_CHANGE" type="checkbox" checked/>
+                                                <label for="PCARD_MAINT_NAME_CHANGE" >Cardholder or Username Change</label>
+                                                <input class="description" style="margin-left:73px;" id="PCARD_MAINT_NEW_USERNAME" name="PCARD_MAINT_NEW_USERNAME" 
+                                                type="text" placeholder="New username (COSA Login)"  value="<%= formObject.PCARD_MAINT_NEW_USERNAME %>"/>
+    
+                                                        <input class="" id="PCARD_MAINT_FIRST" name="PCARD_MAINT_FIRST" type="text" placeholder="First Name" value="<%= formObject.PCARD_MAINT_FIRST %>"/>
+                                                        <input class="" id="PCARD_MAINT_MI" name="PCARD_MAINT_MI" type="text" placeholder="MI (optional)" value="<%= formObject.PCARD_MAINT_MI %>"/>
+                                                        <input class="" id="PCARD_MAINT_LAST" name="PCARD_MAINT_LAST" type="text" placeholder="Last Name" value="<%= formObject.PCARD_MAINT_LAST %>"/>
+                                                        <input class="" id="PCARD_MAINT_SUFFIX" name="PCARD_MAINT_SUFFIX" type="text" placeholder="Suffix (optional)" value="<%= formObject.PCARD_MAINT_SUFFIX %>"/>                           
+                                            </div>
+    
+                                <%} else {%>
+                                    <div class="not_hidden" id="PCARD_MAINT_3">
+    
+                                                <input class="" id="PCARD_MAINT_NAME_CHANGE" name="PCARD_MAINT_NAME_CHANGE" type="checkbox" />
+                                                <label for="PCARD_MAINT_NAME_CHANGE" >Cardholder or Username Change</label>
+                                            </div>
+    
+                               <% } %>
+    
+    
+    
+                               <%  if (formObject.PCARD_MAINT_ROLE_CHANGE == "on") { %>
+                                <div class="not_hidden" id="PCARD_MAINT_4">
+                                            <input class="" id="PCARD_MAINT_ROLE_CHANGE" name="PCARD_MAINT_ROLE_CHANGE" type="checkbox" checked/>
+                                            <label for="PCARD_MAINT_ROLE_CHANGE" >CEO Role Changes: </label>
+                                    </div>
+                                    <% if (formObject.PCARD_ROLE == "Viewer Only") {%>
+                                        <label><%=formObject.PCARD_ROLE %></label>
+                                        <input class="textbox4" id="PCARD_COMMENTS" name="PCARD_COMMENTS" type="text" placeholder="Comments" value="<%= formObject.PCARD_COMMENTS %>"/>
+                                        <%}%>
+                                        <% if (formObject.PCARD_ROLE == "Approver" || formObject.PCARD_ROLE == "Reconciler") {%>
+                                            <label><%=formObject.PCARD_ROLE %></label>
+                                            <input class="textbox4" id="PCARD_COMMENTS" name="PCARD_COMMENTS" type="text" placeholder="Comments" value="<%= formObject.PCARD_COMMENTS %>"/>
+                                            <div class="not_hidden" id="groupD1b">
+                                                    <input class="textbox4" type="text" id="PCARD_ROLE_DETAILS" name="PCARD_ROLE_DETAILS" 
+                                                    placeholder="Enter details of those accounts which are being Approved/Reconciled by this Approver/Reconciler" value="<%= formObject.PCARD_ROLE_DETAILS %>"/>
+                                                </div>
+                                                <%}%>
+    
+                              <% } else { %>
+                                <div class="not_hidden" id="PCARD_MAINT_4">
+                                            <input class="" id="PCARD_MAINT_ROLE_CHANGE" name="PCARD_MAINT_ROLE_CHANGE" type="checkbox" />
+                                            <label for="PCARD_MAINT_ROLE_CHANGE" >CEO Role Changes: </label>
+                                    </div>
+                               <%}%>
+                <%}%>
+            </div>
+    
+        <% }%>
+            <% }); %>
+        
+        <!--FORM 3-->
+        <% formObjects.forEach(function(formObject) { %>
+            <%if (formObject.FORM_IDCARD == "on") { %>
+                <form class="form" id="EMP" method="post" action="/submit_edit" >
+                    <input type="hidden" id="<%=formObject.PRIMARY_ID %>" name="PRIMARY_ID" value="<%= formObject.PRIMARY_ID %>">
+                    <label class="category_select_title" >Identification Card Request</label>
+                    <div class="category_center">
+                        <label id="label_show_1">Personnel Information</label>
+                    </div>
+        
+                    <div class="not_hidden" id="groupA1">
+                        <input id="EMP_SUFFIX" name="EMP_SUFFIX" type="text" placeholder="Suffix" value="<%= formObject.EMP_SUFFIX %>" />
+                        <input id="EMP_FIRST" name="EMP_FIRST" type="text" placeholder="First Name" value="<%= formObject.EMP_FIRST %>" />
+                        <input id="EMP_MI" name="EMP_MI" type="text" placeholder="MI" value="<%= formObject.EMP_MI %>" />
+                        <input id="EMP_LAST" name="EMP_LAST" type="text" placeholder="Last Name" value="<%= formObject.EMP_LAST %>" />
+                    </div>
+                    <div class="not_hidden" id="groupA2">
+                        <input class="visable" id="EMP_PHONE" name="EMP_PHONE" type="text" placeholder="Phone No. XXX-XXX-XXXX"
+                            value="<%= formObject.EMP_PHONE %>" />
+                    </div>
+                    <div class="not_hidden" id="groupA3">
+                        <input id="EMP_SAP" name="EMP_SAP" type="text" placeholder="SAP ID" value="<%= formObject.EMP_SAP %>" />
+                    </div>
+                    <div class="textfont1" id="groupA4">
+                        <p>Job status: <%= formObject.EMP_JOB_STATUS %> </p>
+        
+        
+                        <div class="not_hidden" id="groupA4">
+                            <input class="visable" id="EMP_JOB_STATUS" name="EMP_JOB_STATUS" type="text" placeholder="Job Status" value="<%= formObject.EMP_JOB_STATUS %>"/>
+                            <input class="visable" id="EMP_JOB_TITLE" name="EMP_JOB_TITLE" type="text" placeholder="Job Title" value="<%= formObject.EMP_JOB_TITLE %>"/>
+                        </div>
+        
+        
+                        <div class="not_hidden" id="groupA5">
+                            <input class="visable" id="MANAGER_NAME" name="MANAGER_NAME" type="text" placeholder="Manager Name" value="<%= formObject.MANAGER_NAME %>"
+                            />
+                            <input class="visable" id="MANAGER_PHONE" name="MANAGER_PHONE" type="text" placeholder="Manager Phone (1234567)" value="<%= formObject.MANAGER_PHONE %>"
+                            />
+                        </div>
+        
+        
+        
+                        <div class="category_center">
+                            <label id="label_show_2">Department Information</label>
+                        </div>
+        
+        
+        
+                        <div class="not_hidden" id="groupB1">
+                            <input id="EMP_DEPT" name="EMP_DEPT" type="text" placeholder="Department" value="<%= formObject.EMP_DEPT %>" />
+                            <input class="visable" id="EMP_DIVISION" name="EMP_DIVISION" type="text" placeholder="Division" value="<%= formObject.EMP_DIVISION %>"
+                            />
+                        </div>
+        
+                        <div class="category_center">
+                            <label class="hidden" id="label_3">ID Cards</label>
+                        </div>
+                        <div class="not_hidden" id="groupE1">
+                            <label class="textfont1" id="label_3b"> Request type(s) (Check all that apply)</label>
+                            <div class="flex_box_between">
+                                <div class="textfont1" id="COSAID_REQUEST_TYPE_1">
+                                    <%if (formObject.COSAID_REQUEST_TYPE_ID == "on") { %>
+                                    <input id="COSAID_REQUEST_TYPE_ID" name="COSAID_REQUEST_TYPE_ID" type="checkbox" checked/>
+                                    <label>CoSA ID Card</font></label>
+                                </div>
+                                <% } else {%>
+                                <input id="COSAID_REQUEST_TYPE_ID" name="COSAID_REQUEST_TYPE_ID" type="checkbox" />
+                                <label>CoSA ID Card</font></label>
+                            </div>
+                            <% }%>
+        
+                                <div class="visable" id="COSAID_REQUEST_TYPE_2">
+                                        <%if (formObject.COSAID_REQUEST_TYPE_FACACCESS == "on") { %>
+                                    <input id="COSAID_REQUEST_TYPE_FACACCESS" name="COSAID_REQUEST_TYPE_FACACCESS" type="checkbox" checked/>
+                                    <label>CoSA Facility Access</font></label>
+                                </div>
+                                <% } else {%>
+                                        <input id="COSAID_REQUEST_TYPE_FACACCESS" name="COSAID_REQUEST_TYPE_FACACCESS" type="checkbox" />
+                                        <label>CoSA Facility Access</font></label>
+                                    </div>
+                                    <% }%>
+        
+        
+                                <div class="visable" id="COSAID_REQUEST_TYPE_3">
+                                        <%if (formObject.COSAID_REQUEST_TYPE_CJIS_FACACCESS == "on") { %>
+        
+                                    <input id="COSAID_REQUEST_TYPE_CJIS_FACACCESS" name="COSAID_REQUEST_TYPE_CJIS_FACACCESS" type="checkbox" checked/>
+                                    <label>CJIS Facility Access</label></div>
+                                <% } else {%>
+                                    <input id="COSAID_REQUEST_TYPE_CJIS_FACACCESS" name="COSAID_REQUEST_TYPE_CJIS_FACACCESS" type="checkbox" />
+                                    <label>CJIS Facility Access</label></div>
+        
+                                <% }%>
+        
+                                <div class="visable" id="COSAID_REQUEST_TYPE_4">
+                                        <%if (formObject.COSAID_REQUEST_TYPE_FACACCESS_CHANGE == "on") { %>
+        
+                                    <input id="COSAID_REQUEST_TYPE_FACACCESS_CHANGE" name="COSAID_REQUEST_TYPE_FACACCESS_CHANGE" type="checkbox" checked/>
+                                    <label>Facility Access Change</label></div>
+                                <% } else {%>
+                                    <input id="COSAID_REQUEST_TYPE_FACACCESS_CHANGE" name="COSAID_REQUEST_TYPE_FACACCESS_CHANGE" type="checkbox" />
+                                    <label>Facility Access Change</label></div>
+                                    <% }%>
+        
+                                <div class="visable" id="COSAID_REQUEST_TYPE_5">
+                                        <%if (formObject.COSAID_REQUEST_TYPE_REISSUE == "on") { %>
+        
+                                    <input id="COSAID_REQUEST_TYPE_REISSUE" name="COSAID_REQUEST_TYPE_REISSUE" type="checkbox" checked />
+                                    <label>Re-Issue ID Card</label></div>
+                                <% } else { %>
+                                    <input id="COSAID_REQUEST_TYPE_REISSUE" name="COSAID_REQUEST_TYPE_REISSUE" type="checkbox" />
+                                    <label>Re-Issue ID Card</label></div>
+                                <% }%>
+                            </div>
+                        </div>
+        
+                        <%if ((formObject.COSAID_REQUEST_TYPE_FACACCESS == "on") || (formObject.COSAID_REQUEST_TYPE_CJIS_FACACCESS == "on") || (formObject.COSAID_REQUEST_TYPE_FACACCESS_CHANGE == "on")) { %>
+        
+                        <div class="not_hidden" id="groupE2">
+                            <input class="description" id="COSAID_FACI_NAME" name="COSAID_FACI_NAME" type="text" placeholder="Facility Name" value="<%= formObject.COSAID_FACI_NAME %>"
+                            />
+                            <input class="description" id="COSAID_FACI_ADDY" name="COSAID_FACI_ADDY" type="text" placeholder="Facility Address" value="<%= formObject.COSAID_FACI_ADDY %>"
+                            />
+                        </div>
+                        <label class="visable" id="label_3c">Facility Access Point(s) Requested</label>
+                        <div class="not_hidden" id="groupE3">
+                            <input class="visable" id="COSAID_FACI_ENTRY" name="COSAID_FACI_ENTRY" type="text" placeholder="Facility Entry" value="<%= formObject.COSAID_FACI_ENTRY %>"
+                            />
+                            <input class="visable" id="COSAID_FACI_SUITE_ENTRY" name="COSAID_FACI_SUITE_ENTRY" type="text" placeholder="Suite Entry"
+                                value="<%= formObject.COSAID_FACI_SUITE_ENTRY %>" />
+                            <input class="visable" id="COSAID_FACI_RM_ENTRY" name="COSAID_FACI_RM_ENTRY" type="text" placeholder="Room Entry" value="<%= formObject.COSAID_FACI_RM_ENTRY %>"
+                            />
+                        </div>
+                        <div class="not_hidden" id="groupE4">
+                            <input class="textbox4" id="COSAID_FACI_OTHER" name="COSAID_FACI_OTHER" type="text" placeholder="Other" value="<%= formObject.COSAID_FACI_OTHER %>"
+                            />
+                        </div>
+                        <% }%>
+        
+        
+                        <% }%>
+                            <% }); %>
+        
+        
+        
+                            <!--FORM 4-->
+                            <% formObjects.forEach(function(formObject) { %>
+                                <%if (formObject.FORM_HW_SW == "on") { %>
+                                    <form class="form" id="EMP" method="post" action="/submit_edit" >
+                                        <input type="hidden" id="<%=formObject.PRIMARY_ID %>" name="PRIMARY_ID" value="<%= formObject.PRIMARY_ID %>">
+                                        <label class="category_select_title" >Hardware and Software Request</label>
+    
+                                        <div class="category_center">
+                                                <label id="label_show_1">Personnel Information</label>
+                                            </div>
+        
+                            <div class="not_hidden" id="groupA1">
+                                    <input id="EMP_SUFFIX" name="EMP_SUFFIX" type="text" placeholder="Suffix" value="<%= formObject.EMP_SUFFIX %>" />
+                                    <input id="EMP_FIRST" name="EMP_FIRST" type="text" placeholder="First Name" value="<%= formObject.EMP_FIRST %>" />
+                                    <input id="EMP_MI" name="EMP_MI" type="text" placeholder="MI" value="<%= formObject.EMP_MI %>" />
+                                    <input id="EMP_LAST" name="EMP_LAST" type="text" placeholder="Last Name" value="<%= formObject.EMP_LAST %>" />
+                        
+                                </div>
+                                <div class="not_hidden" id="groupA3">
+                                        <input id="EMP_SAP" name="EMP_SAP" type="text" placeholder="SAP ID" value="<%= formObject.EMP_SAP %>" />
+                                        <input class="visable" id="EMP_USERNAME" name="EMP_USERNAME" type="text" placeholder="Username" value="<%= formObject.EMP_USERNAME %>"/>
+                                        <%if (formObject.HWSW_REQUEST_HARDWARE == "on") { %>
+                                        <input class="hidden" id="EMP_POSITION" name="EMP_POSITION" type="text" pattern="^\d{8}$" placeholder="Position Number" value="<%= formObject.EMP_POSITION %>"/>
+                                        <% }%>
+                                    </div>
+                    
+        
+                    
+                            <div class="category_center">
+                                <label id="label_show_2">Department Information</label>
+                            </div>
+                            <div class="not_hidden" id="groupB1">
+                                    <input id="EMP_DEPT" name="EMP_DEPT" type="text" placeholder="Department" value="<%= formObject.EMP_DEPT %>" />
+                                    <input class="visable" id="DEPT_PHONE_EXT" name="DEPT_PHONE_EXT" type="text" placeholder="Department Phone Ext." value="<%= formObject.DEPT_PHONE_EXT %>" />
+                            </div>
+                            <%if (formObject.HWSW_REQUEST_HARDWARE == "on") { %>
+        
+                            <div class="not_hidden" id="groupB2">
+                                <input class="visable" id="DEPT_BLDG_LOC" name="DEPT_BLDG_LOC" type="text" placeholder="Delivery Building Loc." value="<%= formObject.DEPT_BLDG_LOC %>"/>
+                                <input class="visable" id="DEPT_BLDG_FLR" name="DEPT_BLDG_FLR" type="text" placeholder="Delivery Floor No." value="<%= formObject.DEPT_BLDG_FLR %>"/>
+                                <input class="visable" id="DEPT_BLDG_OFFC_NUM" name="DEPT_BLDG_OFFC_NUM" type="text" placeholder="Delivery Office No." value="<%= formObject.DEPT_BLDG_OFFC_NUM %>"/>
+                            </div>
+                            <% }%>
+        
+                    
+                                <div class="category_center">
+                                    <label class="visable" id="label_4">Hardware/Software</label>
+                                </div>
+                    
+                    
+                                <div class="not_hidden" id="groupF1">
+                                        <div class="flex_box_between_half">
+                                            <div class="textfont1" id="HWSW_REQUEST_1" >
+                                                    <%if (formObject.HWSW_REQUEST_HARDWARE == "on") { %>
+        
+                                                <input id="HWSW_REQUEST_HARDWARE" name="HWSW_REQUEST_HARDWARE" type="checkbox" checked/>
+                                                    <label>Provisioning (Assigned) Hardware</label></div>
+                                                    <% }else { %>
+                                                        <input id="HWSW_REQUEST_HARDWARE" name="HWSW_REQUEST_HARDWARE" type="checkbox" />
+                                                        <label>Provisioning (Assigned) Hardware</label></div>
+                                                        <% } %>
+        
+                                            <div class="textfont1" id="HWSW_REQUEST_2" >
+                                                    <%if (formObject.HWSW_REQUEST_SOFTWARE == "on") { %>
+                                                <input id="HWSW_REQUEST_SOFTWARE" name="HWSW_REQUEST_SOFTWARE" type="checkbox" checked/>
+                                                    <label>Specialized Software</label></div>
+                                                    <% }else { %>
+                                                        <input id="HWSW_REQUEST_SOFTWARE" name="HWSW_REQUEST_SOFTWARE" type="checkbox" />
+                                                        <label>Specialized Software</label></div>
+                                                        <% } %>
+                                        </div>
+                                    </div>
+                                    <%if (formObject.HWSW_REQUEST_HARDWARE == "on") { %>
+        
+                                    <div class="not_hidden" id="groupF2">
+                                        <div class="flex_box_between">
+                                            <label class="textfont1" id="label_4b">Hardware Procurement Info:</label>
+                                            
+                                            <input class="visable" id="HWSW_HW_COST_CENTER" name="HWSW_HW_COST_CENTER" type="text" placeholder="Cost Center / I/O" value="<%= formObject.HWSW_HW_COST_CENTER %>"/>
+                                            <input class="visable" id="HWSW_HW_GL_ACCT" name="HWSW_HW_GL_ACCT" type="text" placeholder="GL Acct." value="<%= formObject.HWSW_HW_GL_ACCT %>"/>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                    <%if (formObject.HWSW_REQUEST_SOFTWARE == "on") { %>
+        
+                                    <div class="not_hidden" id="groupF3">
+                                        <div class="flex_box_between">
+                                            <label class="textfont1" id="label_4c">Software Procurement Info:</label>
+                                            <input class="visable" id="HWSW_SW_COST_CENTER" name="HWSW_SW_COST_CENTER" type="text" placeholder="Cost Center / I/O" value="<%= formObject.HWSW_SW_COST_CENTER %>"/>
+                                            <input class="visable" id="HWSW_SW_GL_ACCT" name="HWSW_SW_GL_ACCT" type="text" placeholder="GL Acct." value="<%= formObject.HWSW_SW_GL_ACCT %>"/>
+                                        </div>
+                                    </div>
+                                    <% } %>
+        
+                                    <%if (formObject.HWSW_REQUEST_HARDWARE == "on") { %>
+        
+                                    <div class="not_hidden" id="groupF4">
+                                        <div class="flex_box_around">
+                                            <input class="visable" id="HWSW_HW_REQUEST_TYPE" name="HWSW_HW_REQUEST_TYPE" type="text" placeholder="Request Type" value="<%= formObject.HWSW_HW_REQUEST_TYPE %>"/>
+                                            <input class="description" id="HWSW_HW_CURRENT_DEVICE_ID" name="HWSW_HW_CURRENT_DEVICE_ID" type="text" placeholder="Current Device (&quot;Asset Tag&quot;) ID" value="<%= formObject.HWSW_HW_CURRENT_DEVICE_ID %>"/>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                    <%if (formObject.HWSW_REQUEST_HARDWARE == "on") { %>
+        
+                                    <div class="not_hidden" id="groupF5">
+                                        <div class="flex_box_between">
+                                                <%if (formObject.HWSW_HW_CHECKBOX_DESKTOP == "on") { %>
+                                                    <div class="textfont1" >
+                                                            <input style="margin-left:50px" id="HWSW_HW_CHECKBOX_DESKTOP" name="HWSW_HW_CHECKBOX_DESKTOP" type="checkbox" checked/>
+                                                            <label for="HWSW_HW_CHECKBOX_DESKTOP" >Desktop:&nbsp <%=formObject.HWSW_HW_CHECKBOX_DESKTOP_DETAILS%></label>
+                                                    </div>
+    
+    
+    
+                                            <% }else { %>
+                                                <div class="textfont1" id="HWSW_HW_CHECKBOX_1" >
+                                                        <input id="HWSW_HW_CHECKBOX_DESKTOP" name="HWSW_HW_CHECKBOX_DESKTOP" type="checkbox" />
+                                                        <label>Desktop</label>
+                                                    </div>
+                                                    <% } %>
+        
+                                            <%if (formObject.HWSW_HW_CHECKBOX_LAPTOP == "on") { %>
+                                                <div class="textfont1">
+                                                        <input style="margin-left:50px" id="HWSW_HW_CHECKBOX_LAPTOP" name="HWSW_HW_CHECKBOX_LAPTOP" type="checkbox" checked/>
+                                                        <label>Laptop: <%=formObject.HWSW_HW_CHECKBOX_LAPTOP_DETAILS%></label>
+    
+    
+                                                        <div class="flex_box_between" style="margin-left:177px;margin-right:10px;" >
+                                                        </div>
+                                            <% }else { %>
+                                                <div class="textfont1" id="HWSW_HW_CHECKBOX_2" >
+                                                        <input id="HWSW_HW_CHECKBOX_LAPTOP" name="HWSW_HW_CHECKBOX_LAPTOP" type="checkbox" />
+                                                        <label>Laptop</label>
+                                                    </div>
+                                                    <% } %>
+        
+                                            <%if (formObject.HWSW_HW_CHECKBOX_MONITOR == "on") { %>
+                                                <div class="textfont1">
+                                                <input style="margin-left:50px" id="HWSW_HW_CHECKBOX_MONITOR" name="HWSW_HW_CHECKBOX_MONITOR" type="checkbox" checked/>
+                                                <label>Monitor: <%=formObject.HWSW_HW_CHECKBOX_MONITOR_DETAILS%></label>
+                                                <label>Monitor Mode: <%=formObject.HWSW_HW_CHECKBOX_MONITOR_MODE%></label>
+                                            </div>
+                                            </div>
+                                            <% }else { %>
+                                                <div class="textfont1" id="HWSW_HW_CHECKBOX_3" >
+                                                        <input id="HWSW_HW_CHECKBOX_MONITOR" name="HWSW_HW_CHECKBOX_MONITOR" type="checkbox" />
+                                                        <label>Monitor</label>
+                                                    </div>
+                                                    <% } %>
+        
+                                            <%if (formObject.HWSW_HW_CHECKBOX_PRINTER == "on") { %>
+        
+                                            <div class="textfont1" id="HWSW_HW_CHECKBOX_4" >
+                                                <input id="HWSW_HW_CHECKBOX_PRINTER" name="HWSW_HW_CHECKBOX_PRINTER" type="checkbox" checked/>
+                                                <label>Printer</label>
+                                            </div>
+                                            <% }else { %>
+                                                <div class="textfont1" id="HWSW_HW_CHECKBOX_4" >
+                                                        <input id="HWSW_HW_CHECKBOX_PRINTER" name="HWSW_HW_CHECKBOX_PRINTER" type="checkbox" />
+                                                        <label>Printer</label>
+                                                    </div>
+                                                    <% } %>
+        
+                                            <%if (formObject.HWSW_HW_CHECKBOX_DESKPHONE == "on") { %>
+        
+                                                <div class="textfont1" id="HWSW_HW_CHECKBOX_5" >
+                                                        <input style="margin-left:50px;" id="HWSW_HW_CHECKBOX_DESKPHONE" name="HWSW_HW_CHECKBOX_DESKPHONE" type="checkbox" checked/>
+                                                        <label>IP Desk Phone: <%=formObject.HWSW_HW_CHECKBOX_IP_DESKPHONE_DETAILS%></label>
+       
+                                                    </div>
+                                            <% }else { %>
+                                                <div class="textfont1" id="HWSW_HW_CHECKBOX_5" >
+                                                        <input id="HWSW_HW_CHECKBOX_DESKPHONE" name="HWSW_HW_CHECKBOX_DESKPHONE" type="checkbox" />
+                                                        <label>IP Desk Phone</label>
+                                                    </div>
+                                                    <% } %>
+                                            <% } %>
+        
+                                        </div>
+                                    </div>
+                                    <%if (formObject.HWSW_REQUEST_SOFTWARE == "on") { %>
+        
+                                    <div class="not_hidden" id="groupF6">
+                                        <div class="visable" id="HWSW_SW_NOT_STANDARD_BOOL_LABEL" name="HWSW_SW_NOT_STANDARD_BOOL_LABEL">
+                                            <div class="form" id="groupF6a" style="width:700px;margin:5px auto 2px auto;">
+                                            <p style="font-size:12px">
+                                            &nbsp&nbsp&nbsp&nbspWith the purchase of New hardware components, the Standard CoSA Software Image will be included.
+                                            Software items which are bundled in the standard image will be registered, licensed, and certified.
+                                            Any New hardware component(s) that is/are replacing existing hardware component(s) and all assigned
+                                            licensed software will be transferred over to the New hardware component to complete the standard 
+                                            image.
+                                            </p>
+                                            <p style="font-size:12px">
+                                            &nbsp&nbsp&nbsp&nbspThe Standard CoSA Software bundle consists of (M/S Windows O/S, Office suite, Server CAL, PowerPoint CAL and M/S Exchange
+                                            CAL) at an estimated cost of $695.
+                                            </p>
+                                            <p style="font-size:12px">
+                                            &nbsp&nbsp&nbsp&nbspIf something other than the standard package is required/desired, please indicate that below. Additional information may be
+                                            added to clarify how and on which hardware component(s) non-standard images are to be distributed. An Exception to Policy
+                                            form may also be required for final approval.
+                                            </p>
+                                            </div>
+                                            <% } %>
+        
+                                            <%if (formObject.HWSW_REQUEST_SOFTWARE == "on") { %>
+                                            <div class="textfont1" id="HWSW_SW_NOT_STANDARD_BOOL_LABEL2">
+                                                <div class="flex_center">
+                                                        <%if (formObject.HWSW_SW_NOT_STANDARD_BOOL == "on") { %>
+        
+                                                    <input id="HWSW_SW_NOT_STANDARD_BOOL" name="HWSW_SW_NOT_STANDARD_BOOL" type="checkbox" checked/>
+                                                    <label>Something <u><em>OTHER THAN</em></u> Standard CoSA Software (OS) Image requested</label>
+                                                    <div style="text-align: center;"></div>
+                                                            <input class="comments" id="HWSW_SW_OTHER_IMAGE" name="HWSW_SW_OTHER_IMAGE" type="text" placeholder="Other Image Details" value="<%= formObject.HWSW_SW_OTHER_IMAGE%>"/>
+                                                        </div>
+                                                    <% }else { %>
+                                                        <input id="HWSW_SW_NOT_STANDARD_BOOL" name="HWSW_SW_NOT_STANDARD_BOOL" type="checkbox" />
+                                                        <label>Something <u><em>OTHER THAN</em></u> Standard CoSA Software (OS) Image requested</label>
+                                                        <% } %>
+                                                </div>
+                                             </div>
+                                             <% } %>
+        
+        
+                                        </div>
+                                    </div>
+                                    <%if (formObject.HWSW_REQUEST_SOFTWARE == "on") { %>
+                                        <%if (formObject.HWSW_SW_NOT_STANDARD_BOOL == "on") { %>
+        
+                                    <div class="not_hidden" id="groupF7" style="text-align:center">
+                                        <div class="visable" id="HWSW_SW_SELECT_1">
+                                            <div class="flex_box_around_border">
+                                                <p style="font-size:12px;" >Adobe Pro Subscription</p>
+                                                <%if (formObject.HWSW_SW_SELECT_QTY_ADOBEPRO == "on") { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_ADOBEPRO" name="HWSW_SW_SELECT_QTY_ADOBEPRO" type="checkbox" checked/>
+                                                <% }else { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_ADOBEPRO" name="HWSW_SW_SELECT_QTY_ADOBEPRO" type="checkbox" />
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="visable" id="HWSW_SW_SELECT_2">
+                                            <div class="flex_box_around_border">
+                                                <p style="font-size:12px;" >Adobe Creative Suite Subscription</p>
+                                                <%if (formObject.HWSW_SW_SELECT_QTY_ADOBECREAT == "on") { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_ADOBECREAT" name="HWSW_SW_SELECT_QTY_ADOBECREAT" type="checkbox" checked/>
+                                                <% }else { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_ADOBECREAT" name="HWSW_SW_SELECT_QTY_ADOBECREAT" type="checkbox" />
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="visable" id="HWSW_SW_SELECT_3">
+                                            <div class="flex_box_around_border">
+                                                <p style="font-size:12px;" >MS Visio Standard</p>
+                                                <%if (formObject.HWSW_SW_SELECT_QTY_MSVISIO == "on") { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_MSVISIO" name="HWSW_SW_SELECT_QTY_MSVISIO" type="checkbox" checked/>
+                                                <% }else { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_MSVISIO" name="HWSW_SW_SELECT_QTY_MSVISIO" type="checkbox" />
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="visable" id="HWSW_SW_SELECT_4">
+                                            <div class="flex_box_around_border">
+                                                <p style="font-size:12px;" >MS Project Standard</p>
+                                                <%if (formObject.HWSW_SW_SELECT_QTY_MSPROJECT == "on") { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_MSPROJECT" name="HWSW_SW_SELECT_QTY_MSPROJECT" type="checkbox" checked/>
+                                                <% }else { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_MSPROJECT" name="HWSW_SW_SELECT_QTY_MSPROJECT" type="checkbox" />
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="visable" id="HWSW_SW_SELECT_5">
+                                            <div class="flex_box_around_border">
+                                                <p style="font-size:12px;" >Adobe Photoshop</p>
+                                                <%if (formObject.HWSW_SW_SELECT_QTY_ADOBEPS == "on") { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_ADOBEPS" name="HWSW_SW_SELECT_QTY_ADOBEPS" type="checkbox" checked/>
+                                                <% }else { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_ADOBEPS" name="HWSW_SW_SELECT_QTY_ADOBEPS" type="checkbox" />
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="visable" id="HWSW_SW_SELECT_6">
+                                            <div class="flex_box_around_border">
+                                                <p style="font-size:12px;" >Exchange Resource Mailbox</p>
+                                                <%if (formObject.HWSW_SW_SELECT_QTY_EXCHANGEMAIL == "on") { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_EXCHANGEMAIL" name="HWSW_SW_SELECT_QTY_EXCHANGEMAIL" type="checkbox" checked />
+                                                <% }else { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_EXCHANGEMAIL" name="HWSW_SW_SELECT_QTY_EXCHANGEMAIL" type="checkbox" />
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="visable" id="HWSW_SW_SELECT_7">
+                                            <div class="flex_box_around_border">
+                                                <p style="font-size:12px;" >Prezi Pro - Presentation</p>
+                                                <%if (formObject.HWSW_SW_SELECT_QTY_PREZIPRO == "on") { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_PREZIPRO" name="HWSW_SW_SELECT_QTY_PREZIPRO" type="checkbox" checked/>
+                                                <% }else { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_PREZIPRO" name="HWSW_SW_SELECT_QTY_PREZIPRO" type="checkbox" />
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="visable" id="HWSW_SW_SELECT_8">
+                                            <div class="flex_box_around_border">
+                                                <p style="font-size:12px;" >Adobe Acrobat Pro - DC</p>
+                                                <%if (formObject.HWSW_SW_SELECT_QTY_ADOBEACRO == "on") { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_ADOBEACRO" name="HWSW_SW_SELECT_QTY_ADOBEACRO" type="checkbox" checked/>
+                                                <% }else { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_ADOBEACRO" name="HWSW_SW_SELECT_QTY_ADOBEACRO" type="checkbox" />
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="visable" id="HWSW_SW_SELECT_9">
+                                            <div class="flex_box_around_border">
+                                                <p style="font-size:12px;" >Adobe InDesign Subscription</p>
+                                                <%if (formObject.HWSW_SW_SELECT_QTY_ADOBEINDESIGN == "on") { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_ADOBEINDESIGN" name="HWSW_SW_SELECT_QTY_ADOBEINDESIGN" type="checkbox" checked />
+                                                <% }else { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_ADOBEINDESIGN" name="HWSW_SW_SELECT_QTY_ADOBEINDESIGN" type="checkbox" />
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="visable" id="HWSW_SW_SELECT_10">
+                                            <div class="flex_box_around_border">
+                                                <p style="font-size:12px;" >VMware Fusion Professional</p>
+                                                <%if (formObject.HWSW_SW_SELECT_QTY_VMWARE == "on") { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_VMWARE" name="HWSW_SW_SELECT_QTY_VMWARE" type="checkbox" checked />
+                                                <% }else { %>
+                                                    <input id="HWSW_SW_SELECT_QTY_VMWARE" name="HWSW_SW_SELECT_QTY_VMWARE" type="checkbox" />
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                    <% } %>
+        
+                    
+                                    <% }%>
+                                    <% }); %>
+        
+        
+        
+                                        <!--FORM 5-->
+                                    <% formObjects.forEach(function(formObject) { %>
+                                        <%if (formObject.FORM_USER_PROV == "on") { %>
+                                            <form class="form" id="EMP" method="post" action="/submit_edit" >
+                                                <input type="hidden" id="<%=formObject.PRIMARY_ID %>" name="PRIMARY_ID" value="<%= formObject.PRIMARY_ID %>">
+                                                <label class="category_select_title" >User Provisioning</label>
+
+                                                <div class="category_center">
+                                                    <label id="label_show_1">Personnel Information</label>
+                                                </div>
+        
+                                    <div class="not_hidden" id="groupA1">
+                                            <input id="EMP_SUFFIX" name="EMP_SUFFIX" type="text" placeholder="Suffix" value="<%= formObject.EMP_SUFFIX %>" />
+                                            <input id="EMP_FIRST" name="EMP_FIRST" type="text" placeholder="First Name" value="<%= formObject.EMP_FIRST %>" />
+                                            <input id="EMP_MI" name="EMP_MI" type="text" placeholder="MI" value="<%= formObject.EMP_MI %>" />
+                                            <input id="EMP_LAST" name="EMP_LAST" type="text" placeholder="Last Name" value="<%= formObject.EMP_LAST %>" />
+                                            <input id="EMP_SAP" name="EMP_SAP" type="text" placeholder="SAP ID" value="<%= formObject.EMP_SAP %>" />
+        
+                                        </div>
+                                        <div class="category_center">
+                                                <label id="label_show_2">Department Information</label>
+                                            </div>
+                                        <div class="not_hidden" id="groupB1">
+                                            <input id="EMP_DEPT" name="EMP_DEPT" type="text" placeholder="Department" value="<%= formObject.EMP_DEPT %>" />
+                                            <input class="visable" id="DEPT_PHONE_EXT" name="DEPT_PHONE_EXT" type="text" placeholder="Department Phone Ext." value="<%= formObject.DEPT_PHONE_EXT %>" />
+                            
+                                        </div>
+                                        <div class="category_center">
+                                                <label class="visable" id="label_5">User Provisioning / Disable Request</label>
+                                        </div>
+    
+                                     <%   if (formObject.PROV_REQUEST_TYPE == "DISABLE") { %>
+    
+                                        <div class="not_hidden_center" id="groupG1a">
+                                                <p>Request type: <%=formObject.PROV_REQUEST_TYPE %></p>
+                                        </div>
+                                                <label for="PROV_DISABLE_DATE">Separation Date: <%=formObject.PROV_DISABLE_DATE %></label>
+    
+                                            </div>
+                                   <% } else { %>
+    
+    
+    
+    
+                                        <div class="textfont1" id="groupG1b">
+                                            <p>User type: <%=formObject.PROV_USER_TYPE %></p>
+                                        </div>
+                                        <!-- BACKLOG: put GroupG1b and G1c on same line -->
+                                        <div class="not_hidden" id="groupG1c">
+                                            <div class="textfont1" id="PROV_HIRE_DATE_LABEL">
+                                                <label>Date of Hire: <%= formObject.PROV_HIRE_DATE %></label>
+                                            </div>
+                                        </div>
+                                        <div class="flex_start" id="groupG2">
+                                                <%if (formObject.PROV_DEVICE_EXIST == "on") { %>
+        
+                                            <div class="textfont1" id="PROV_DEVICE_EXIST_BOOL_LABEL">
+        
+                                                <input id="PROV_DEVICE_EXIST" type="checkbox" checked/>
+                                                    <label><u><em>Device assignment:</em></u> Assigning existing device.</label></div>
+                                            <input style="margin-left:50px;" class="visable" id="PROV_DEVICE_ASSET_NUM" type="text" placeholder="Device Asset No." value="<%= formObject.PROV_DEVICE_ASSET_NUM %>"/>
+        
+        
+                                            <% } else {%>
+                                                <div class="textfont1" id="PROV_DEVICE_EXIST_BOOL_LABEL">
+        
+                                                        <input id="PROV_DEVICE_EXIST" type="checkbox"/>
+                                                            <label><u><em>Device assignment:</em></u> Assigning existing device.</label></div>
+        
+                                                    <% } %>
+                                        </div>
+        
+        
+                                        <div class="not_hidden" id="groupG3-4">
+                                                <%if (formObject.PROV_PHONE_EXIST == "on") { %>
+        
+                                            <div class="textfont1" id="PROV_PHONE_EXIST_BOOL_LABEL">
+                                                <input id="PROV_PHONE_EXIST" type="checkbox" checked/>
+                                                    <label>
+                                                        <u><em>Phone assignment:</em></u> Assigning existing Cisco IP phone and extention.
+                                                    </label>
+                                                    <br>
+                                                            <label style="margin-left:50px;font-size:12px;">Please provide: </label>
+                                                            <input class="" id="PROV_PHONE_EXIST_EXT" name="PROV_PHONE_EXIST_EXT" type="text" placeholder="Phone ext." value="<%= formObject.PROV_PHONE_EXIST_EXT %>"/>
+                                                            <input class="" id="PROV_PHONE_EXIST_MAC" name="PROV_PHONE_EXIST_MAC" type="text" placeholder="MAC Address" value="<%= formObject.PROV_PHONE_EXIST_MAC %>"/>
+                                                            <input class="" id="PROV_PHONE_EXIST_SERIAL" name="PROV_PHONE_EXIST_SERIAL" type="text" placeholder="Serial No." value="<%= formObject.PROV_PHONE_EXIST_SERIAL %>"/>
+    
+                                            </div>
+                                            <% } else {%>
+                                                <div class="textfont1" id="PROV_PHONE_EXIST_BOOL_LABEL">
+                                                        <input id="PROV_PHONE_EXIST" type="checkbox"/>
+                                                            <label>
+                                                                <u><em>Phone assignment:</em></u> Assigning existing Cisco IP phone and extention.
+                                                            </label>
+                                                    </div>
+                                                <% } %>
+        
+                                                <div class="textfont1" id="PROV_PHONE_SET_ADMIN_BOOL_LABEL">
+                                                <%if (formObject.PROV_PHONE_EXIST == "on") { %>
+        
+                                                <input id="PROV_PHONE_SET_ADMIN" type="checkbox" checked/>
+                                                    <label>
+                                                        Setup this employee as a Service Center Agent or Supervisor.
+                                                    </label>
+                                                    <input class="comments" style="margin-left:50px;" id="PROV_PHONE_SET_ADMIN_CONTACT" name="PROV_PHONE_SET_ADMIN_CONTACT" 
+                                                    type="text" placeholder="Name of the contact Service Center for which the user needs to be provisioned" value="<%= formObject.PROV_PHONE_SET_ADMIN_CONTACT %>"/>
+    
+                                            </div>
+                                            <% } else {%>
+                                                <input id="PROV_PHONE_SET_ADMIN" type="checkbox" />
+                                                    <label>
+                                                        Setup this employee as a Service Center Agent or Supervisor.
+                                                    </label>
+                                            </div>
+        
+                                                <% } %>
+        
+                                        </div>
+                                       
+        
+                                        <div class="textfont1" id="label_5b">
+                                            <div class="category_center" style="padding-top:5px;">
+                                                <label style="font-size:14px">User Access</label>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="not_hidden" id="groupG5">
+                                            <div class="textfont1" id="label_5c">
+                                                <p style="font-size:12px">Access Requested (Check all that apply)</p>
+                                            </div>
+                                            <%if (formObject.PROV_ACCESS_REQUEST_HOME == "on") { %>
+        
+                                            <div class="flex_box_between_half">
+                                                <div class="textfont1" id="PROV_ACCESS_REQUEST_1">
+                                                    <input id="PROV_ACCESS_REQUEST_HOME" name="PROV_ACCESS_REQUEST_HOME" type="checkbox" checked/>
+                                                    <label>Home Drive (H)</label>
+                                                </div>
+                                                <% } else {%>
+                                                    <div class="flex_box_between_half">
+                                                            <div class="textfont1" id="PROV_ACCESS_REQUEST_1">
+                                                                <input id="PROV_ACCESS_REQUEST_HOME" name="PROV_ACCESS_REQUEST_HOME" type="checkbox" />
+                                                                <label>Home Drive (H)</label>
+                                                            </div>
+                                                    <% } %>
+        
+                                                    <%if (formObject.PROV_ACCESS_REQUEST_SHARE == "on") { %>
+                                                <div class="textfont1" id="PROV_ACCESS_REQUEST_2">
+                                                    <input id="PROV_ACCESS_REQUEST_SHARE" name="PROV_ACCESS_REQUEST_SHARE" type="checkbox" checked/>
+                                                    <label>Department Share Drive (K)</label>
+                                                </div>
+                                                <% } else {%>
+                                                    <div class="textfont1" id="PROV_ACCESS_REQUEST_2">
+                                                            <input id="PROV_ACCESS_REQUEST_SHARE" name="PROV_ACCESS_REQUEST_SHARE" type="checkbox" />
+                                                            <label>Department Share Drive (K)</label>
+                                                        </div>
+                                                    <% } %>
+                                            </div>
+                                            <%if (formObject.PROV_ACCESS_REQUEST_EMAIL == "on") { %>
+        
+                                            <div class="textfont1" id="PROV_ACCESS_REQUEST_3">
+                                                <input id="PROV_ACCESS_REQUEST_EMAIL" name="PROV_ACCESS_REQUEST_EMAIL" type="checkbox" checked/>
+                                                <label>Email (Provide the name & SAP ID No. of previous poition holder below</label>
+                                            </div>
+                                        </div>
+                                        <div class="not_hidden" id="groupG6">
+                                            <input class="description" id="PROV_PREV_NAME" name="PROV_PREV_NAME" type="text" placeholder="Previous Position Holder's Name" value="<%=formObject.PROV_PREV_NAME %>"/>
+                                            <input class="description" id="PROV_PREV_SAP" name="PROV_PREV_SAP" type="text" placeholder="Previous Position holder's SAP ID" value="<%=formObject.PROV_PREV_SAP %>"/>
+                                        </div>
+                                        <% } else {%>
+                                            <div class="textfont1" id="PROV_ACCESS_REQUEST_3">
+                                                    <input id="PROV_ACCESS_REQUEST_EMAIL" name="PROV_ACCESS_REQUEST_EMAIL" type="checkbox" />
+                                                    <label>Email (Provide the name & SAP ID No. of previous poition holder below</label>
+                                                </div>
+                                            <% } %>
+        
+        
+                                            <%if (formObject.PROV_ADDITIONAL_REQ == "on") { %>
+        
+                                        <div class="not_hidden" id="groupG7ab">
+                                            <div class="textfont1" id="label_5d">
+                                                <input id="PROV_ADDITIONAL_REQ" name="PROV_ADDITIONAL_REQ" type="checkbox" checked/>
+                                                    <label>
+                                                    Additional requirements (Shared Folders, Ditribution Lists, etc.)
+                                                    </label>
+                                            </div>
+                                            <input class="description" id="PROV_ADDITIONAL_REQ2" name="PROV_ADDITIONAL_REQ2" type="text" placeholder="Additional Requirements list" value="<%=formObject.PROV_ADDITIONAL_REQ2%>"/>
+                                        </div>
+        
+                                        <% } else {%>
+                                            <div class="description" id="label_5d">
+                                                    <input id="PROV_ADDITIONAL_REQ" name="PROV_ADDITIONAL_REQ" type="checkbox" />
+                                                        <label>
+                                                        Additional requirements (Shared Folders, Ditribution Lists, etc.)
+                                                        </label>
+                                                </div>
+                                                <% } %>
+        
+                                                <%if (formObject.PROV_MAINFRAME_ACCESS == "on") { %>
+        
+                                        <div class="not_hidden" id="groupG8">
+                                            <div class="textfont1" id="label_5e">
+                                                <input id="PROV_MAINFRAME_ACCESS" type="checkbox" checked/>
+                                                    <label>Mainframe Access (If needing access to an application within the mainframe, please list)</label></div>
+                                            <input class="textbox4" id="PROV_MAINFRAME_ACCESS2" type="text" placeholder="Mainframe Access List" value="<%=formObject.PROV_MAINFRAME_ACCESS2%>"/>
+                                        </div>
+                                        <% } else {%>
+                                            <div class="not_hidden" id="groupG8">
+                                                    <div class="textfont1" id="label_5e">
+                                                        <input id="PROV_MAINFRAME_ACCESS" type="checkbox"/>
+                                                            <label>Mainframe Access (If needing access to an application within the mainframe, please list)</label></div>
+        
+        
+                                            <% } %>
+                                            <% } %>
+                                            <% } %>
+                                        <% }); %>
+</form>
+                                <footer>
+                                <a class="button_red" href="./prov_main">Cancel</a>
+                          
+    
+                           <!--<input id="btn-submit" class="button_green" type="submit" value="Submit">-->
+
+    
+                                </footer>
+    
+    
+    

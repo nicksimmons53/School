@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon" >
+        <title>Provisions Ordering Tool</title>
+        <link rel="stylesheet" href="style_simple.css">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <!--<link rel="stylesheet" href="style_forms.css">-->
+    </head>
+    
+    
+    <div class="login-page">
+        <div>
+            <img src="./images/CoSALogo.png" width="250px" height="250px" class="logo" alt="Logo" />
+        </div>
+        <form class="form" action="/login_user" method="post" style="padding-top: 20px;padding-bottom: 15px;">
+            <!--5.2-->
+            <% if (typeof msg !== 'undefined') { %>
+                <div class="isa_error"><%= msg %></div>
+                <%}%>
+            
+            <input id="username" type="text" placeholder="Username" name="username" type="String" required autofocus/>
+            <input id ="password" type="password" placeholder="Password" name="password" type="String" required/>
+            <input id="btn-login" type="submit" value="Login" style="background: #3a2c2c;color: #fff;width: 200px;margin-bottom: 0px;cursor:pointer;">
+        </form>
+        </div>
+  </div>
+  <!--5.2-->
+  <footer><h2>
+
+  </h2></footer>
+  </html>

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon" >
+        <div class="lighten" style="text-align: center;padding-bottom:20px;">
+            <img src="./images/banner.png" />
+            <!-- <a href="./logout"> -->
+                <!-- <button class="banner_btn">Logout</button> -->
+            <!-- </a> -->
+        </div>
+        
+        <title>Order Form - Provisions Ordering Tool</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+        <script src="prov_add.js"></script>
+        <script src="confirm_popups.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="style_forms.css">
+        <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet" type="text/css" media="screen" charset="utf-8">
+    </head>
+    
+    <body>
+        <form class="form" id="EMP" method="post" action="/submit" style="box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);">
+            <div class="category_select_title">
+                <p>Please select all applicable categories</p>
+            </div>
+            <div class="optionSelect">
+                <input id="btn1" name="FORM_FUEL" type="checkbox"/>
+                <label for="btn1">Fueling Authorization</label>
+            </div>
+            <div class="optionSelect">
+                <input id="btn2" name="FORM_PCARD" type="checkbox"/>
+                <label for="btn2">P-Card Setup/Maintenance</label>
+            </div>
+            <div class="optionSelect">
+                <input id="btn3" name="FORM_IDCARD" type="checkbox"/>
+                <label for="btn3">ID Cards</label>
+            </div>
+            <div class="optionSelect">
+                <input id="btn4" name="FORM_HW_SW" type="checkbox"/>
+                <label for="btn4">Hardware/Software</label>
+            </div>
+            <div class="optionSelect">
+                <input id="btn5" name="FORM_USER_PROV" type="checkbox"/>
+                <label for="btn5">User Provisioning/Disable</label>
+            </div>
+            <div class="optionSelect">
+                <input id="btn6" name="FORM_SAP_ACCESS" type="checkbox"/>
+                <label for="btn6">SAP Access</label>
+            </div>
+
+        <!-- form class encapsulates fields neatly -->
+        <!-- <form class="form" id="EMP" method="post" action="/submit"> -->
+            <!-- NEW SECTION -->
+            <div class="category_center">
+                <label id="label_show_1">Personnel Information</label>
+            </div>
+            <!-- If hiding a hidden class inside a not hidden class, "not hidden" can't have ID -->
+            <!-- A child's class AND id overrides its parents class, but its display still inherits from parent ID -->
+            <!-- There can be no duplicate IDs -->
+            <div class="not_hidden" id="groupA1">
+                    <% if (typeof formObjects !== 'undefined') { %>
+                        <input id="EMP_FIRST" name="EMP_FIRST" type="text" placeholder="First Name" value="<%=formObjects[0].EMP_FIRST %>" required />
+                        <input id ="EMP_MI" name="EMP_MI" type="text" placeholder="MI (optional)" value="<%=formObjects[0].EMP_MI %>"/>
+                        <input id="EMP_LAST" name="EMP_LAST" type="text" placeholder="Last Name" value="<%=formObjects[0].EMP_LAST %>"/>
+                        <input id ="EMP_SUFFIX" name="EMP_SUFFIX" type="text" placeholder="Suffix (Optional)" value="<%=formObjects[0].EMP_SUFFIX %>"/>
+                            <%} else {%>
+                                <input id="EMP_FIRST" name="EMP_FIRST" type="text" placeholder="First Name" required/>
+                                <input id ="EMP_MI" name="EMP_MI" type="text" placeholder="MI (optional)"/>
+                                <input id="EMP_LAST" name="EMP_LAST" type="text" placeholder="Last Name"/>
+                                <input id ="EMP_SUFFIX" name="EMP_SUFFIX" type="text" placeholder="Suffix (Optional)"/>
+                                <%}%>
+                    </div>
+            <div class="not_hidden" id="groupA2">
+                <input class="hidden" id="EMP_EMAIL" name="EMP_EMAIL" type="text" placeholder="Email Address"  />
+                <input class="hidden" id="EMP_PHONE" name="EMP_PHONE" type="text" pattern="\d{7}$" placeholder="Phone No. 1234567"/>
+            </div>
+            <div class="not_hidden" id="groupA3">
+                    <% if (typeof formObjects !== 'undefined') { %>
+                        <input id="EMP_SAP" name="EMP_SAP" type="text" placeholder="SAP ID" value="<%=formObjects[0].EMP_SAP %>" pattern="\d{6}" maxlength="6" required />
+                        <%} else {%>
+                            <input id="EMP_SAP" name="EMP_SAP" type="text" placeholder="SAP ID"  value="<%=VAR_EMP_SAP%>" pattern="\d{6}" maxlength="6" required/>
+                            <%}%>
+                        <input class="hidden" id="EMP_USERNAME" name="EMP_USERNAME" type="text" placeholder="Username"/>
+            </div>
+            <div class="not_hidden" id="groupA4">
+                <select class="hidden1" id="EMP_JOB_STATUS" name="EMP_JOB_STATUS" />
+                    <option value='error' selected disabled> -SELECT JOB STATUS- </option>
+                    <option value='COSA_FULL'>CoSA Full-time</option>
+                    <option value='COSA_PART' >CoSA Part-time</option>
+                    <option value='CoSA_TEMP' >CoSA Temporary</option>
+                    <option value='PAID_INTERN' >Paid Intern</option>
+                    <option value='UNPAID_INTERN' >Un-Paid Intern</option>
+                    <option value='VOLUNTEER' >Volunteer</option>
+                    <option value='VENDOR' >Vendor</option>
+                    <option value='CONTRACTOR' >Contractor</option>
+                    <option value='CONTRACT_TEMP' >Contract Temporary</option>
+                    <option value='OTHER' >Other</option>
+                    <!-- TEMPLATE FOR OPTION: <option value="" ></option> -->
+                </select>
+                <input class="hidden" id="JOB_STATUS_OTHER" name="JOB_STATUS_OTHER" type="text" placeholder="Other Job Status" />
+                <input class="hidden" id="EMP_JOB_TITLE" name="EMP_JOB_TITLE" type="text" placeholder="Job Title" />
+                <input class="hidden" id="EMP_POSITION" name="EMP_POSITION" type="text" pattern="^\d{8}$" placeholder="Position Number" />
+            </div>
+            <div class="not_hidden" id="groupA5">
+                <input class="hidden" id="MANAGER_NAME" name="MANAGER_NAME" type="text" placeholder="Manager Name" />
+                <input class="hidden" id="MANAGER_PHONE" name="MANAGER_PHONE" type="text" placeholder="Manager Phone (1234567)" />
+            </div>
+            <!-- NEW SECTION -->
+            <div class="category_center">
+                <label id="label_show_2">Department Information</label>
+            </div>
+            <div class="not_hidden" id="groupB1">
+                <select id="EMP_DEPT" name="EMP_DEPT" style="width:350px;">
+                    <option value="error" selected disabled> -------------- SELECT DEPARTMENT HERE -------------- </option>
+                    <option value="311 CITY INFO AND HELP" >311 CITY INFO AND HELP</option>
+                    <option value="ANIMAL CARE SERVICES">ANIMAL CARE SERVICES</option>
+                    <option value="ARTS AND CULTURE" >ARTS AND CULTURE</option>
+                    <option value="AVIATION" >AVIATION</option>
+                    <option value="BUILDING AND EQUIPMENT SERVICES" >BUILDING AND EQUIPMENT SERVICES</option>
+                    <option value="CENTER CITY DEVELOPMENT AND OPERATIONS" >CENTER CITY DEVELOPMENT AND OPERATIONS</option>
+                    <option value="CITY ATTORNEY" >CITY ATTORNEY</option>
+                    <option value="CITY AUDITOR" >CITY AUDITOR</option>
+                    <option value="CITY CLERK" >CITY CLERK</option>
+                    <option value="CITY MANAGER'S OFFICE" >CITY MANAGER'S OFFICE</option>
+                    <option value="CONVENTION AND SPORTS FACILITIES" >CONVENTION AND SPORTS FACILITIES</option>
+                    <option value="DEVELOPMENT SERVICES" >DEVELOPMENT SERVICES</option>
+                    <option value="EASTPOINT" >EASTPOINT</option>
+                    <option value="ECONOMIC DEVELOPMENT" >ECONOMIC DEVELOPMENT</option>
+                    <option value="EMERGENCY MANAGEMENT" >EMERGENCY MANAGEMENT</option>
+                    <option value="EQUITY" >EQUITY</option>
+                    <option value="FINANCE" >FINANCE</option>
+                    <option value="FIRE" >FIRE</option>
+                    <option value="GOVERNMENT AND PUBLIC AFFAIRS" >GOVERNMENT AND PUBLIC AFFAIRS</option>
+                    <option value="HEALTH" >HEALTH</option>
+                    <option value="HISTORIC PRESERVATION" >HISTORIC PRESERVATION</option>
+                    <option value="HUMAN RESOURCES" >HUMAN RESOURCES</option>
+                    <option value="HUMAN SERVICES" >HUMAN SERVICES</option>
+                    <option value="INFORMATION TECHNOLOGY SERVICES" >INFORMATION TECHNOLOGY SERVICES</option>
+                    <option value="INNOVATION" >INNOVATION</option>
+                    <option value="LIBRARY" >LIBRARY</option>
+                    <option value="MANAGEMENT AND BUDGET" >MANAGEMENT AND BUDGET</option>
+                    <option value="MAYOR'S OFFICE" >MAYOR'S OFFICE</option>
+                    <option value="MUNICIPAL COURT" >MUNICIPAL COURT</option>
+                    <option value="NEIGHBORHOOD AND HOUSING SERVICES" >NEIGHBORHOOD AND HOUSING SERVICES</option>
+                    <option value="PARKS AND RECREATION" >PARKS AND RECREATION</option>
+                    <option value="PLANNING" >PLANNING</option>
+                    <option value="POLICE" >POLICE</option>
+                    <option value="PRE-K 4 SA" >PRE-K 4 SA</option>
+                    <option value="RISK MANAGEMENT" >RISK MANAGEMENT</option>
+                    <option value="SOLID WASTE MANAGEMENT" >SOLID WASTE MANAGEMENT</option>
+                    <option value="SUSTAINABILITY" >SUSTAINABILITY</option>
+                    <option value="TRANSPORTATION AND CAPITAL IMPROVEMENTS" >TRANSPORTATION AND CAPITAL IMPROVEMENTS</option>
+                    <option value="TRICENTENNIAL COMMISSION" >TRICENTENNIAL COMMISSION</option>
+                    <option value="WORLD HERITAGE" >WORLD HERITAGE</option>
+                    <!-- TEMPLATE FOR OPTION: <option value="" ></option> -->
+                </select>
+                <input class="hidden" id="DEPT_PHONE_EXT" name="DEPT_PHONE_EXT" type="text" placeholder="Department Phone Ext." />
+                <input class="hidden" id="EMP_DIVISION" name="EMP_DIVISION" type="text" placeholder="Division" />
+            </div>
+            <div class="not_hidden" id="groupB2">
+                <input class="hidden" id="DEPT_BLDG_LOC" name="DEPT_BLDG_LOC" type="text" placeholder="Delivery Building Loc." />
+                <input class="hidden" id="DEPT_BLDG_FLR" name="DEPT_BLDG_FLR" type="text" placeholder="Delivery Floor No." />
+                <input class="hidden" id="DEPT_BLDG_OFFC_NUM" name="DEPT_BLDG_OFFC_NUM" type="text" placeholder="Delivery Office No." />
+            <div>
+            <div class="not_hidden" id="groupB3"> <!-- Flagged -->
+                <input class="hidden" id="BESD_COST_CENTER" name="DEPT_COST_CENTER" type="text" placeholder="Department Cost Center" />
+            </div>
+            <!-- NEW SECTION -->
+            <div class="category_center">
+                <label class="hidden" id="label_0">Contractor/Vendor Information</label>
+            </div>
+            <div class="not_hidden" id="" name="" >
+                <input class="hidden4" id="COMPANY_NAME" name="COMPANY_NAME" placeholder="Company Name" type="text" />
+                <input class="hidden3" id="POC_NAME" name="POC_NAME" placeholder="Point of Contact Name" type="text" />
+                <input class="hidden1" id="POC_NUM" name="POC_NUM" placeholder="Contact Phone No." type="text" />
+                <input class="hidden2" id="CONTRACT_NUM" name="CONTRACT_NUM" placeholder="Contract No." type="text" />
+                <label class="hidden" id="CONTRACT_EXP_DATE_LABEL" name="CONTRACT_EXP_DATE_LABEL" for="CONTRACT_EXP_DATE" style="font-size: 12px;" >Contract Expiration Date: </label>
+                <input class="hidden" style="height:19px;" id="CONTRACT_EXP_DATE" name="CONTRACT_EXP_DATE" type="date" />
+            </div>
+            <!-- NEW SECTION -->
+            <div class="category_center">
+                <label class="hidden" id="label_1">Fueling Authorization</label>
+            </div>
+            <!-- AD 1.8 Vehicle Use -->
+            <div class="not_hidden" id="groupC1">
+                <input class="hidden" id="BESD_AD_VEHI_USE_BOOL" name="BESD_AD_VEHI_USE_BOOL" type="checkbox" required />
+                <label class="hidden_bool_label" name="BESD_AD_VEHI_USE_BOOL2" id="BESD_AD_VEHI_USE_BOOL2" >
+                    I acknowledge that I have reviewed
+                    <u><em>AD 1.8 Vehicle Use</em></u> with this employee.
+                </label>
+                
+            </div>
+            <!-- AD 4.8 Driver Safety Program -->
+            <div class="not_hidden" id="groupC2">
+                <input class="hidden" id="BESD_SAFETY_BOOL" name="BESD_SAFETY_BOOL" type="checkbox" required />
+                    <label class="hidden_bool_label" name="BESD_SAFETY_BOOL2" id="BESD_SAFETY_BOOL2" >
+                    I will ensure this employee attend the City driving safety training course in
+                    accordance with
+                    <u><em>AD 4.8 Driver Safety Program</em></u>.
+                    </label>
+            </div>
+
+            <!-- NEW SECTION -->
+            <div class="category_center">
+                <label class="hidden" id="label_2">P-Card</label>
+            </div>
+            <div class="not_hidden" id="groupD1">
+                <select class="hidden2" id="PCARD_SELECT_TYPE" name="PCARD_SELECT_TYPE">
+                    <option value='error' selected disabled> ------------------ SELECT OPTION HERE ------------------ </option>
+                    <option value='CEO Website Access Only'>CEO Website Access Only</option>
+                    <option value='New Credit Card Request' >New Credit Card Request</option>
+                    <option value='Cardholder Maintenance' >Cardholder Maintenance</option>
+                    <!-- TEMPLATE FOR OPTION: <option value="" ></option> -->
+                </select>
+                <input class="hidden2" id="PCARD_CH_LEGAL_NAME" name="PCARD_CH_LEGAL_NAME" type="text" placeholder="Name to be shown on Card" />
+                <input class="hidden1" id="PCARD_MAINT_LAST_FOUR" name="PCARD_MAINT_LAST_FOUR" type="PCARD_MAINT_LAST_FOUR" placeholder="Last 4 Digits of Card" />
+            </div>
+            <div class="not_hidden" id="groupD2">
+                <div class="hidden_bool_label" id="label_2b" name="label_2b">
+                    <input id="PCARD_RECONC" name="PCARD_RECONC" type="checkbox" />
+                    <label>
+                        Cardholder requires Reconciler
+                    </label>
+                    <input class="hidden" style="margin-left:150px;" id="PCARD_RECONCILER_NAME" name="PCARD_RECONCILER_NAME" type="text" placeholder="Reconciler's Name" />
+                <input class="hidden" id="PCARD_RECONCILER_SAP" name="PCARD_RECONCILER_SAP" type="text" placeholder="Reconciler's SAP" />
+                </div>
+            </div>
+            <div class="not_hidden" id="groupD3">
+                
+                <select class="hidden" id="PCARD_ACCT_COST_TYPE" name="PCARD_ACCT_COST_TYPE" style="width:173px;">
+                    <option value='error' selected disabled> -DEFAULT COST TYPE- </option>
+                    <option value="CC - Cost Center" >CC - Cost Center</option>
+                    <option value="IO - Internal Order" >IO - Internal Order</option>
+                    <option value="WBS - WBS Element" >WBS - WBS Element</option>
+                </select>
+                <input class="hidden" id="PCARD_ACCT_DEFAULT_CODE" name="PCARD_ACCT_DEFAULT_CODE" type="text" placeholder="Default Code" />
+                <input class="hidden2" id="PCARD_ACCT_DESC" name="PCARD_ACCT_DESC" type="text" placeholder="Description" />
+            </div>
+            <div class="not_hidden" id="PCARD_MAINT_1">
+                <select class="hidden1" style="margin-left:50px;" id="PCARD_MAINT_CHANGE_IS" name="PCARD_MAINT_CHANGE_IS">
+                    <option value='error' selected disabled> --CHANGE TYPE-- </option>
+                    <option value="PERM" >Permanent</option>
+                    <option value="TEMP" >Temporary</option>
+                </select>
+                <label style="font-size:12px;margin-left:130px;display:none;" for="PCARD_MAINT_TEMP_DATE" id="PCARD_MAINT_TEMP_DATE_LABEL" name="PCARD_MAINT_TEMP_DATE_LABEL" >Return Date: </label>
+                <input class="hidden1" style="height:19px;" id="PCARD_MAINT_TEMP_DATE" name="PCARD_MAINT_TEMP_DATE" type="date" />
+            </div>
+            <div class="not_hidden" id="PCARD_MAINT_2">
+                <div class="hidden_bool_label" id="PCARD_MAINT_LIMITS_LABEL" name="PCARD_MAINT_LIMITS_LABEL">
+                    <input class="" id="PCARD_MAINT_LIMITS" name="PCARD_MAINT_LIMITS" type="checkbox" />
+                    <label for="PCARD_MAINT_LIMITS" >Change Profile Transaction Limits</label>
+                </div>
+            </div>
+            <div class="not_hidden" id="groupD4">
+                <select class="hidden1" id="PCARD_LIMITS_REQUESTED" name="PCARD_LIMITS_REQUESTED">
+                    <option value='error' selected disabled> --LIMITS REQUESTED-- </option>
+                    <option value="500CL_200STL" >500 (CL)/200 (STL)</option>
+                    <option value="1000CL_500STL" >1,000 (CL)/500 (STL)</option>
+                    <option value="3000CL_1000STL" >3,000 (CL)/1,000 (STL)</option>
+                    <option value="5000CL_2000STL" >5,000 (CL)/2,000 (STL)</option>
+                    <option value="5000CL_3000STL" >5,000 (CL)/3,000 (STL)</option>
+                    <option value="10000CL_3000STL" >10,000 (CL)/3,000 (STL)</option>
+                    <option value="OTHER" >Other</option>
+                </select>
+                <input class="hidden3" id="PCARD_LIMITS_EXPLANATION" name="PCARD_LIMITS_EXPLANATION" type="text" placeholder="Explanation" />
+            </div>
+            <div class="not_hidden" id="PCARD_MAINT_3">
+                <div class="hidden_bool_label" id="PCARD_MAINT_NAME_CHANGE_LABEL" name="PCARD_MAINT_NAME_CHANGE_LABEL">
+                    <input class="" id="PCARD_MAINT_NAME_CHANGE" name="PCARD_MAINT_NAME_CHANGE" type="checkbox" />
+                    <label for="PCARD_MAINT_NAME_CHANGE" >Cardholder or Username Change</label>
+                    <input class="hidden2" style="margin-left:73px;" id="PCARD_MAINT_NEW_USERNAME" name="PCARD_MAINT_NEW_USERNAME" type="text" placeholder="New username (COSA Login)" />
+                </div>
+                <div class="hidden_bool_label" id="PCARD_MAINT_NAME_CHANGE_FIELDS" name="PCARD_MAINT_NAME_CHANGE_FIELDS" >
+                    <input class="" id="PCARD_MAINT_FIRST" name="PCARD_MAINT_FIRST" type="text" placeholder="First Name" />
+                    <input class="" id="PCARD_MAINT_MI" name="PCARD_MAINT_MI" type="text" placeholder="MI (optional)" />
+                    <input class="" id="PCARD_MAINT_LAST" name="PCARD_MAINT_LAST" type="text" placeholder="Last Name" />
+                    <input class="" id="PCARD_MAINT_SUFFIX" name="PCARD_MAINT_SUFFIX" type="text" placeholder="Suffix (optional)" />
+                </div>
+            </div>
+            <div class="not_hidden" id="PCARD_MAINT_4">
+                <div class="hidden_bool_label" id="PCARD_MAINT_ROLE_CHANGE_LABEL" name="PCARD_MAINT_ROLE_CHANGE_LABEL">
+                    <input class="" id="PCARD_MAINT_ROLE_CHANGE" name="PCARD_MAINT_ROLE_CHANGE" type="checkbox" />
+                    <label for="PCARD_MAINT_ROLE_CHANGE" >CEO Role Changes: </label>
+                </div>
+            </div>
+            <div class="not_hidden">
+                <select class="hidden2" id="PCARD_ROLE" name="PCARD_ROLE" >
+                    <option value='error' selected disabled> ---- SELECT ROLE (Mouse-over for description) ---- </option>
+                    <option value="Viewer Only"  title="Allows user to pull reports only (all departments)" >Viewer Only</option>
+                    <option value="Approver" title="Allows users to allocate transactions and approve for the department" >Approver</option>
+                    <option value="Reconciler" title="Allows users to allocate transactions and review statement(s) for assigned cardholder(s)" >Reconciler</option>
+                </select>
+                <div class="not_hidden" id="groupD1b">
+                    <input class="hidden4" type="text" id="PCARD_ROLE_DETAILS" name="PCARD_ROLE_DETAILS" placeholder="Enter details of those accounts which are being Approved/Reconciled by this Approver/Reconciler" />
+                </div>
+                <input class="hidden4" id="PCARD_COMMENTS" name="PCARD_COMMENTS" type="text" placeholder="Comments" />
+            </div>
+            <!-- NEW SECTION -->
+            <div class="category_center">
+                <label class="hidden" id="label_3">ID Cards</label>
+            </div>
+            <div class="not_hidden" id="groupE1">
+                <label class="hidden_bool_label" id="label_3b" > Request type(s) (Check all that apply)</label>
+                <div class="flex_box_between">
+                    <div class="hidden_bool_label" id="COSAID_REQUEST_TYPE_1" >
+                        <input id="COSAID_REQUEST_TYPE_ID" name="COSAID_REQUEST_TYPE_ID" type="checkbox" />
+                            <label>
+                            CoSA ID Card
+                            </label>
+                    </div>
+                    <div class="hidden_bool_label" id="COSAID_REQUEST_TYPE_2" >
+                        <input id="COSAID_REQUEST_TYPE_FACACCESS" name="COSAID_REQUEST_TYPE_FACACCESS" type="checkbox" />
+                            <label>
+                            CoSA Facility Access
+                            </label>
+                    </div>
+                    <div class="hidden_bool_label" id="COSAID_REQUEST_TYPE_3" >
+                        <input id="COSAID_REQUEST_TYPE_CJIS_FACACCESS" name="COSAID_REQUEST_TYPE_CJIS_FACACCESS" type="checkbox" />
+                            <label>
+                            CJIS Facility Access
+                            </label>
+                    </div>
+                    <div class="hidden_bool_label" id="COSAID_REQUEST_TYPE_4" >
+                        <input id="COSAID_REQUEST_TYPE_FACACCESS_CHANGE" name="COSAID_REQUEST_TYPE_FACACCESS_CHANGE" type="checkbox" />
+                            <label>
+                            Facility Access Change
+                            </label>
+                    </div>
+                    <div class="hidden_bool_label" id="COSAID_REQUEST_TYPE_5" >
+                        <input id="COSAID_REQUEST_TYPE_REISSUE" name="COSAID_REQUEST_TYPE_REISSUE" type="checkbox" />
+                            <label>
+                            Re-Issue ID Card
+                            </label>
+                    </div>
+                </div>
+            </div>
+            <div class="not_hidden" id="groupE2">
+                <input class="hidden2" id="COSAID_FACI_NAME" name="COSAID_FACI_NAME" type="text" placeholder="Facility Name" />
+                <input class="hidden2" id="COSAID_FACI_ADDY" name="COSAID_FACI_ADDY" type="text" placeholder="Facility Address" />
+            </div>
+            <label class="hidden_bool_label" id="label_3c">Facility Access Point(s) Requested</label> <!-- Flagged -->
+            <div class="not_hidden" id="groupE3">
+                <input class="hidden" id="COSAID_FACI_ENTRY" name="COSAID_FACI_ENTRY" type="text" placeholder="Facility Entry" />
+                <input class="hidden" id="COSAID_FACI_SUITE_ENTRY" name="COSAID_FACI_SUITE_ENTRY" type="text" placeholder="Suite Entry" />
+                <input class="hidden" id="COSAID_FACI_RM_ENTRY" name="COSAID_FACI_RM_ENTRY" type="text" placeholder="Room Entry" />
+            </div>
+            <div class="not_hidden" id="groupE4">
+                <input class="hidden4" id="COSAID_FACI_OTHER" name="COSAID_FACI_OTHER" type="text" placeholder="Other" />
+            </div>
+            <!-- NEW SECTION -->
+            <div class="category_center">
+                <label class="hidden" id="label_4">Hardware/Software</label>
+            </div>
+            <div class="not_hidden" id="groupF1">
+                <div class="flex_box_between_half">
+                    <div class="hidden_bool_label" id="HWSW_REQUEST_1" >
+                        <input id="HWSW_REQUEST_HARDWARE" name="HWSW_REQUEST_HARDWARE" type="checkbox" />
+                            <label>
+                                Provisioning (Assigned) Hardware
+                            </label>
+                    </div>
+                    <div class="hidden_bool_label" id="HWSW_REQUEST_2" >
+                        <input id="HWSW_REQUEST_SOFTWARE" name="HWSW_REQUEST_SOFTWARE" type="checkbox" />
+                            <label>
+                                Specialized Software
+                            </label>
+                    </div>
+                </div>
+            </div>
+            <div class="not_hidden" id="groupF2">
+                <div class="flex_box_between">
+                    <label class="hidden_bool_label" id="label_4b">Hardware Procurement Info:</label>
+                    <input class="hidden" id="HWSW_HW_COST_CENTER" name="HWSW_HW_COST_CENTER" type="text" placeholder="Cost Center / I/O" />
+                    <input class="hidden" id="HWSW_HW_GL_ACCT" name="HWSW_HW_GL_ACCT" type="text" placeholder="GL Acct." />
+                </div>
+            </div>
+            <div class="not_hidden" id="groupF3">
+                <div class="flex_box_between">
+                    <label class="hidden_bool_label" id="label_4c">Software Procurement Info:</label>
+                    <input class="hidden" id="HWSW_SW_COST_CENTER" name="HWSW_SW_COST_CENTER" type="text" placeholder="Cost Center / I/O"/>
+                    <input class="hidden" id="HWSW_SW_GL_ACCT" name="HWSW_SW_GL_ACCT" type="text" placeholder="GL Acct." />
+                </div>
+            </div>
+            <div class="not_hidden" id="groupF4">
+                <div class="flex_box_around">
+                    <select class="hidden" id="HWSW_HW_REQUEST_TYPE" name="HWSW_HW_REQUEST_TYPE" >
+                        <option value='error' selected disabled> -SELECT REQUEST TYPE- </option>
+                        <option value="New" >New</option>
+                        <option value="Replacement" >Replacement</option>
+                        <option value="Upgrade" >Upgrade</option>
+                        <option value="Secondary Device" >Secondary Device</option>
+                    </select>
+                    <input class="hidden2" id="HWSW_HW_CURRENT_DEVICE_ID" name="HWSW_HW_CURRENT_DEVICE_ID" type="text" placeholder="Current Device (&quot;Asset Tag&quot;) ID" />
+                </div>
+            </div>
+            <div class="not_hidden" id="groupF5">
+                <!-- <div class="flex_box_between"> -->
+                <div class="" >
+                    <div class="hidden_bool_label" id="HWSW_HW_CHECKBOX_1" >
+                        <input style="margin-left:50px" id="HWSW_HW_CHECKBOX_DESKTOP" name="HWSW_HW_CHECKBOX_DESKTOP" type="checkbox" />
+                        <label for="HWSW_HW_CHECKBOX_DESKTOP" >Desktop</label>
+                        <select class="" style="width: 531px;margin-left: 60px;" id="HWSW_HW_CHECKBOX_DESKTOP_DETAILS" name="HWSW_HW_CHECKBOX_DESKTOP_DETAILS" >
+                            <option value='error' selected disabled> -SELECT DESKTOP SPECIFICATIONS- </option>
+                            <option value="Apple Mac Mini, i5 PRO, 8GB RAM, 1TB HD, Mac OSX and Warranty" >Apple Mac Mini, i5 PRO, 8GB RAM, 1TB HD, Mac OSX and Warranty</option>
+                            <option value="Dell Precision T3420, Xeon Pro, 16GB RAM, DVD R/W, 500GB HDD, AMD FF 2GB AGP, Win 7 64-bit O/S" >Dell Precision T3420, Xeon Pro, 16GB RAM, DVD R/W, 500GB HDD, AMD FF 2GB AGP, Win 7 64-bit O/S</option>
+                            <option value="Apple 21.5&quot; iMac, i5 processor, 16GB RAM, 1TB HDD, Intel Graphics 6200" >Apple 21.5" iMac, i5 processor, 16GB RAM, 1TB HDD, Intel Graphics 6200</option>
+                            <option value="Apple Mac Pro, 8-Core Intel Xeon processor, 32 GB RAM, 512GB Flash Storage, AMD FirePro" >Apple Mac Pro, 8-Core Intel Xeon processor, 32 GB RAM, 512GB Flash Storage, AMD FirePro</option>
+                            <option value="Apple 27&quot; iMac, i5 processor, 8GB RAM, 1TB HDD, AMD Radeon 2GB" >Apple 27" iMac, i5 processor, 8GB RAM, 1TB HDD, AMD Radeon 2GB</option>
+                            <option value="Dell 5810 Xeon Processor, 32GB RAM, 256GB SSD, AMD FirePro W5100 4GB, Win 7 64-bit O/S" >Dell 5810 Xeon Processor, 32GB RAM, 256GB SSD, AMD FirePro W5100 4GB, Win 7 64-bit O/S</option>
+                        </select>
+                    </div>
+                </div>
+                    <div class="hidden_bool_label" id="HWSW_HW_CHECKBOX_2" >
+                        <input style="margin-left:50px" id="HWSW_HW_CHECKBOX_LAPTOP" name="HWSW_HW_CHECKBOX_LAPTOP" type="checkbox" />
+                        <label>Laptop</label>
+                        <select class="" style="width:531px;margin-left:67px;" id="HWSW_HW_CHECKBOX_LAPTOP_DETAILS" name="HWSW_HW_CHECKBOX_LAPTOP_DETAILS" >
+                            <option value='error' selected disabled> -SELECT LAPTOP SPECIFICATIONS- </option>
+                            <option value="Dell Latitude 5290 2-in-1, 12.0&quot;, i7 processor, 16GB RAM, Win 10 64-bit O/S" >Dell Latitude 5290 2-in-1, 12.0", i7 processor, 16GB RAM, Win 10 64-bit O/S</option>
+                            <option value="Rugged Dell Latitude-14&quot;, i7 processor, 8GB RAM, AT&amp;T 4G modem, Win 7 64-bit O/S" >Rugged Dell Latitude-14", i7 processor, 8GB RAM, AT&T 4G modem, Win 7 64-bit O/S</option>
+                            <option value="Apple Macbook Pro w Retina 13&quot;, i5 processor, 16GB RAM, 256GB Flash Storage, Intel Graphics 6100" >Apple Macbook Pro w Retina 13", i5 processor, 16GB RAM, 256GB Flash Storage, Intel Graphics 6100</option>
+                            <option value="Dell Latitude E7480-14&quot;, i5 processor, 8GB RAM, Win 7 64-bit O/S" >Dell Latitude E7480-14", i5 processor, 8GB RAM, Win 7 64-bit O/S</option>
+                            <option value="Dell Latitude E7280-12&quot;, i5 processor, 8GB RAM, Win 8 64-bit O/S" >Dell Latitude E7280-12", i5 processor, 8GB RAM, Win 8 64-bit O/S</option>
+                            <option value="Dell Latitude E280-12&quot;, (Touch) i5 processor, 8GB RAM, Win 7 64-bit O/S" >Dell Latitude E280-12", (Touch) i5 processor, 8GB RAM, Win 7 64-bit O/S</option>
+                            <option value="Apple MacBOok Air 13&quot;, i7 processor, 8GB RAM, 256 Flash Storage, Intel Graphics 6000" >Apple MacBOok Air 13", i7 processor, 8GB RAM, 256 Flash Storage, Intel Graphics 6000</option>
+                            <option value="Apple MacBook 15&quot;, i7 processor, 16GB RAM, 512 Flash Storage, AMD Radeon 2GB" >Apple MacBook 15", i7 processor, 16GB RAM, 512 Flash Storage, AMD Radeon 2GB</option>
+                            <option value="Dell Latitude 5580, 15.6&quot;, i5 processor, 8GB RAM, Win 7 64-bit O/S" >Dell Latitude 5580, 15.6", i5 processor, 8GB RAM, Win 7 64-bit O/S</option>
+                        </select>
+                        <div class="flex_box_between" style="margin-left:177px;margin-right:10px;" >
+                            <div>
+                                <label>Select Extras: </label>
+                                <input id="HWSW_HW_LAPTOP_EXTRA_1" name="HWSW_HW_LAPTOP_EXTRA_1" type="checkbox" />
+                                <label for="HWSW_HW_LAPTOP_EXTRA_1" >Docking Station</label>
+                            </div>
+                            <div>
+                                <input id="HWSW_HW_LAPTOP_EXTRA_2" name="HWSW_HW_LAPTOP_EXTRA_2" type="checkbox" />
+                                <label for="HWSW_HW_LAPTOP_EXTRA_2" >Keyboard/Mouse</label>
+                            </div>
+                            <div>
+                                <input id="HWSW_HW_LAPTOP_EXTRA_3" name="HWSW_HW_LAPTOP_EXTRA_3" type="checkbox" />
+                                <label for="HWSW_HW_LAPTOP_EXTRA_3" >Additional Monitor</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden_bool_label" id="HWSW_HW_CHECKBOX_3" >
+                        <input style="margin-left:50px" id="HWSW_HW_CHECKBOX_MONITOR" name="HWSW_HW_CHECKBOX_MONITOR" type="checkbox" />
+                        <label>Monitor</label>
+                        
+                        <select class="" style="width:531px;margin-left:61px;" id="HWSW_HW_CHECKBOX_MONITOR_DETAILS" name="HWSW_HW_CHECKBOX_MONITOR_DETAILS" >
+                            <option value='error' selected disabled> -SELECT MONITOR SPECIFICATIONS- </option>
+                            <option value="Dell 24&quot; Monitor - U2417H /w Display, Mini Display Cables" >Dell 24" Monitor - U2417H /w Display, Mini Display Cables</option>
+                            <option value="Qty 2 Dell U2414H Mon w/ 2 Stands, Mini Display to Display Cables" >Qty 2 Dell U2414H Mon w/ 2 Stands, Mini Display to Display Cables</option>
+                            <option value="Qty 2 Dell 2414H Mon w/ 2 Stands (/w Display to Mini Display Cables) for Dell" >Qty 2 Dell 2414H Mon w/ 2 Stands (/w Display to Mini Display Cables) for Dell</option>
+                            <option value="Dual Dell U2414H Mon w/ 1 Stand (Cables Display Port to Mini Display) for Dell or (Mac)" >Dual Dell U2414H Mon w/ 1 Stand (Cables Display Port to Mini Display) for Dell or (Mac)</option>
+                            <option value="Dell 27&quot; Monitor - U2717D /w Display, Mini Display Cables" >Dell 27" Monitor - U2717D /w Display, Mini Display Cables</option>
+                        </select>
+                        <select class="" style="width:140px;margin-left:178px;" id="HWSW_HW_CHECKBOX_MONITOR_MODE" name="HWSW_HW_CHECKBOX_MONITOR_MODE" >
+                            <option value='error' selected disabled> -SELECT MODE- </option>
+                            <option value="Single" >Single</option>
+                            <option value="Dual" >Dual</option>
+                        </select>
+                    </div>
+                    <div class="hidden_bool_label" id="HWSW_HW_CHECKBOX_4" >
+                        <input style="margin-left:50px;" id="HWSW_HW_CHECKBOX_PRINTER" name="HWSW_HW_CHECKBOX_PRINTER" type="checkbox" />
+                        <label>Printer</label>
+                    </div>
+                    <div class="hidden_bool_label" id="HWSW_HW_CHECKBOX_5" >
+                        <input style="margin-left:50px;" id="HWSW_HW_CHECKBOX_DESKPHONE" name="HWSW_HW_CHECKBOX_DESKPHONE" type="checkbox" />
+                        <label>IP Desk Phone</label>
+                        <select class="" style="margin-left:24px;" id="HWSW_HW_CHECKBOX_IP_DESKPHONE_DETAILS" name="HWSW_HW_CHECKBOX_IP_DESKPHONE_DETAILS" >
+                            <option value='error' selected disabled> -SELECT IP DESK PHONE SPECIFICATIONS- </option>
+                            <option value="Cisco 8841" >Cisco 8841</option>
+                            <option value="Cisco 8851 with Expansion Module" >Cisco 8851 with Expansion Module</option>
+
+                        </select>
+                    </div>
+                    <div class="hidden_bool_label" id="HWSW_HW_CHECKBOX_6" >
+                        <input id="HWSW_HW_CHECKBOX_OTHER" name="HWSW_HW_CHECKBOX_OTHER" type="checkbox" />
+                        <label>Other</label>
+                        <input id="HWSW_HW_CHECKBOX_OTHER_INPUT" name="HWSW_HW_CHECKBOX_OTHER_INPUT" type="text" placeholder="Other Details" />
+                    </div>
+            </div>
+            <div class="not_hidden" id="groupF6">
+                <div class="hidden" id="HWSW_SW_NOT_STANDARD_BOOL_LABEL" name="HWSW_SW_NOT_STANDARD_BOOL_LABEL">
+                    <div class="form" id="groupF6a" style="width:700px;margin:5px auto 2px auto;">
+                        <p style="font-size:12px">
+                        &nbsp&nbsp&nbsp&nbspWith the purchase of New hardware components, the Standard CoSA Software Image will be included.
+                        Software items which are bundled in the standard image will be registered, licensed, and certified.
+                        Any New hardware component(s) that is/are replacing existing hardware component(s) and all assigned
+                        licensed software will be transferred over to the New hardware component to complete the standard 
+                        image.
+                        </p>
+                        <p style="font-size:12px">
+                        &nbsp&nbsp&nbsp&nbspThe Standard CoSA Software bundle consists of (M/S Windows O/S, Office suite, Server CAL, PowerPoint CAL and M/S Exchange
+                        CAL) at an estimated cost of $695.
+                        </p>
+                        <p style="font-size:12px">
+                        &nbsp&nbsp&nbsp&nbspIf something other than the standard package is required/desired, please indicate that below. Additional information may be
+                        added to clarify how and on which hardware component(s) non-standard images are to be distributed. An Exception to Policy
+                        form may also be required for final approval.
+                        </p>
+                    </div>
+                    <div class="hidden_bool_label" id="HWSW_SW_NOT_STANDARD_BOOL_LABEL2">
+                        <div class="flex_center">
+                            <input id="HWSW_SW_NOT_STANDARD_BOOL" name="HWSW_SW_NOT_STANDARD_BOOL" type="checkbox" />
+                            <label>
+                            Something <u><em>OTHER THAN</em></u> Standard CoSA Software (OS) Image requested
+                            </label>
+                        </div>
+                     </div>
+                     <div style="text-align: center;">
+                        <input class="hidden3" id="HWSW_SW_OTHER_IMAGE" name="HWSW_SW_OTHER_IMAGE" type="text" placeholder="Other Image Details" />
+                    </div>
+                </div>
+            </div>
+            <div class="not_hidden" id="groupF7" style="text-align:center" >
+                <!-- <div class="hidden_bool_label" id="HWSW_SW_SELECT_1"> -->
+                    <!-- <div class="flex_box_around_border"> -->
+                        <!-- <p style="font-size:12px;cursor:help;" >Adobe Pro Subscription</p> -->
+                        <!-- <p style="font-size:12px;" >Specialized Software</p> -->
+                        <!-- <input class="input_quant" id="HWSW_SW_SELECT_QTY_ADOBEPRO" name="HWSW_SW_SELECT_QTY_ADOBEPRO" type="number" min="0" placeholder="Qty" /> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+                <div class="hidden_bool_label" id="HWSW_SW_SELECT_1">
+                    <div class="flex_box_around_border">
+                        <p style="font-size:12px;cursor:help;" >Adobe Pro Subscription</p>
+                        <!-- <p style="font-size:12px;" >Specialized Software</p> -->
+                        <input id="HWSW_SW_SELECT_QTY_ADOBEPRO" name="HWSW_SW_SELECT_QTY_ADOBEPRO" type="checkbox" />
+                    </div>
+                </div>
+                <div class="hidden_bool_label" id="HWSW_SW_SELECT_2">
+                    <div class="flex_box_around_border">
+                        <p style="font-size:12px;cursor:help;" >Adobe Creative Suite Subscription</p>
+                        <input id="HWSW_SW_SELECT_QTY_ADOBECREAT" name="HWSW_SW_SELECT_QTY_ADOBECREAT" type="checkbox" />
+                    </div>
+                </div>
+                <div class="hidden_bool_label" id="HWSW_SW_SELECT_3">
+                    <div class="flex_box_around_border">
+                        <p style="font-size:12px;cursor:help;" >MS Visio Standard</p>
+                        <!-- <p style="font-size:12px;" >Specialized Software</p> -->
+                        <input id="HWSW_SW_SELECT_QTY_MSVISIO" name="HWSW_SW_SELECT_QTY_MSVISIO" type="checkbox" />
+                    </div>
+                </div>
+                <div class="hidden_bool_label" id="HWSW_SW_SELECT_4">
+                    <div class="flex_box_around_border">
+                        <p style="font-size:12px;cursor:help;" >MS Project Standard</p>
+                        <!-- <p style="font-size:12px;" >Specialized Software</p> -->
+                        <input id="HWSW_SW_SELECT_QTY_MSPROJECT" name="HWSW_SW_SELECT_QTY_MSPROJECT" type="checkbox" />
+                    </div>
+                </div>
+                <div class="hidden_bool_label" id="HWSW_SW_SELECT_5">
+                    <div class="flex_box_around_border">
+                        <p style="font-size:12px;cursor:help;" >Adobe Photoshop</p>
+                        <!-- <p style="font-size:12px;" >Specialized Software</p> -->
+                        <input id="HWSW_SW_SELECT_QTY_ADOBEPS" name="HWSW_SW_SELECT_QTY_ADOBEPS" type="checkbox" />
+                    </div>
+                </div>
+                <div class="hidden_bool_label" id="HWSW_SW_SELECT_6">
+                    <div class="flex_box_around_border">
+                        <p style="font-size:12px;cursor:help;" >Exchange Resource Mailbox</p>
+                        <!-- <p style="font-size:12px;" >Specialized Software</p> -->
+                        <input id="HWSW_SW_SELECT_QTY_EXCHANGEMAIL" name="HWSW_SW_SELECT_QTY_EXCHANGEMAIL" type="checkbox" />
+                    </div>
+                </div>
+                <div class="hidden_bool_label" id="HWSW_SW_SELECT_7">
+                    <div class="flex_box_around_border">
+                        <p style="font-size:12px;cursor:help;" >Prezi Pro - Presentation</p>
+                        <!-- <p style="font-size:12px;" >Specialized Software</p> -->
+                        <input id="HWSW_SW_SELECT_QTY_PREZIPRO" name="HWSW_SW_SELECT_QTY_PREZIPRO" type="checkbox" />
+                    </div>
+                </div>
+                <div class="hidden_bool_label" id="HWSW_SW_SELECT_8">
+                    <div class="flex_box_around_border">
+                        <p style="font-size:12px;cursor:help;" >Adobe Acrobat Pro - DC</p>
+                        <!-- <p style="font-size:12px;" >Specialized Software</p> -->
+                        <input id="HWSW_SW_SELECT_QTY_ADOBEACRO" name="HWSW_SW_SELECT_QTY_ADOBEACRO" type="checkbox" />
+                    </div>
+                </div>
+                <div class="hidden_bool_label" id="HWSW_SW_SELECT_9">
+                    <div class="flex_box_around_border">
+                        <p style="font-size:12px;cursor:help;" >Adobe InDesign Subscription</p>
+                        <!-- <p style="font-size:12px;" >Specialized Software</p> -->
+                        <input id="HWSW_SW_SELECT_QTY_ADOBEINDESIGN" name="HWSW_SW_SELECT_QTY_ADOBEINDESIGN" type="checkbox" />
+                    </div>
+                </div>
+                <div class="hidden_bool_label" id="HWSW_SW_SELECT_10">
+                    <div class="flex_box_around_border">
+                        <p style="font-size:12px;cursor:help;" >VMware Fusion Professional</p>
+                        <!-- <p style="font-size:12px;" >Specialized Software</p> -->
+                        <input id="HWSW_SW_SELECT_QTY_VMWARE" name="HWSW_SW_SELECT_QTY_VMWARE" type="checkbox" />
+                    </div>
+                </div>
+            </div>
+        <!-- NEW SECTION -->
+        <div class="category_center">
+                <label class="hidden" id="label_5">User Provisioning / Disable Request</label>
+        </div>
+        <div class="not_hidden_center" id="groupG1a">
+            <select class="hidden2" id="PROV_REQUEST_TYPE" name="PROV_REQUEST_TYPE">
+                    <option value='error' selected disabled>SELECT REQUEST TYPE HERE</option>
+                    <option value='PROVI_USER'>Provision User</option>
+                    <option value='DISABLE' >Disable User Account</option>
+            </select>
+        </div>
+        <div class="not_hidden" id="groupG1b">
+            <select class="hidden2" id="PROV_USER_TYPE" name="PROV_USER_TYPE" >
+                <option value='error' selected disabled>SELECT USER TYPE HERE</option>
+                <option value='NEW'>New</option>
+                <option value='XFER' >Transfer</option>
+                <option value='REHIRE' >Rehire</option>
+                <option value='TEMP_INTERN' >CoSA Temp/Intern</option>
+                <!-- TEMPLATE FOR OPTION: <option value="" ></option> -->
+            </select>
+        </div>
+        <!-- BACKLOG: put GroupG1b and G1c on same line -->
+        <div class="not_hidden" id="groupG1c">
+            <div class="hidden_bool_label" id="PROV_HIRE_DATE_LABEL">
+                <label>Date of Hire: </label>
+                <input style="height:19px;" id="PROV_HIRE_DATE" name="PROV_HIRE_DATE" type="date"/>
+            </div>
+        </div>
+        <div class="flex_start" id="groupG2">
+            <div class="hidden_bool_label" id="PROV_DEVICE_EXIST_BOOL_LABEL">
+                <input id="PROV_DEVICE_EXIST" name="PROV_DEVICE_EXIST" type="checkbox" />
+                    <label>
+                        <u><em>Device assignment:</em></u> Assigning existing device.
+                    </label>
+            </div>
+            <input style="margin-left:50px;" class="hidden" id="PROV_DEVICE_ASSET_NUM" name="PROV_DEVICE_ASSET_NUM" type="text" placeholder="Device Asset No." />
+        </div>
+        <div class="not_hidden" id="groupG3-4">
+            <div class="hidden_bool_label" id="PROV_PHONE_EXIST_BOOL_LABEL">
+                <input id="PROV_PHONE_EXIST" name="PROV_PHONE_EXIST" type="checkbox" />
+                <label>
+                    <u><em>Phone assignment:</em></u> Assigning existing Cisco IP phone and extention.
+                </label>
+            </div>
+            <div class="" style="display: none;animation: fade_in 0.25s;" id="PROV_PHONE_EXIST_FIELDS" name="PROV_PHONE_EXIST_FIELDS" >
+                <label style="margin-left:50px;font-size:12px;">Please provide: </label>
+                <input class="" id="PROV_PHONE_EXIST_EXT" name="PROV_PHONE_EXIST_EXT" type="text" placeholder="Phone ext." />
+                <input class="" id="PROV_PHONE_EXIST_MAC" name="PROV_PHONE_EXIST_MAC" type="text" placeholder="MAC Address" />
+                <input class="" id="PROV_PHONE_EXIST_SERIAL" name="PROV_PHONE_EXIST_SERIAL" type="text" placeholder="Serial No." />
+            </div>
+            <div class="hidden_bool_label" id="PROV_PHONE_SET_ADMIN_BOOL_LABEL">
+                <input id="PROV_PHONE_SET_ADMIN" name="PROV_PHONE_SET_ADMIN" type="checkbox" />
+                <label for="PROV_PHONE_SET_ADMIN" >
+                    Setup this employee as a Service Center Agent or Supervisor.
+                </label>
+            </div>
+            <input class="hidden3" style="margin-left:50px;" id="PROV_PHONE_SET_ADMIN_CONTACT" name="PROV_PHONE_SET_ADMIN_CONTACT" typ="text" placeholder="Name of the contact Service Center for which the user needs to be provisioned" />
+        </div>
+        <div class="hidden" id="label_5b">
+            <div class="category_center" style="padding-top:5px;">
+                <label style="font-size:14px">User Access</label>
+            </div>
+            
+        </div>
+        <div class="not_hidden" id="groupG5">
+            <div class="hidden_bool_label" id="label_5c">
+                <p style="font-size:12px">Access Requested (Check all that apply)</p>
+            </div>
+            <div class="flex_box_between_half">
+                <div class="hidden_bool_label" id="PROV_ACCESS_REQUEST_1">
+                    <input id="PROV_ACCESS_REQUEST_HOME" name="PROV_ACCESS_REQUEST_HOME" type="checkbox" />
+                    <label>Home Drive (H)</label>
+                </div>
+                <div class="hidden_bool_label" id="PROV_ACCESS_REQUEST_2">
+                    <input id="PROV_ACCESS_REQUEST_SHARE" name="PROV_ACCESS_REQUEST_SHARE" type="checkbox" />
+                    <label>Department Share Drive (K)</label>
+                </div>
+            </div>
+            <div class="hidden_bool_label" id="PROV_ACCESS_REQUEST_3">
+                <input id="PROV_ACCESS_REQUEST_EMAIL" name="PROV_ACCESS_REQUEST_EMAIL" type="checkbox" />
+                <label>Email (Provide the name & SAP ID No. of previous poition holder below</label>
+            </div>
+        </div>
+        <div class="not_hidden" id="groupG6">
+            <input class="hidden2" id="PROV_PREV_NAME" name="PROV_PREV_NAME" type="text" placeholder="Previous Position Holder's Name" />
+            <input class="hidden2" id="PROV_PREV_SAP" name="PROV_PREV_SAP" type="text" placeholder="Previous Position Holder's SAP ID" />
+        </div>
+        <div class="not_hidden" id="groupG7ab">
+            <div class="hidden_bool_label" id="label_5d">
+                <input id="PROV_ADDITIONAL_REQ" name="PROV_ADDITIONAL_REQ" type="checkbox" />
+                    <label>
+                    Additional requirements (Shared Folders, Ditribution Lists, etc.)
+                    </label>
+            </div>
+            <input class="hidden4" id="PROV_ADDITIONAL_REQ2" name="PROV_ADDITIONAL_REQ2" type="text" placeholder="Additional Requirements list" />
+        </div>
+        <div class="not_hidden" id="groupG8">
+            <div class="hidden_bool_label" id="label_5e">
+                <input id="PROV_MAINFRAME_ACCESS" name="PROV_MAINFRAME_ACCESS" type="checkbox" />
+                    <label>
+                    Mainframe Access (If needing access to an application within the mainframe, please list)
+                    </label>
+            </div>
+            <input class="hidden4" id="PROV_MAINFRAME_ACCESS2" name="PROV_MAINFRAME_ACCESS2" type="text" placeholder="Mainframe Access List" />
+        </div>
+        <div class="hidden_bool_label" style="text-align:center;" id="PROV_DISABLE_DATE_LABEL">
+            <label for="PROV_DISABLE_DATE">Separation Date: </label>
+            <input id="PROV_DISABLE_DATE" style="height:19px;" name="PROV_DISABLE_DATE" type="date" />
+        </div>
+        <!-- NAGIVATION BUTTONS -->
+        <div class="button_box">
+            <!-- "Cancel" links back to prov_main -->
+            <a href="./prov_main">
+                <input type="button" class="button_red" value="Cancel" formnovalidate />
+            </a>
+            <a href="./prov_main">
+                <input type="submit" class="button_green" value="Submit">
+            </a>
+        </div>
+        </form>
+    </body>
+</html>
+
+<!-- <script> -->
+    <!-- $(document).on('click', 'button', function (e) { -->
+
+    <!-- var form = $( "#EMP" ); -->
+    
+   <!-- $("#EMP").validate({ -->
+    <!-- errorElement: 'placeholder', -->
+    <!-- errorPlacement: function(error, element) { -->
+        <!-- error.insertAfter(element);  // default -->
+    <!-- }, -->
+       <!-- rules: { -->
+        <!-- EMP_SUFFIX: { -->
+               <!-- required: true, -->
+               <!-- email: true -->
+
+           <!-- } -->
+       <!-- } -->
+   <!-- }); -->
+   <!-- console.log(form.valid()) -->
+   <!-- $( "button" ).click(function() { -->
+     <!-- if (form.valid()) { -->
+        <!-- var EMP_FIRST = document.getElementById("EMP_FIRST").value -->
+        <!-- var EMP_LAST = document.getElementById("EMP_LAST").value -->
+        <!-- var content = document.createElement('div'); -->
+    <!-- content.innerHTML = '<strong>' + EMP_FIRST + " " + EMP_LAST + '</strong>'; -->
+        <!-- swal({ -->
+        <!-- title: "Confirmation", -->
+        <!-- text: "Submit for employee? ", -->
+        <!-- //icon: "warning", -->
+        <!-- content, content, -->
+        <!-- buttons: true, -->
+    <!-- }) -->
+        <!-- .then((result) => { -->
+            <!-- if (result) { -->
+                <!-- swal({ -->
+                    <!-- title: "Form Submitted!", -->
+                    <!-- icon: "success", -->
+                    <!-- content, content, -->
+                <!-- }).then((result) => { -->
+                    <!-- if (result) { -->
+                        <!-- window.location.href = "http://localhost:3306/prov_main"; -->
+                    <!-- } -->
+                <!-- }); -->
+                <!-- $('#EMP').submit(); -->
+            <!-- } else { -->
+                <!-- swal("Cancelled form submission"); -->
+            <!-- } -->
+        <!-- }); -->
+     <!-- } -->
+   <!-- }); -->
+<!-- }); -->
+<!-- </script> -->

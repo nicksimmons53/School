@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <link rel="icon" href="images/favicon.ico" type="image/x-icon" >
+        <div class="lighten" style="text-align: center;padding-bottom:20px;">
+            <img src="./images/banner.png" />
+            <a href="./logout">
+                <button class="banner_btn">Logout</button>
+            </a>
+        </div>
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon" >
+        <title>Completed Forms</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="style_forms.css">
+        <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+        
+    </head>
+    
+    <body>
+        <div class="form" style="width: 880px;border-radius: 20px;">
+        <div class="category_center">
+            <label id="label_show_1">Completed Forms - Provisions Ordering Tool</label>
+        </div>
+        <div class="form" style="padding: 10px 20px 10px 20px;text-align: center;height: 500px;overflow: scroll;"id="EMpP">
+                <table id="customers">
+                        <tr>
+                                <th>Name</th>
+                                <th>SAP</th>
+                                <th>Form Type</th>
+                                <th>Completion Date</th>
+                              </tr>
+            <% formObjects.forEach(function(formObject) { %>
+            
+            <form  method="post" action="/submit_prov_status" style="text-align: center" >
+                <%if (formObject.EMP_FIRST) {%>
+                    <!-- Hidden variables -->
+                    <input type="hidden" id="<%=formObject.EMP_FIRST%>" name="EMP_FIRST" value="<%=formObject.EMP_FIRST%>">
+                    <input type="hidden" id="<%=formObject.EMP_LAST%>" name="EMP_LAST" value="<%=formObject.EMP_LAST%>">
+                    <input type="hidden" id="<%= formObject.EMP_SAP %>" name="EMP_SAP" value="<%= formObject.EMP_SAP %>">
+                    
+                    <input type="hidden" id="<%=formObject.REQUESTOR%>" name="REQUESTOR" value="<%= formObject.REQUESTOR %>">
+                    <input type="hidden" id="<%=formObject.REQUESTOR_TIME%>" name="formObject.REQUESTOR_TIME" value="<%= formObject.REQUESTOR_TIME %>">
+
+                    <input type="hidden" id="<%=formObject.FISC_ADMIN%>" name="FISC_ADMIN" value="<%= formObject.FISC_ADMIN %>">
+                    <input type="hidden" id="<%=formObject.FISC_ADMIN_TIME%>" name="FISC_ADMIN_TIME" value="<%= formObject.FISC_ADMIN_TIME %>">
+
+                    <input type="hidden" id="<%=formObject.DEPT_HEAD%>" name="DEPT_HEAD" value="<%= formObject.DEPT_HEAD %>">
+                    <input type="hidden" id="<%=formObject.DEPT_HEAD_TIME%>" name="DEPT_HEAD_TIME" value="<%= formObject.DEPT_HEAD_TIME %>">
+                    <input type="hidden" id="<%=formObject.BES%>" name="BES" value="<%= formObject.BES %>">
+                    <input type="hidden" id="<%=formObject.ITSD%>" name="ITSD" value="<%= formObject.ITSD %>">
+                    <input type="hidden" id="<%=formObject.FINANCE%>" name="FINANCE" value="<%= formObject.FINANCE %>">
+                    
+                    
+                    <input type="hidden" id="<%=formObject.FORM_FUEL %>" name="FORM_FUEL" value="<%= formObject.FORM_FUEL %>">
+                    <input type="hidden" id="<%=formObject.FORM_PCARD %>" name="FORM_PCARD" value="<%= formObject.FORM_PCARD %>">
+                    <input type="hidden" id="<%=formObject.FORM_IDCARD %>" name="FORM_IDCARD" value="<%= formObject.FORM_IDCARD %>">
+                    <input type="hidden" id="<%=formObject.FORM_HW_SW %>" name="FORM_HW_SW" value="<%= formObject.FORM_HW_SW %>">
+                    <input type="hidden" id="<%=formObject.FORM_USER_PROV %>" name="FORM_USER_PROV" value="<%= formObject.FORM_USER_PROV %>">
+                    <input type="hidden" id="<%=formObject.FORM_SAP_ACCESS %>" name="FORM_SAP_ACCESS" value="<%= formObject.FORM_SAP_ACCESS %>">
+
+                    <input type="hidden" id="<%=formObject.PRIMARY_ID %>" name="PRIMARY_ID" value="<%= formObject.PRIMARY_ID %>">
+
+                    
+                    <!-- Display: Last, First (SAP) -->
+                    <label>
+                        <tr>
+                       <td><button class="like-anchor" value="View" type="submit" name="submit"><%= formObject.EMP_LAST %>, <%= formObject.EMP_FIRST %>    </button></td>
+                        <td><%= formObject.EMP_SAP %></td>
+               
+                        <% var formList = "";%>
+                        <% var formArr = []; %>
+                        <% if (formObject.FORM_FUEL == "on") { %>
+                            <% formArr.push(" Fuel"); %>
+                        <%} %>
+                        <% if (formObject.FORM_PCARD == "on") {%>
+                            <%  formArr.push(" PCard");%>
+                        <% } %>
+                        <% if (formObject.FORM_IDCARD == "on") {%>
+                            <%  formArr.push(" IDCard");%>
+                        <% } %>
+                        <% if (formObject.FORM_HW_SW == "on") {%>
+                            <%  formArr.push(" HW/SW");%>
+                        <% } %>
+                        <% if (formObject.FORM_USER_PROV == "on") {%>
+                            <%  formArr.push(" UserProv");%>
+                        <% } %>
+                        <% if (formObject.FORM_SAP_ACCESS == "on") {%>
+                            <%  formArr.push(" Access");%>
+                        <% } %>
+                        <% var formArrToString = formArr.toString();%>
+                        <% formList = formList.concat(formArrToString); %>
+                        <td><%=formList;%></td>
+                        <td><%= formObject.DEPT_HEAD_TIME %></td>
+                
+                    </tr>
+                    </label>         
+                <%}%>
+            </form>
+            <% }); %>   
+                  </table>        
+        </div>
+        </div>
+    </body>
+
+</html>
