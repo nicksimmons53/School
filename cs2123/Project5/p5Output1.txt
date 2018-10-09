@@ -1,0 +1,447 @@
+>> COURSE CS1083 Intro I
+>> COURSE CS1713 Intro II
+>> PREREQ CS1083
+>> COURSE CS2123 Data Structures
+>> PREREQ CS1713
+>> PRTONE CS2123
+Vx TE Course  Name                Prereqs                         Successors
+ 3  0 CS2123  Data Structures    CS1713  ...     ...     ...     -
+
+>> PRTONE CS1713
+Vx TE Course  Name                Prereqs                         Successors
+ 2  0 CS1713  Intro II           CS1083  ...     ...     ...     CS2123  
+
+>> PRTALL
+Vx TE Course  Name                Prereqs                         Successors
+ 1  0 CS1083  Intro I            -       ...     ...     ...     CS1713  
+ 2  0 CS1713  Intro II           CS1083  ...     ...     ...     CS2123  
+ 3  0 CS2123  Data Structures    CS1713  ...     ...     ...     -
+
+>> COURSE MAT1214 Calculus I
+>> COURSE MAT1224 Calculus II
+>> PREREQ MAT1214
+>> COURSE MAT2233 Discrete Math
+>> PREREQ MAT1214
+>> PREREQ CS1713
+>> COURSE MAT3333 Math Found
+>> PREREQ MAT1224
+>> PREREQ CS1713
+>> COURSE CS3343 Analysis of Algo
+>> PREREQ CS2123
+>> PREREQ MAT3333
+>> PREREQ MAT2233
+>> *
+>> * show some chains
+>> *
+>> PRTSUCC CS1083
+CS1083 Intro I
+	CS1713 Intro II
+		MAT3333 Math Found
+			CS3343 Analysis of Algo
+		MAT2233 Discrete Math
+			CS3343 Analysis of Algo
+		CS2123 Data Structures
+			CS3343 Analysis of Algo
+>> MAXCHAIN CS1083
+	Maximum chain for CS1083 contains 4 courses
+>> PRTLONGS CS1083
+	Longest Chains beginning with CS1083
+		CS1083 CS1713 MAT3333 CS3343 
+		CS1083 CS1713 MAT2233 CS3343 
+		CS1083 CS1713 CS2123 CS3343 
+
+>> *
+>> * More core courses
+>> *
+>> COURSE CS3423 Sys Pgm
+>> PREREQ CS2123
+>> COURSE CS3433 Princ of Security
+>> PREREQ CS3423
+>> COURSE CS3443 App Pgm
+>> PREREQ CS2123
+>> COURSE CS3843 Comp Org
+>> PREREQ CS2123
+>> COURSE CS3723 Pgm Lang
+>> PREREQ CS3443
+>> PREREQ MAT2233
+>> COURSE CS3733 Operating Systems
+>> PREREQ CS3423
+>> PREREQ CS3443
+>> PREREQ CS3843
+>> PRTALL
+Vx TE Course  Name                Prereqs                         Successors
+ 1  0 CS1083  Intro I            -       ...     ...     ...     CS1713  
+ 2  0 CS1713  Intro II           CS1083  ...     ...     ...     MAT3333 MAT2233 CS2123  
+ 3  0 CS2123  Data Structures    CS1713  ...     ...     ...     CS3843  CS3443  CS3423  CS3343  
+ 4  0 MAT1214 Calculus I         -       ...     ...     ...     MAT2233 MAT1224 
+ 5  0 MAT1224 Calculus II        MAT1214 ...     ...     ...     MAT3333 
+ 6  0 MAT2233 Discrete Math      CS1713  MAT1214 ...     ...     CS3723  CS3343  
+ 7  0 MAT3333 Math Found         CS1713  MAT1224 ...     ...     CS3343  
+ 8  0 CS3343  Analysis of Algo   MAT2233 MAT3333 CS2123  ...     -
+ 9  0 CS3423  Sys Pgm            CS2123  ...     ...     ...     CS3733  CS3433  
+10  0 CS3433  Princ of Security  CS3423  ...     ...     ...     -
+11  0 CS3443  App Pgm            CS2123  ...     ...     ...     CS3733  CS3723  
+12  0 CS3843  Comp Org           CS2123  ...     ...     ...     CS3733  
+13  0 CS3723  Pgm Lang           MAT2233 CS3443  ...     ...     -
+14  0 CS3733  Operating Systems  CS3843  CS3443  CS3423  ...     -
+
+>> PRTSUCC CS1713
+CS1713 Intro II
+	MAT3333 Math Found
+		CS3343 Analysis of Algo
+	MAT2233 Discrete Math
+		CS3723 Pgm Lang
+		CS3343 Analysis of Algo
+	CS2123 Data Structures
+		CS3843 Comp Org
+			CS3733 Operating Systems
+		CS3443 App Pgm
+			CS3733 Operating Systems
+			CS3723 Pgm Lang
+		CS3423 Sys Pgm
+			CS3733 Operating Systems
+			CS3433 Princ of Security
+		CS3343 Analysis of Algo
+>> MAXCHAIN CS1713
+	Maximum chain for CS1713 contains 4 courses
+>> PRTLONGS CS1713
+	Longest Chains beginning with CS1713
+		CS1713 CS2123 CS3843 CS3733 
+		CS1713 CS2123 CS3443 CS3733 
+		CS1713 CS2123 CS3443 CS3723 
+		CS1713 CS2123 CS3423 CS3733 
+		CS1713 CS2123 CS3423 CS3433 
+
+>> PRTSUCC MAT1214
+MAT1214 Calculus I
+	MAT2233 Discrete Math
+		CS3723 Pgm Lang
+		CS3343 Analysis of Algo
+	MAT1224 Calculus II
+		MAT3333 Math Found
+			CS3343 Analysis of Algo
+>> MAXCHAIN MAT1214
+	Maximum chain for MAT1214 contains 4 courses
+>> PRTLONGS MAT1214
+	Longest Chains beginning with MAT1214
+		MAT1214 MAT1224 MAT3333 CS3343 
+
+>> *
+>> * Insert all the other courses
+>> *
+>> COURSE CS3743 Database Systems
+>> PREREQ CS3423
+>> PREREQ CS3753
+>> COURSE CS3753 Intro Data Sci
+>> PREREQ CS2123
+>> PREREQ MAT2233
+>> PREREQ MAT3333
+>> COURSE CS3773 Software Engineering
+>> PREREQ CS3443
+>> COURSE CS3793 Artificial Intel
+>> PREREQ CS3343
+>> COURSE CS3853 Computer Arch
+>> PREREQ CS3843
+>> PREREQ CS3423
+>> COURSE CS3873 Networks
+>> PREREQ CS3843
+>> COURSE CS4223 Bioinformatics
+>> PREREQ CS3753
+>> COURSE CS4233 Computational Bio
+>> PREREQ CS3753
+>> COURSE CS4353 Unix & Net Security
+>> PREREQ CS3433
+>> COURSE CS4363 Cryptography
+>> PREREQ CS3343
+>> PREREQ CS3433
+>> COURSE CS4373 Data Mining
+>> PREREQ CS3743
+>> COURSE CS4393 User Interfaces
+>> PREREQ CS3443
+>> COURSE CS4413 Web
+>> PREREQ CS3423
+>> COURSE CS4633 Simulation
+>> PREREQ CS3343
+>> COURSE CS4633 Mobile Tech
+>> PREREQ CS3733
+>> COURSE CS4663 Dist Cloud Security
+>> PREREQ CS3733
+>> COURSE CS4673 Cyber Operations
+>> PREREQ CS4353
+>> COURSE CS4713 Compiler Construct
+>> PREREQ CS3723
+>> PREREQ CS3843
+>> COURSE CS4723 Sw Valid & QA
+>> PREREQ CS3773
+>> COURSE CS4733 Project Mgt
+>> PREREQ CS3773
+>> COURSE CS4743 Enterprise Sw Eng
+>> PREREQ CS3773
+>> COURSE CS4783 Adv Sw Eng
+>> PREREQ CS3773
+>> COURSE CS4823 Parallel Programming
+>> PREREQ CS3343 
+>> PREREQ CS3423
+>> COURSE CS4843 Cloud Computing
+>> PREREQ CS3423
+>> PREREQ CS3853
+>> COURSE CS4973 Big Data
+>> PREREQ CS3743
+>> *
+>> * End of all the courses
+>> *
+>> PRTALL
+Vx TE Course  Name                Prereqs                         Successors
+ 1  0 CS1083  Intro I            -       ...     ...     ...     CS1713  
+ 2  0 CS1713  Intro II           CS1083  ...     ...     ...     MAT3333 MAT2233 CS2123  
+ 3  0 CS2123  Data Structures    CS1713  ...     ...     ...     CS3753  CS3843  CS3443  CS3423  CS3343  
+ 4  0 MAT1214 Calculus I         -       ...     ...     ...     MAT2233 MAT1224 
+ 5  0 MAT1224 Calculus II        MAT1214 ...     ...     ...     MAT3333 
+ 6  0 MAT2233 Discrete Math      CS1713  MAT1214 ...     ...     CS3753  CS3723  CS3343  
+ 7  0 MAT3333 Math Found         CS1713  MAT1224 ...     ...     CS3753  CS3343  
+ 8  0 CS3343  Analysis of Algo   MAT2233 MAT3333 CS2123  ...     4823    CS4633  CS4363  CS3793  
+ 9  0 CS3423  Sys Pgm            CS2123  ...     ...     ...     CS4843  4823    CS4413  CS3853  CS3743  CS3733  CS3433  
+10  0 CS3433  Princ of Security  CS3423  ...     ...     ...     CS4363  CS4353  
+11  0 CS3443  App Pgm            CS2123  ...     ...     ...     CS4393  3773    CS3733  CS3723  
+12  0 CS3843  Comp Org           CS2123  ...     ...     ...     CS4713  CS3873  CS3853  CS3733  
+13  0 CS3723  Pgm Lang           MAT2233 CS3443  ...     ...     CS4713  
+14  0 CS3733  Operating Systems  CS3843  CS3443  CS3423  ...     CS4663  CS4633  
+15  0 CS3743  Database Systems   CS3753  CS3423  ...     ...     CS4973  CS4373  
+16  0 CS3753  Intro Data Sci     MAT3333 MAT2233 CS2123  ...     CS4233  CS4223  CS3743  
+17  0 3773    Software EngineeringCS3443  ...     ...     ...     CS4783  CS4743  CS4733  CS4723  
+18  0 CS3793  Artificial Intel   CS3343  ...     ...     ...     -
+19  0 CS3853  Computer Arch      CS3423  CS3843  ...     ...     CS4843  
+20  0 CS3873  Networks           CS3843  ...     ...     ...     -
+21  0 CS4223  Bioinformatics     CS3753  ...     ...     ...     -
+22  0 CS4233  Computational Bio  CS3753  ...     ...     ...     -
+23  0 CS4353  Unix & Net SecurityCS3433  ...     ...     ...     CS4673  
+24  0 CS4363  Cryptography       CS3433  CS3343  ...     ...     -
+25  0 CS4373  Data Mining        CS3743  ...     ...     ...     -
+26  0 CS4393  User Interfaces    CS3443  ...     ...     ...     -
+27  0 CS4413  Web                CS3423  ...     ...     ...     -
+28  0 CS4633  Mobile Tech        CS3733  CS3343  ...     ...     -
+29  0 CS4663  Dist Cloud SecurityCS3733  ...     ...     ...     -
+30  0 CS4673  Cyber Operations   CS4353  ...     ...     ...     -
+31  0 CS4713  Compiler Construct CS3843  CS3723  ...     ...     -
+32  0 CS4723  Sw Valid & QA      3773    ...     ...     ...     -
+33  0 CS4733  Project Mgt        3773    ...     ...     ...     -
+34  0 CS4743  Enterprise Sw Eng  3773    ...     ...     ...     -
+35  0 CS4783  Adv Sw Eng         3773    ...     ...     ...     -
+36  0 4823    Parallel ProgrammingCS3423  CS3343  ...     ...     -
+37  0 CS4843  Cloud Computing    CS3853  CS3423  ...     ...     -
+38  0 CS4973  Big Data           CS3743  ...     ...     ...     -
+
+>> *
+>> *  cycle stuff 
+>> *
+>> PRTSUCC CS3443
+CS3443 App Pgm
+	CS4393 User Interfaces
+	3773 Software Engineering
+		CS4783 Adv Sw Eng
+		CS4743 Enterprise Sw Eng
+		CS4733 Project Mgt
+		CS4723 Sw Valid & QA
+	CS3733 Operating Systems
+		CS4663 Dist Cloud Security
+		CS4633 Mobile Tech
+	CS3723 Pgm Lang
+		CS4713 Compiler Construct
+>> COURSE CS3443 Appl Pgm
+>> PREREQ MAT1214
+>> PREREQ CS4713
+Warning: Insertion of this course would result in a cycle. Input: PREREQ CS4713
+
+>> *
+>> * Final Output from program 5
+>> *
+>> PRTSUCC CS1083
+CS1083 Intro I
+	CS1713 Intro II
+		MAT3333 Math Found
+			CS3753 Intro Data Sci
+				CS4233 Computational Bio
+				CS4223 Bioinformatics
+				CS3743 Database Systems
+					CS4973 Big Data
+					CS4373 Data Mining
+			CS3343 Analysis of Algo
+				4823 Parallel Programming
+				CS4633 Mobile Tech
+				CS4363 Cryptography
+				CS3793 Artificial Intel
+		MAT2233 Discrete Math
+			CS3753 Intro Data Sci
+				CS4233 Computational Bio
+				CS4223 Bioinformatics
+				CS3743 Database Systems
+					CS4973 Big Data
+					CS4373 Data Mining
+			CS3723 Pgm Lang
+				CS4713 Compiler Construct
+			CS3343 Analysis of Algo
+				4823 Parallel Programming
+				CS4633 Mobile Tech
+				CS4363 Cryptography
+				CS3793 Artificial Intel
+		CS2123 Data Structures
+			CS3753 Intro Data Sci
+				CS4233 Computational Bio
+				CS4223 Bioinformatics
+				CS3743 Database Systems
+					CS4973 Big Data
+					CS4373 Data Mining
+			CS3843 Comp Org
+				CS4713 Compiler Construct
+				CS3873 Networks
+				CS3853 Computer Arch
+					CS4843 Cloud Computing
+				CS3733 Operating Systems
+					CS4663 Dist Cloud Security
+					CS4633 Mobile Tech
+			CS3443 Appl Pgm
+				CS4393 User Interfaces
+				3773 Software Engineering
+					CS4783 Adv Sw Eng
+					CS4743 Enterprise Sw Eng
+					CS4733 Project Mgt
+					CS4723 Sw Valid & QA
+				CS3733 Operating Systems
+					CS4663 Dist Cloud Security
+					CS4633 Mobile Tech
+				CS3723 Pgm Lang
+					CS4713 Compiler Construct
+			CS3423 Sys Pgm
+				CS4843 Cloud Computing
+				4823 Parallel Programming
+				CS4413 Web
+				CS3853 Computer Arch
+					CS4843 Cloud Computing
+				CS3743 Database Systems
+					CS4973 Big Data
+					CS4373 Data Mining
+				CS3733 Operating Systems
+					CS4663 Dist Cloud Security
+					CS4633 Mobile Tech
+				CS3433 Princ of Security
+					CS4363 Cryptography
+					CS4353 Unix & Net Security
+						CS4673 Cyber Operations
+			CS3343 Analysis of Algo
+				4823 Parallel Programming
+				CS4633 Mobile Tech
+				CS4363 Cryptography
+				CS3793 Artificial Intel
+>> PRTSUCC MAT1214
+MAT1214 Calculus I
+	CS3443 Appl Pgm
+		CS4393 User Interfaces
+		3773 Software Engineering
+			CS4783 Adv Sw Eng
+			CS4743 Enterprise Sw Eng
+			CS4733 Project Mgt
+			CS4723 Sw Valid & QA
+		CS3733 Operating Systems
+			CS4663 Dist Cloud Security
+			CS4633 Mobile Tech
+		CS3723 Pgm Lang
+			CS4713 Compiler Construct
+	MAT2233 Discrete Math
+		CS3753 Intro Data Sci
+			CS4233 Computational Bio
+			CS4223 Bioinformatics
+			CS3743 Database Systems
+				CS4973 Big Data
+				CS4373 Data Mining
+		CS3723 Pgm Lang
+			CS4713 Compiler Construct
+		CS3343 Analysis of Algo
+			4823 Parallel Programming
+			CS4633 Mobile Tech
+			CS4363 Cryptography
+			CS3793 Artificial Intel
+	MAT1224 Calculus II
+		MAT3333 Math Found
+			CS3753 Intro Data Sci
+				CS4233 Computational Bio
+				CS4223 Bioinformatics
+				CS3743 Database Systems
+					CS4973 Big Data
+					CS4373 Data Mining
+			CS3343 Analysis of Algo
+				4823 Parallel Programming
+				CS4633 Mobile Tech
+				CS4363 Cryptography
+				CS3793 Artificial Intel
+>> PRTSOURCES 
+Vx Course       Name
+ 1 CS1083   	Intro I
+ 4 MAT1214   	Calculus I
+>> PRTSINKS
+Vx Course       Name
+18 CS3793   	Artificial Intel
+20 CS3873   	Networks
+21 CS4223   	Bioinformatics
+22 CS4233   	Computational Bio
+24 CS4363   	Cryptography
+25 CS4373   	Data Mining
+26 CS4393   	User Interfaces
+27 CS4413   	Web
+28 CS4633   	Mobile Tech
+29 CS4663   	Dist Cloud Security
+30 CS4673   	Cyber Operations
+31 CS4713   	Compiler Construct
+32 CS4723   	Sw Valid & QA
+33 CS4733   	Project Mgt
+34 CS4743   	Enterprise Sw Eng
+35 CS4783   	Adv Sw Eng
+36 4823   	Parallel Programming
+37 CS4843   	Cloud Computing
+38 CS4973   	Big Data
+>> PRTALL
+Vx TE Course  Name                Prereqs                         Successors
+ 1  0 CS1083  Intro I            -       ...     ...     ...     CS1713  
+ 2  0 CS1713  Intro II           CS1083  ...     ...     ...     MAT3333 MAT2233 CS2123  
+ 3  0 CS2123  Data Structures    CS1713  ...     ...     ...     CS3753  CS3843  CS3443  CS3423  CS3343  
+ 4  0 MAT1214 Calculus I         -       ...     ...     ...     CS3443  MAT2233 MAT1224 
+ 5  0 MAT1224 Calculus II        MAT1214 ...     ...     ...     MAT3333 
+ 6  0 MAT2233 Discrete Math      CS1713  MAT1214 ...     ...     CS3753  CS3723  CS3343  
+ 7  0 MAT3333 Math Found         CS1713  MAT1224 ...     ...     CS3753  CS3343  
+ 8  0 CS3343  Analysis of Algo   MAT2233 MAT3333 CS2123  ...     4823    CS4633  CS4363  CS3793  
+ 9  0 CS3423  Sys Pgm            CS2123  ...     ...     ...     CS4843  4823    CS4413  CS3853  CS3743  CS3733  CS3433  
+10  0 CS3433  Princ of Security  CS3423  ...     ...     ...     CS4363  CS4353  
+11  0 CS3443  Appl Pgm           MAT1214 CS2123  ...     ...     CS4393  3773    CS3733  CS3723  
+12  0 CS3843  Comp Org           CS2123  ...     ...     ...     CS4713  CS3873  CS3853  CS3733  
+13  0 CS3723  Pgm Lang           MAT2233 CS3443  ...     ...     CS4713  
+14  0 CS3733  Operating Systems  CS3843  CS3443  CS3423  ...     CS4663  CS4633  
+15  0 CS3743  Database Systems   CS3753  CS3423  ...     ...     CS4973  CS4373  
+16  0 CS3753  Intro Data Sci     MAT3333 MAT2233 CS2123  ...     CS4233  CS4223  CS3743  
+17  0 3773    Software EngineeringCS3443  ...     ...     ...     CS4783  CS4743  CS4733  CS4723  
+18  0 CS3793  Artificial Intel   CS3343  ...     ...     ...     -
+19  0 CS3853  Computer Arch      CS3423  CS3843  ...     ...     CS4843  
+20  0 CS3873  Networks           CS3843  ...     ...     ...     -
+21  0 CS4223  Bioinformatics     CS3753  ...     ...     ...     -
+22  0 CS4233  Computational Bio  CS3753  ...     ...     ...     -
+23  0 CS4353  Unix & Net SecurityCS3433  ...     ...     ...     CS4673  
+24  0 CS4363  Cryptography       CS3433  CS3343  ...     ...     -
+25  0 CS4373  Data Mining        CS3743  ...     ...     ...     -
+26  0 CS4393  User Interfaces    CS3443  ...     ...     ...     -
+27  0 CS4413  Web                CS3423  ...     ...     ...     -
+28  0 CS4633  Mobile Tech        CS3733  CS3343  ...     ...     -
+29  0 CS4663  Dist Cloud SecurityCS3733  ...     ...     ...     -
+30  0 CS4673  Cyber Operations   CS4353  ...     ...     ...     -
+31  0 CS4713  Compiler Construct CS3843  CS3723  ...     ...     -
+32  0 CS4723  Sw Valid & QA      3773    ...     ...     ...     -
+33  0 CS4733  Project Mgt        3773    ...     ...     ...     -
+34  0 CS4743  Enterprise Sw Eng  3773    ...     ...     ...     -
+35  0 CS4783  Adv Sw Eng         3773    ...     ...     ...     -
+36  0 4823    Parallel ProgrammingCS3423  CS3343  ...     ...     -
+37  0 CS4843  Cloud Computing    CS3853  CS3423  ...     ...     -
+38  0 CS4973  Big Data           CS3743  ...     ...     ...     -
+
+>> MAXCHAIN CS2123
+	Maximum chain for CS2123 contains 5 courses
+>> PRTLONGS CS2123
+	Longest Chains beginning with CS2123
+		CS2123 CS3423 CS3433 CS4353 CS4673 
+

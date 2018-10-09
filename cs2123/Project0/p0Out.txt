@@ -1,0 +1,100 @@
+ Id      Course Name         
+ 			 Attr       Value       
+ CS1083  Intro I             
+ 			 LANG       JAVA                
+ 			 PROF       ROBBINS             
+ 			 PROF       HOLLAND             
+ 			 PROF       SHERETTE            
+ 			 PROF       ROBINSON            
+ 			 PROF       ZHU                 
+ 			 RECIT      N                   
+ 			 DEPT       CS                  
+ MAT2233 Discrete Math       
+ 			 PREREQ     MAT1214             
+ 			 PREREQ     CS1713              
+ 			 PROF       SHERETTE            
+ 			 PROF       TANG                
+ 			 RECIT      N                   
+ 			 DEPT       MAT                 
+ MAT3333 Math Found          
+ 			 PREREQ     MAT1223             
+ 			 PREREQ     CS1713              
+ 			 PROF       SHERETTE            
+ 			 PROF       TANG                
+ 			 RECIT      N                   
+ 			 DEPT       MAT                 
+ CS1713  Intro II            
+ 			 PREREQ     CS1083              
+ 			 LANG       C                   
+ 			 PROF       CLARK               
+ 			 PROF       HOLLAND             
+ 			 PROF       SHERETTE            
+ 			 PROF       ROBINSON            
+ 			 PROF       ZHU                 
+ 			 RECIT      Y                   
+ 			 DEPT       CS                  
+ CS2123  Data Structures     
+ 			 PREREQ     CS1713              
+ 			 LANG       C                   
+ 			 PROF       CLARK               
+ 			 PROF       SHERETTE            
+ 			 PROF       ROBINSON            
+ 			 PROF       KORKMAZ             
+ 			 PROF       TOSUN               
+ 			 RECIT      Y                   
+ 			 DEPT       CS                  
+ CS3843  Comp Org            
+ 			 PREREQ     CS2123              
+ 			 LANG       C                   
+ 			 LANG       IA32                
+ 			 PROF       CLARK               
+ 			 PROF       TIAN                
+ 			 PROF       MUZAHID             
+ 			 RECIT      Y                   
+ 			 DEPT       CS                  
+ CS3723  Pgm Lang            
+ 			 PREREQ     CS3443              
+ 			 PREREQ     MAT2233             
+ 			 LANG       C                   
+ 			 LANG       CPP                 
+ 			 LANG       JAVA                
+ 			 LANG       LISP                
+ 			 LANG       PYTHON              
+ 			 PROF       CLARK               
+ 			 RECIT      N                   
+ 			 DEPT       CS                  
+ CS3423  Sys Pgm             
+ 			 PREREQ     CS2123              
+ 			 PROF       MAYNARD             
+ 			 PROF       LAMA                
+ 			 PROF       CLARK               
+ 			 LANG       C                   
+ 			 LANG       PERL                
+ 			 LANG       BASH                
+ 			 RECIT      Y                   
+ 			 DEPT       CS                  
+ CS3443  App Pgm             
+ 			 PREREQ     CS2123              
+ 			 PROF       BYLANDER            
+ 			 PROF       ROBINSON            
+ 			 PROF       NIU                 
+ 			 RECIT      N                   
+ 			 DEPT       CS                  
+ 			 LANG       JAVA                
+ CS4713  Compiler            
+ 			 PREREQ     CS3723              
+ 			 PREREQ     CS3843              
+ 			 PROF       CLARK               
+ 			 RECIT      N                   
+ 			 DEPT       CS                  
+ 			 LANG       JAVA                
+ CS3343  Anlys of Algo       
+ 			 PREREQ     CS2123              
+ 			 PREREQ     MAT3333             
+ 			 PREREQ     MAT2233             
+ 			 PROF       SHERETTE            
+ 			 PROF       GIBSON              
+ 			 PROF       BYLANDER            
+ 			 RECIT      Y                   
+ 			 DEPT       CS                  
+ 			 LANG       JAVA                

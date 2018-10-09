@@ -1,0 +1,6 @@
+Ant,Adam   10 5
+Mander,Sally 4 3
+King,May  6 6
+King,Joe 9 6
+Graph,Otto 2 5
+Carr,Redd 1 3
