@@ -8,3 +8,4 @@ cs3743 - Database Systems
 cs3753 - Data Science 
 cs3843 - Computer Organization
 cs4773 - Object Oriented Programming
+cs4783 - Advanced Software Engineering (City of San Antonio Provisioning Tool)
