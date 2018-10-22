@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <h1>Milk</h1>
+        <ul>
+            <li>
+                Simple Name: milk
+            </li>
+            <li>
+                Quantity: 9/100
+            </li>
+        </ul>
+        <p>
+            A gallon of milk.
+        </p>
+    </body>
+</html>

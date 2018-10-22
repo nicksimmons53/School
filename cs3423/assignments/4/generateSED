@@ -1,0 +1,9 @@
+BEGIN {RS=""}
+{
+    printf("s|<<simple_name>>|%s|g\n", simpName);
+    printf("s|<<item_name>>|%s|g\n", itemName);
+    printf("s|<<current_quantity>>|%s|g\n", currQuantity);
+    printf("s|<<max_quantity>>|%s|g\n", maxQuantity);
+    printf("s|<<body>>|%s|g\n", body);
+    printf("s|<<date>>|%s|g\n", date);
+}

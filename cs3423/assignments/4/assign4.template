@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <h1><<item_name>></h1>
+        <ul>
+            <li>
+                Simple Name: <<simple_name>>
+            </li>
+            <li>
+                Quantity: <<current_quantity>>/<<max_quantity>>
+            </li>
+        </ul>
+        <p>
+            <<body>>
+        </p>
+    </body>
+</html>

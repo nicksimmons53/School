@@ -1,0 +1,7 @@
+UID PID PPID C STIME TTY TIME CMD
+vip242 5171 4967 0 Feb08 pts/2 00:00:00 -bin/tcsh
+dio236 11134 11126 0 11:51 pts/13 00:00:00 vim bank.c
+eim445 11555 11511 0 12:13 pts/4 00:00:00 vi Makefile
+aak173 11572 11374 0 12:14 pts/5 00:00:00 vim bank.c
+rslavin 11651 11646 0 12:14 pts/9 00:00:00 ps -af
+lny439 11983 11977 0 Feb01 pts/32 00:00:00 -bin/tcsh

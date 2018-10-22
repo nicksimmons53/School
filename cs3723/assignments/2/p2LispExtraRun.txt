@@ -1,0 +1,4 @@
+(removeNILAll '(NIL (NIL) (X NIL Y) (NIL NIL) Z))
+(removeNILAll '(NIL ( (((((NIL) NIL)))))))
+(removeNILAll '(NIL (X (NIL) Y) ((NIL)) ))
+(removeNILAll '(NIL (((X ((((((((((NIL)))))))))) Y) Z) W) (((NIL))) ))
