@@ -1,0 +1,9 @@
+(defmacro += (num inc)
+    `(setf ,num ,(eval `(+ ,num ,inc)))
+)
+
+(defmacro iterate (controlVar beginVal endVal inc &rest expr)
+    (do (())
+    
+    )
+)

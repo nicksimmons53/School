@@ -1,0 +1,61 @@
+;; Loading file p2LispRun.txt ...
+;;; LISP Program #2 p2LispRun.txt
+
+;;;  #1 removeNILTop
+
+(removeNILTop '(NIL X NIL NIL Y  NIL Z))
+(X Y Z)
+
+(removeNILTop '(X NIL Y NIL Z NIL))
+(X Y Z)
+
+(removeNILTop '(NIL (X NIL Y) (NIL NIL)))
+((X NIL Y) (NIL NIL))
+
+
+;;; #2 removeNILMost
+                                                                           
+(removeNILMost '(NIL X NIL NIL Y  NIL Z))
+(X Y Z)
+
+(removeNILMost '(X NIL (Y NIL Z) NIL))
+(X (Y Z))
+
+(removeNILMost '(NIL (NIL) (X NIL Y) (NIL NIL) Z))
+(NIL (X Y) NIL Z)
+
+(removeNILMost '(NIL ( (((((NIL) NIL)))))))
+((((((NIL))))))
+
+
+;;; #3 reverseTop
+
+(reverseTop '(X Y Z))
+(Z Y X)
+
+(reverseTop '(X (Y Z (A)) (W)))
+((W) (Y Z (A)) X)
+
+
+;;; #4 reverseALL
+
+(reverseAll '(X Y Z))
+(Z Y X)
+
+(reverseAll '(X (Y Z (A)) (W)))
+((W) ((A) Z Y) X)
+
+
+;;; #5 palindrome
+
+(palindrome '(R A C E C A R))
+T
+
+(palindrome '(W A S I T A C A R O R A C A T I S A W))
+T
+
+(palindrome '(N I X O N))
+NIL
+
+;; Loaded file p2LispRun.txt
+T

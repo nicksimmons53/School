@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <h1>Dozen Eggs</h1>
+        <ul>
+            <li>
+                Simple Name: doz_eggs
+            </li>
+            <li>
+                Quantity: 1/12
+            </li>
+        </ul>
+        <p>
+            A dozen farm fresh eggs.
+        </p>
+    </body>
+</html>

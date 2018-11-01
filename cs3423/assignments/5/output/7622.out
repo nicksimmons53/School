@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <h1>Ramen Noodles</h1>
+        <ul>
+            <li>
+                Simple Name: ramen
+            </li>
+            <li>
+                Quantity: 2/30
+            </li>
+        </ul>
+        <p>
+            Cheap and delicious.
+        </p>
+    </body>
+</html>
