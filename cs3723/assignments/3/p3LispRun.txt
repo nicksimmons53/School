@@ -13,7 +13,7 @@
 )
 
 (setf n 5)
-  
+
 (iterate i 1 n 1
      (print (list 'two i n))
      (+=  i 1)

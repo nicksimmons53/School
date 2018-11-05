@@ -1,9 +1,26 @@
 (defmacro += (num inc)
-    `(setf ,num ,(eval `(+ ,num ,inc)))
+    (list 'setf num `(+ ,num ,inc) )
 )
 
-(defmacro iterate (controlVar beginVal endVal inc &rest expr)
-    (do (())
-    
-    )
+
+(defmacro while (test &rest bodies)
+       `(do ()
+            ((not , test) T)
+            ,@ bodies)
+)
+
+
+(defmacro iterate (controlVariable beginValueExpr endValueExpr incrExpr &rest expr)
+     (let ((endValue (eval endValueExpr) )
+           (incValue (eval incrExpr) )
+           (controlVariable (eval beginValueExpr) ) )
+           (while (<= controlVariable endValue)
+               (doList (control expr T)
+                       (setf i controlVariable)
+                       (eval control)
+                       (setf controlVariable i)
+               )
+               (+= controlVariable incValue)
+           )
+     )
 )
