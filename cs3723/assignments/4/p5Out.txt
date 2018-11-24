@@ -1,0 +1,46 @@
+  1. # p5InputC.txt
+  2. VAR int money 87
+  3. VAR int quarter 0
+  4. VAR int dime 0
+  5. VAR int penny 0
+  6. VAR int working
+  7. ASSIGN working money
+  8. PRINT "For" money "cents," "change:"
+  9. # Determine number of quarters
+ 10. Loop25: if > 25 working LAfter25
+ 11.     ASSIGN quarter + quarter 1
+ 12.     ASSIGN working - working 25
+ 13.     GOTO Loop25
+ 14. LAfter25: PRINT "quarters=" quarter
+ 15. 
+ 16. # Determine number of quarters
+ 17. Loop10: if > 10 working LAfter10
+ 18.     ASSIGN dime + dime 1
+ 19.     ASSIGN working - working 10
+ 20.     GOTO Loop10
+ 21. LAfter10: PRINT "dimes=" dime
+ 22. 
+ 23. # Determine number of pennies
+ 24. Loop1: if >  1 working LDone
+ 25.     ASSIGN penny + penny 1
+ 26.     ASSIGN working - working 1
+ 27.     GOTO Loop1
+ 28. 
+ 29. LDone: PRINT "pennies=" penny
+ 30. 
+ 31. PRINT "EndPgm"
+Variables: 
+	Variable        Type       Value                                             
+	DIME            INT        0                                                 
+	MONEY           INT        87                                                
+	PENNY           INT        0                                                 
+	QUARTER         INT        0                                                 
+	WORKING         INT                                                          
+Labels: 
+	Label           Statement
+	LAFTER10        21
+	LAFTER25        14
+	LDONE           29
+	LOOP1           24
+	LOOP10          17
+	LOOP25          10

@@ -1,0 +1,33 @@
+c
+100
+oj
+Orange Juice
+10
+100
+A half gallon of orange juice.
+r
+12
+r
+100
+u
+9999
+u
+12
+milk
+Milk (Half Gallon)
+24
+30
+A half gallon of milk.
+d
+9999
+d
+100
+c
+1
+c
+0
+chips
+Wavy Potato Chips
+12
+35
+A salty snack.

@@ -1,0 +1,22 @@
+VAR int count 0
+VAR string result
+VAR string symbol "ho"
+VAR int tick 3
+VAR int limit 5
+VAR string greeting "hello..there"
+VAR int iter 4
+PRINT "begins..."
+# loop while count < iter
+Loop: if >= count iter endloop
+    PRINT "Top:...count=" count "tick=" tick "symbol=" symbol
+    ASSIGN count + count 1
+    IF > tick limit pastlimit
+        ASSIGN result * symbol tick
+        PRINT result
+        ASSIGN tick + tick 1
+        GOTO afterIf
+    pastlimit: PRINT "***tick...reached...limit:" tick
+    afterIf: GOTO loop
+    
+endloop: PRINT "EndLoop"
+PRINT "EndPgm"

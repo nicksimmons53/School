@@ -1,0 +1,14 @@
+W 1 11111 10.00 1 S 0.00 Highwater, Helen
+R 1
+W 2 22222 12.00 1 S 20.00 Flood, T. Rential
+W 3 33333 25.00 2 M 100.00 Tall, Jerry
+W 4 44444 40.00 1 S 200.00 Yuss, Jean E.
+W 5 55555 8.00 1 X 0.00 Absent, Marcus
+R 4
+W 8 88888 88.00 1 S 0.00 Moss, Pete
+R 8
+R 7
+R 9
+R 50
+R 0
+
