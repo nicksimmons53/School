@@ -1,0 +1,4 @@
+//assignment1
+printf(''hellow world''); // test printing
+	// some comment
+LOG.debug(''test code'');
