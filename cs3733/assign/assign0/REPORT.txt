@@ -1,0 +1,5 @@
+1.) Nicholas Simmons - all of it
+2.) I believe everything was correct, except for driver2.c and checking against NULL input.
+	I would continually get SEGFAULT when checking for empty values.
+3.) See previous.
+4.) No suggestions.

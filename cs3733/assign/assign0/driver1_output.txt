@@ -1,0 +1,33 @@
+Please enter an integer:
+3
+3
+Please enter an integer:
+7
+7
+Please enter an integer:
+1
+1
+Please enter a decimal digit:
+4.5
+4.500000
+Please enter a decimal digit:
+1.2
+1.200000
+Please enter a decimal digit:
+3.9
+3.900000
+Please enter a line:
+Hello
+Hello
+Please enter a line:
+How are
+How are
+Please enter a line:
+You
+You
+Please enter a line:
+Good
+Good
+Largest int is: 7
+Largest double is: 4.500000
+Longest string is: How are
