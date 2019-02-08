@@ -1,0 +1,2 @@
+This is the function I have for counting the words in the file. It doesn't compile on gcc (probably for obvious reasons, but I don't know them).
+Do I even have the right idea?

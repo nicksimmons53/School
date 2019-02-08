@@ -1,4 +1,5 @@
 1.) Nicholas Simmons (srz888)
-2.)
-3.)
-4.)
+2.) Yes
+3.) I believe everything to be working correctly.
+4.) The most challenging part was understanding exactly how the forks work, not just applying the
+	code, but understanding all workings of processes. This was a fun assignment.
