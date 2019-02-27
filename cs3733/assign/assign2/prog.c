@@ -20,10 +20,16 @@ typedef struct PCB_st {
 // Method Declarations/Global Variables
 int fileRead(char *argv[ ], int flag);
 int FIFO_Scheduling(PCB_st *PCB);
+int SJF_Scheduling(PCB_st *PCB);
 int total_waiting_time = 0, total_turnaround_time = 0, total_job = 0;
 int CLOCK = 0;
 int CPUReg[8] = {0};
 
+// int main(int argc, char *argv[ ])
+//
+// Task:
+// Parameters:
+// Return:
 int main(int argc, char *argv[ ]) {
 	char *alg = argv[2];
 	int flag;
@@ -36,26 +42,32 @@ int main(int argc, char *argv[ ]) {
 
 		flag = FIFO;
 		fileRead(argv, flag);
+	} else if (strcmp(argv[2], "SJF") == 0) {
+		if (argc != 5) {
+			fprintf(stderr, "USAGE: prog -alg FIFO -input fileName\n");
+			return -1;
+		}
+
+		flag = SJF;
+		fileRead(argv, flag);
 	}
 
 	fflush(stderr);
 	return 0;
 }
 
+// int fileRead(char *argv[ ], int flag)
 //
-//
-//
-//
+// Task:
+// Parameters:
+// Return:
 int fileRead(char *argv[ ], int flag) {
 	FILE *inputFile;
 	struct PCB_st *head = NULL;
 	struct PCB_st *tail = NULL;
+	struct PCB_st *current = NULL;
 	char buffer[100];
 	int scan;
-
-	// Allocate memory for the linked list
-	head = (struct PCB_st*)malloc(sizeof(PCB_st));
-	tail = (struct PCB_st*)malloc(sizeof(PCB_st));
 
 	// Open file for reading
 	inputFile = fopen(argv[4], "r");
@@ -84,41 +96,50 @@ int fileRead(char *argv[ ], int flag) {
 		pcb->waitingTime = 0;
 		pcb->next = NULL;
 
-		// Insert struct onto linked list
+		// Append struct onto linked list
+		pcb->next = NULL;
+
 		if (head == NULL) {
 			head = pcb;
+			tail = pcb;
 		} else {
-			while (tail->next != NULL) {
-				tail = tail->next;
+			current = head;
+			while (current->next != NULL) {
+				current = current->next;
 			}
 
-			tail->next = pcb;
+			current->next = pcb;
 		}
 	}
 
 	// Close the file and print correct fields
 	fclose(inputFile);
-	printf("Student Name : Nicholas Simmons\n");
-	printf("Input File Name : %s\n", argv[4]);
-	printf("CPU Scheduling Alg : %s\n", argv[2]);
 
+	// Switch case for flag raised on type of algorithm being called
 	switch (flag) {
 		case FIFO:
-			// FIFO_Scheduling(head);
-			while (head != NULL) {
-				printf("A\n");
-				head = head->next;
-			}
+			printf("Student Name : Nicholas Simmons\n");
+			printf("Input File Name : %s\n", argv[4]);
+			printf("CPU Scheduling Alg : %s\n\n", argv[2]);
+			FIFO_Scheduling(head);
+			break;
+		case SJF:
+			printf("Student Name : Nicholas Simmons\n");
+			printf("Input File Name : %s\n", argv[4]);
+			printf("CPU Scheduling Alg : %s\n\n", argv[2]);
+			SJF_Scheduling(head);
 			break;
 	}
 
 	return 0;
 }
 
+// int FIFO_Scheduling(PCB_st *PCB)
 //
-//
-//
-//
+// Task:		Will perform a logical first in first out CPU scheduling algorithm and measure
+//				performance metrics related to the algorithm.
+// Parameters:	PCB_st *PCB		PCB head node for iteration through the list
+// Return:		int 			0 if successful
 int FIFO_Scheduling(PCB_st *PCB) {
 	struct PCB_st *temp = NULL;
 	int PCB_num = 1;
@@ -141,17 +162,74 @@ int FIFO_Scheduling(PCB_st *PCB) {
 		total_turnaround_time = total_turnaround_time + CLOCK;
 		total_job = total_job + 1;
 
+		// Print process number and time to completion
 		printf("Process %d is completed at %d ms\n", PCB_num, CLOCK);
 
-		// Continue to next node
+		// Continue to next node and free the last node
 		PCB_num++;
-		temp = PCB;
+		temp = PCB->next;
 		free(PCB);
 		PCB = temp;
 	}
 
-	// printf("Average Waiting Time: %d\n", total_waiting_time/total_job);
-	// printf("Average Turnaround Time: %d\n", total_turnaround_time/total_job);
-	// printf("Throughput: %d\n", total_job/CLOCK);
+	// Print average time metrics
+	printf("\nAverage Waiting Time: %.2f per ms\n", (double)total_waiting_time/(double)total_job);
+	printf("Average Turnaround Time: %.2f per ms\n", (double)total_turnaround_time/(double)total_job);
+	printf("Throughput: %.2f per ms\n", (double)total_job/(double)CLOCK);
+
+	return 0;
+}
+
+// int SJF_Scheduling(PCB_st *PCB)
+//
+// Task:
+// Parameters:	PCB_st *PCB		PCB head node for iteration through the list
+// Return:		int 			0 if successful
+int SJF_Scheduling(PCB_st *PCB) {
+	struct PCB_st *head = PCB;
+	struct PCB_st *temp = NULL;
+	struct PCB_st *prev = PCB;
+	int PCB_num = 1, i;
+
+	while (PCB != NULL) {
+		int min = INT32_MAX;
+
+		for (temp = head; temp != NULL; temp = temp->next) {
+			if (temp->CPUBurst < min)
+				min = temp->CPUBurst;
+		}
+
+		if (PCB->CPUBurst == min) {
+			// Perform context switching
+			for (i = 0; i < 8; i++) {
+				CPUReg[i] = PCB->Reg[i];
+				CPUReg[i]++;
+				PCB->Reg[i] = CPUReg[i];
+			}
+
+			// Performance metrics for time
+			PCB->waitingTime = PCB->waitingTime + CLOCK - PCB->queueEnterClock;
+			total_waiting_time = total_waiting_time + PCB->waitingTime;
+			CLOCK = CLOCK + PCB->CPUBurst;
+			total_turnaround_time = total_turnaround_time + CLOCK;
+			total_job = total_job + 1;
+
+			// Print process number and time to completion
+			printf("Process %d is completed at %d ms\n", PCB_num, CLOCK);
+
+			PCB_num++;
+
+			free(PCB);
+			PCB = head;
+		}
+
+		PCB = PCB->next;
+	}
+
+	// Print average time metrics
+	printf("\nAverage Waiting Time: %.2f per ms\n", (double)total_waiting_time/(double)total_job);
+	printf("Average Turnaround Time: %.2f per ms\n", (double)total_turnaround_time/(double)total_job);
+	printf("Throughput: %.2f per ms\n", (double)total_job/(double)CLOCK);
+
 	return 0;
 }
