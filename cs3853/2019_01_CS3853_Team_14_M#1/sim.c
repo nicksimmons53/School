@@ -1,4 +1,4 @@
-// Group 14 - Nick Simmons, Christina Lew, Elliott Soler
+ // Group 14 - Nick Simmons, Christina Lew, Elliott Soler
 
 #include <stdio.h>
 #include <stdlib.h>

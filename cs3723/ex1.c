@@ -1,4 +1,4 @@
-#include <stdio.h>
+ #include <stdio.h>
 
 int iX = 100;
 int iY = 200;

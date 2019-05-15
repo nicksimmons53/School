@@ -1,4 +1,4 @@
-/*************************************************************************
+ /*************************************************************************
 cs3743p1.c written by Nicholas Simmons (srz888)
 Purpose:
     This program will create and open a Hash File to read and write

@@ -1,4 +1,4 @@
-# of people imported: 8
+ # of people imported: 8
 
 Person Name                    Age  Emp. Type             Pay
 ------------------------------ ---  ------------ ------------

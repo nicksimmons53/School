@@ -1,4 +1,4 @@
-import random
+ import random
 
 userGreetings = ['Hello', 'hello', 'Hi', 'hi', 'Hey', 'hey', 'Howdy', 'howdy']
 userQuestion = ['What\'s up', 'What\'s up?']

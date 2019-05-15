@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ # -*- coding: utf-8 -*-
 """
 Created on Tue Aug 29 08:01:48 2017
 HW1 Code Skeleton
